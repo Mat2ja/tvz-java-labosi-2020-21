@@ -1,0 +1,66 @@
+GRAD ZAGREB
+1000000
+SPLITSKO-DALMATINSKA
+300000
+ISTARSKA
+100000
+Grlobolja
+RIJETKO
+Curenje nosa
+SREDNJE
+Visoka temperatura
+ČESTO
+Prehlada
+1
+10
+2
+Gripa
+1
+6
+1
+Covid19
+3
+1
+2
+3
+Pero
+Perić
+66
+1
+1
+Ivo
+Ivić
+44
+2
+2
+1
+1
+Janko
+Janić
+32
+3
+3
+2
+1
+2
+
+Popis osoba:
+Ime i prezime: Pero Perić
+Starost: 66
+Županija prebivališta: GRAD ZAGREB
+Zaražen bolešću: Prehlada
+Kontaktirane osobe:
+Nema kontaktiranih osoba.
+Ime i prezime: Ivo Ivić
+Starost: 44
+Županija prebivališta: SPLITSKO-DALMATINSKA
+Zaražen bolešću: Gripa
+Kontaktirane osobe:
+Pero Perić
+Ime i prezime: Janko Janić
+Starost: 32
+Županija prebivališta: ISTARSKA
+Zaražen bolešću: Covid19
+Kontaktirane osobe:
+Pero Perić
+Ivo Ivić
