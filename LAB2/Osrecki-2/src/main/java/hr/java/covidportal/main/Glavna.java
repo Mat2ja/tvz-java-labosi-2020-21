@@ -4,7 +4,6 @@ import main.java.hr.java.covidportal.model.*;
 
 import java.util.Scanner;
 
-@SuppressWarnings("WrapperTypeMayBePrimitive")
 public class Glavna {
     private static final Integer BROJ_ZUPANIJA = 3;
     private static final Integer BROJ_SIMPTOMA = 3;
@@ -110,7 +109,7 @@ public class Glavna {
                 System.out.println("Odaberite " + (j + 1) + ". simptom:");
 
                 for (int k = 0; k < simptomi.length; k++) {
-                    System.out.println((k + 1) + ". "
+                    System.out.println((k + 1) + ") "
                             + simptomi[k].getNaziv()
                             + " (" + simptomi[k].getVrijednost() + ")");
                 }
@@ -125,7 +124,7 @@ public class Glavna {
             odabraniSimptomi[j] = simptomi[indexOdabranogSimptoma - 1];
         }
 
-        // ako bi u buducnosti bilo vise opcija
+        // ako bi u buducnosti bilo vise vrsti bolesti
         return switch (vrsteBolesti[indexVrsteBolesti - 1].toUpperCase()) {
             case "VIRUS" -> new Virus(naziv, simptomi);
             default -> new Bolest(naziv, simptomi);
@@ -145,7 +144,7 @@ public class Glavna {
             System.out.println("Unesite županiju osobe:");
 
             for (int k = 0; k < zupanije.length; k++) {
-                System.out.println((k + 1) + ". " + zupanije[k].getNaziv());
+                System.out.println((k + 1) + ") " + zupanije[k].getNaziv());
             }
 
             indexOdabraneZupanije = unosBroja(scanner, ">> Odabir: ");
@@ -164,7 +163,7 @@ public class Glavna {
             System.out.println("Unesite bolest ili virus osobe:");
 
             for (int k = 0; k < bolesti.length; k++) {
-                System.out.println((k + 1) + ". " + bolesti[k].getNaziv());
+                System.out.println((k + 1) + ") " + bolesti[k].getNaziv());
             }
 
             indexOdabraneBolesti = unosBroja(scanner, ">> Odabir: ");
@@ -195,7 +194,7 @@ public class Glavna {
                 do {
                     for (int k = 0; k < osobe.length; k++) {
                         if (osobe[k] == null) break;
-                        System.out.println((k + 1) + ". " + osobe[k].getIme() + " " + osobe[k].getPrezime());
+                        System.out.println((k + 1) + ") " + osobe[k].getIme() + " " + osobe[k].getPrezime());
                     }
 
                     indexOdabraneOsobe = unosBroja(scanner, ">> Odabir: ");

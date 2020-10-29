@@ -9,7 +9,7 @@ public class Osoba {
     private Osoba[] kontaktiraneOsobe;
 
     public static class Builder {
-        private String ime;
+        private String ime; 
         private String prezime;
         private Integer starost;
         private Zupanija zupanija;
@@ -57,7 +57,7 @@ public class Osoba {
             // ako je osoba zarazena virusom, zarazi sve osobe s kojima je bila u kontaktu
             if (osoba.zarazenBolescu instanceof Virus virus && osoba.kontaktiraneOsobe != null) {
                 for (Osoba kontakt : kontaktiraneOsobe) {
-                    kontakt.setZarazenBolescu(osoba.zarazenBolescu);
+                    virus.prelazakZarazeNaOsobu(kontakt);
                 }
             }
 

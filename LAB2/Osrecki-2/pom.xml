@@ -20,6 +20,9 @@
                 <version>3.8.1</version>
                 <configuration>
                     <release>15</release>
+                    <compilerArgs>
+                        --enable-preview
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
