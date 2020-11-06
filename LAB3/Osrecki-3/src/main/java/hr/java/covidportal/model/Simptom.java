@@ -30,12 +30,6 @@ public class Simptom extends ImenovaniEntitet {
         this.vrijednost = vrijednost;
     }
 
-    /**
-     * Uspoređuje dva simptomi
-     *
-     * @param o objekt simptoma koje uspoređujemo
-     * @return true ako su simptomi identični, inače false
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,3 +43,4 @@ public class Simptom extends ImenovaniEntitet {
         return Objects.hash(vrijednost);
     }
 }
+
