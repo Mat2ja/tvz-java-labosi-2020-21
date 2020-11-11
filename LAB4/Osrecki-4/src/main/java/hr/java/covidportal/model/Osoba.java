@@ -174,6 +174,11 @@ public class Osoba {
         this.kontaktiraneOsobe = kontaktiraneOsobe;
     }
 
+    @Override
+    public String toString() {
+        return ime + " " + prezime;
+    }
+
     /**
      * Uspoređuje dvije osobe
      *

@@ -1,14 +1,16 @@
 package main.java.hr.java.covidportal.main;
 
-import main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma;
-import main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe;
-import main.java.hr.java.covidportal.iznimke.OsobaIzvanGranica;
+import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+import main.java.hr.java.covidportal.iznimke.*;
 import main.java.hr.java.covidportal.model.*;
 
+import main.java.hr.java.covidportal.sort.CovidSorter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Predstavlja glavnu klasu u kojoj se izvodi program
@@ -26,34 +28,35 @@ public class Glavna {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Set<Zupanija> zupanije = new HashSet<>();
+        SortedSet<Zupanija> zupanije = new TreeSet<>(new CovidSorter());
         Set<Simptom> simptomi = new HashSet<>();
         Set<Bolest> bolesti = new HashSet<>();
         List<Osoba> osobe = new ArrayList<>();
 
-        final Set<String> vrijednostiSimptoma = new HashSet<>(Arrays.asList("RIJETKO", "SREDNJE", "ČESTO"));
         final Set<String> vrsteBolesti = new HashSet<>(Arrays.asList("BOLEST", "VIRUS"));
 
-        printDividerWithHeading("Corona Finder 9000");
+        printHeader("Corona Finder 9000");
         logger.info("Pokrenuli smo program!");
 
-
+        printHeader("Županije");
         Integer brojZupanija = unesiBrojZeljenihPodataka(scanner, "\n>> Unesite broj županija koje želite unijeti: ");
         System.out.println("\nUnesite podatke o " + brojZupanija + " županije:");
         for (int i = 0; i < brojZupanija; i++) {
             zupanije.add(unosZupanije(scanner, i));
         }
 
+        printHeader("Simptomi");
         Integer brojSimptoma = unesiBrojZeljenihPodataka(scanner, "\n>> Unesite broj simptoma koje želite unijeti: ");
         System.out.println("\nUnesite podatke o " + brojSimptoma + " simptoma:");
         for (int i = 0; i < brojSimptoma; i++) {
-            simptomi.add(unosSimptoma(scanner, vrijednostiSimptoma, i));
+            simptomi.add(unosSimptoma(scanner, i));
         }
 
+        printHeader("Bolesti");
         Integer brojBolesti = unesiBrojZeljenihPodataka(scanner, "\n>> Unesite broj bolesti koje želite unijeti: ");
         System.out.println("\nUnesite podatke o " + brojBolesti + " bolesti:");
         for (int i = 0; i < brojBolesti; i++) {
-            boolean ponoviPetlju;
+            Boolean ponoviPetlju;
             do {
                 try {
                     bolesti.add(unosBolesti(scanner, vrsteBolesti, simptomi, bolesti, i));
@@ -66,13 +69,26 @@ public class Glavna {
             } while (ponoviPetlju);
         }
 
+        printHeader("Osobe");
         Integer brojOsoba = unesiBrojZeljenihPodataka(scanner, "\n>> Unesite broj osoba koje želite unijeti: ");
         System.out.println("\nUnesite podatke o " + brojOsoba + " osobe:");
         for (int i = 0; i < brojOsoba; i++) {
             osobe.add(unosOsobe(scanner, zupanije, bolesti, osobe, i));
         }
 
+        Map<Bolest, List<Osoba>> mapaBolesti = osobe
+                .stream()
+                .collect(Collectors.groupingBy(Osoba::getZarazenBolescu));
+
         ispisiOsobe(osobe);
+        ispisiBolestiOboljelih(mapaBolesti);
+
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        System.out.println("\nNajviše zaraženih osoba ima u županiji "
+                + zupanije.first().getNaziv() + ": "
+                + df.format(zupanije.first().getPostotakZarazenih()) + "%");
     }
 
 
@@ -97,7 +113,7 @@ public class Glavna {
      */
     private static Integer unosBroja(Scanner scanner, String poruka) {
         Integer broj = 0;
-        boolean pogresanUnos;
+        Boolean pogresanUnos;
         do {
             try {
                 System.out.print(poruka);
@@ -122,7 +138,7 @@ public class Glavna {
      *
      * @param scanner scanner koji dohvaća unos s ulaza
      * @param poruka  poruka koja će se ispisati trazeći unos podatka
-     * @return
+     * @return podatak o broju podataka
      */
     private static Integer unesiBrojZeljenihPodataka(Scanner scanner, String poruka) {
         Integer brojPodataka;
@@ -143,7 +159,7 @@ public class Glavna {
      * @param max   podatak o minimalnoj granici intervala
      * @return true ako je vrijednost izvan zadanog intervala, inače false
      */
-    private static boolean isOutsideRange(Integer value, Integer min, Integer max) {
+    private static Boolean isOutsideRange(Integer value, Integer min, Integer max) {
         return value < min || value > max;
     }
 
@@ -157,26 +173,43 @@ public class Glavna {
     private static Zupanija unosZupanije(Scanner scanner, int i) {
         String naziv = unosPodatka(scanner, ">> Unesite naziv " + (i + 1) + ". županije: ");
         Integer brojStanovnika = unosBroja(scanner, ">> Unesite broj stanovnika " + (i + 1) + ". županije: ");
-        return new Zupanija(naziv, brojStanovnika);
+        Integer brojZarazenih = unosBroja(scanner, ">> Unesite broj zaraženih " + (i + 1) + ". županije: ");
+        return new Zupanija(naziv, brojStanovnika, brojZarazenih);
     }
 
     /**
      * Unosi podatke o simptomima
      *
-     * @param scanner             scanner koji dohvaća unos s ulaza
-     * @param vrijednostiSimptoma podatak o dostupnim simptomima
-     * @param i                   podatak o trenutnoj iteraciji petlje
+     * @param scanner scanner koji dohvaća unos s ulaza
+     * @param i       podatak o trenutnoj iteraciji petlje
      * @return instanca simptoma
      */
-    private static Simptom unosSimptoma(Scanner scanner, Set<String> vrijednostiSimptoma, int i) {
+    private static Simptom unosSimptoma(Scanner scanner, int i) {
         String naziv = unosPodatka(scanner, ">> Unesite naziv " + (i + 1) + ". simptoma: ");
-        String vrijednostSimptoma = unosPodatka(scanner,
-                ">> Unesite vrijednost " + (i + 1) + ". simptoma (" +
-                        getStringAtIndex(vrijednostiSimptoma, 0) + " / " +
-                        getStringAtIndex(vrijednostiSimptoma, 1) + " / " +
-                        getStringAtIndex(vrijednostiSimptoma, 2) + "): ");
 
-        return new Simptom(naziv, vrijednostSimptoma.toUpperCase());
+        String poruka = ">> Unesite vrijednost " + (i + 1) + ". simptoma (" +
+                VrijednostSimptoma.RIJETKO.getVrijednost() + " / " +
+                VrijednostSimptoma.SREDNJE.getVrijednost() + " / " +
+                VrijednostSimptoma.CESTO.getVrijednost() + "): ";
+
+
+        VrijednostSimptoma vrijednostSimptomaEnum = null;
+        do {
+            String unesenaVrijednost = unosPodatka(scanner, poruka);
+
+            for (VrijednostSimptoma vrijednost : VrijednostSimptoma.values()) {
+                if (vrijednost.getVrijednost().equalsIgnoreCase(unesenaVrijednost)) {
+                    vrijednostSimptomaEnum = vrijednost;
+                }
+            }
+
+            if (vrijednostSimptomaEnum == null) {
+                prikaziPorukuNeispravnogUnosa();
+                logger.info("Unesena je vrijednost simptoma koja ne postoji.");
+            }
+        } while (vrijednostSimptomaEnum == null);
+
+        return new Simptom(naziv, vrijednostSimptomaEnum);
     }
 
     /**
@@ -209,7 +242,9 @@ public class Glavna {
             }
 
         } while (isOutsideRange(indexVrsteBolesti, 1, vrsteBolesti.size()));
-        String vrstaBolesti = getStringAtIndex(vrsteBolesti, indexVrsteBolesti - 1);
+        //String vrstaBolesti = getStringAtIndex(vrsteBolesti, indexVrsteBolesti - 1);
+        //List<String> vrstaBolestiList = new ArrayList<>(vrsteBolesti);
+        String vrstaBolesti = new ArrayList<>(vrsteBolesti).get(indexVrsteBolesti - 1);
 
         String naziv = unosPodatka(scanner, ">> Unesite naziv " + (i + 1) + ". bolesti ili virusa: ");
 
@@ -219,7 +254,7 @@ public class Glavna {
 
             if (isOutsideRange(brojSimptoma, 1, simptomi.size())) {
                 if (simptomi.size() <= 1) {
-                    System.out.println("## Molimo izaberite barem 1 simptom.");
+                    System.out.println("## Molimo izaberite 1 simptom.");
                 } else {
                     System.out.println("## Molimo izaberite izmedu 1 i " + simptomi.size() + " simptoma.");
                 }
@@ -248,9 +283,8 @@ public class Glavna {
 
             } while (isOutsideRange(indexOdabranogSimptoma, 1, simptomi.size()));
 
-            Simptom odabraniSimptom = getSimptomAtIndex(simptomi, indexOdabranogSimptoma - 1);
+            Simptom odabraniSimptom = new ArrayList<>(simptomi).get(indexOdabranogSimptoma - 1);
             odabraniSimptomi.add(odabraniSimptom);
-
         }
 
         Bolest odabranaBolest = switch (vrstaBolesti.toUpperCase()) {
@@ -261,8 +295,6 @@ public class Glavna {
         provjeraBolesti(bolesti, odabranaBolest);
 
         return odabranaBolest;
-
-
     }
 
     /**
@@ -298,7 +330,8 @@ public class Glavna {
             }
 
         } while (isOutsideRange(indexOdabraneZupanije, 1, zupanije.size()));
-        Zupanija zupanija = getZupanijaAtIndex(zupanije, indexOdabraneZupanije - 1);
+
+        Zupanija zupanija = new ArrayList<>(zupanije).get(indexOdabraneZupanije - 1);
 
 
         // Unos bolesti osobe
@@ -319,7 +352,8 @@ public class Glavna {
             }
 
         } while (isOutsideRange(indexOdabraneBolesti, 1, bolesti.size()));
-        Bolest bolest = getBolestAtIndex(bolesti, indexOdabraneBolesti - 1);
+
+        Bolest bolest = new ArrayList<>(bolesti).get(indexOdabraneBolesti - 1);
 
 
         // Unos kontakata osobe
@@ -327,7 +361,7 @@ public class Glavna {
         // ako je unesena bar jedna osoba
         if (i > 0) {
             Integer brojKontakata;
-            boolean ponoviPetlju;
+            Boolean ponoviPetlju;
             do {
                 brojKontakata = unosBroja(scanner, ">> Unesite broj osoba koje su bile u kontaktu s tom osobom: ");
 
@@ -347,7 +381,7 @@ public class Glavna {
 
             for (int j = 0; j < brojKontakata; j++) {
                 Integer indexOdabraneOsobe;
-                boolean neispravanKontakt = false;
+                Boolean neispravanKontakt = false;
                 do {
                     String poruka = "Odaberite " + (j + 1) + ". osobu:\n";
                     Integer index = 0;
@@ -374,8 +408,9 @@ public class Glavna {
                         }
                     }
                 } while (isOutsideRange(indexOdabraneOsobe, 1, i) || neispravanKontakt);
-                Osoba odabranaOsoba = getOsobaAtIndex(osobe, indexOdabraneOsobe - 1);
-                kontaktiraneOsobe.add(odabranaOsoba);
+
+                Osoba konktaktOsoba = new ArrayList<>(osobe).get(indexOdabraneOsobe - 1);
+                kontaktiraneOsobe.add(konktaktOsoba);
             }
         }
 
@@ -390,72 +425,6 @@ public class Glavna {
 
 
     /**
-     * Dohvaća element seta sa odabranog indeksu
-     *
-     * @param set    podatak o setu
-     * @param odabir podatak o odabranom indeksu
-     * @return vrijednost elementa seta s odabranim indexom
-     */
-    private static String getStringAtIndex(Set<String> set, Integer odabir) {
-        Integer i = 0;
-        for (String s : set) if ((i++).equals(odabir)) return s;
-        return null;
-    }
-
-    /**
-     * Dohvaća simtpom sa pozicije odabranog indeksa
-     *
-     * @param simptomi podatak o setu simptoma
-     * @param odabir   podatak o odabranom indeksu
-     * @return simptom s odabranim indeksom
-     */
-    private static Simptom getSimptomAtIndex(Set<Simptom> simptomi, Integer odabir) {
-        Integer i = 0;
-        for (Simptom simptom : simptomi) if ((i++).equals(odabir)) return simptom;
-        return null;
-    }
-
-    /**
-     * Dohvaća osobu sa pozicije odabranog indeksa
-     *
-     * @param zupanije podatak o setu županija
-     * @param odabir   podatak o odabranom indeksu
-     * @return zupanija s odabranim indeksom
-     */
-    private static Zupanija getZupanijaAtIndex(Set<Zupanija> zupanije, Integer odabir) {
-        Integer i = 0;
-        for (Zupanija zupanija : zupanije) if ((i++).equals(odabir)) return zupanija;
-        return null;
-    }
-
-    /**
-     * Dohvaća osobu sa pozicije odabranog indeksa
-     *
-     * @param bolesti podatak o setu bolesti
-     * @param odabir  podatak o odabranom indeksu
-     * @return bolest s odabranim indeksom
-     */
-    private static Bolest getBolestAtIndex(Set<Bolest> bolesti, Integer odabir) {
-        Integer i = 0;
-        for (Bolest bolest : bolesti) if ((i++).equals(odabir)) return bolest;
-        return null;
-    }
-
-    /**
-     * Dohvaća osobu sa pozicije odabranog indeksa
-     *
-     * @param osobe  podatak o listi osoba
-     * @param odabir podatak o odabranom indeksu
-     * @return osoba s odabranim indeksom
-     */
-    private static Osoba getOsobaAtIndex(List<Osoba> osobe, Integer odabir) {
-        Integer i = 0;
-        for (Osoba osoba : osobe) if ((i++).equals(odabir)) return osoba;
-        return null;
-    }
-
-
-    /**
      * Provjerava da li je unesena osoba duplikat već unesene osobe, ako je, baca iznimku
      *
      * @param indexOdabraneOsobe podatak o odabiru osobe
@@ -464,7 +433,7 @@ public class Glavna {
      * @throws DuplikatKontaktiraneOsobe iznimka bačena u slučaju unosa duplikata osobe
      */
     private static void provjeraKontakta(Integer indexOdabraneOsobe, List<Osoba> osobe, List<Osoba> kontaktiraneOsobe) throws DuplikatKontaktiraneOsobe {
-        Osoba odabranaOsoba = getOsobaAtIndex(osobe, indexOdabraneOsobe - 1);
+        Osoba odabranaOsoba = new ArrayList<>(osobe).get(indexOdabraneOsobe - 1);
         for (Osoba kontakt : kontaktiraneOsobe) {
             if (kontakt == null) break;
             if (kontakt.equals(odabranaOsoba)) {
@@ -515,28 +484,65 @@ public class Glavna {
     /**
      * Prikazuje naslov sekcije
      */
-    private static void printDividerWithHeading(String title) {
-        System.out.println("\n-------------- " + title + " --------------");
+    private static void printHeader(String title) {
+        Integer size = 50;
+        Integer remaining = size - title.length();
+        String left = "";
+        String right = "";
+        for (int i = 0; i < (int) (remaining / 2); i++) {
+            left += '-';
+        }
+        for (int i = 0; i < remaining - left.length(); i++) {
+            right += '-';
+        }
+        System.out.println("\n" + left + " " + title + " " + right);
     }
 
     /**
      * Ispisuje podatke o evidentiranim osobama
      *
-     * @param osobe
+     * @param osobe podatak o unesenim osobama
      */
     private static void ispisiOsobe(List<Osoba> osobe) {
-        printDividerWithHeading("Popis osoba");
+        printHeader("Popis osoba");
+
         for (Osoba osoba : osobe) {
             System.out.println("\nIme i prezime: " + osoba.getIme() + " " + osoba.getPrezime());
             System.out.println("Starost: " + osoba.getStarost());
             System.out.println("Županija prebivališta: " + osoba.getZupanija().getNaziv());
             System.out.println("Zaražen bolešću: " + osoba.getZarazenBolescu().getNaziv());
             System.out.println("Kontaktirane osobe:");
-            if (osoba.getKontaktiraneOsobe() == null) {
+            if (osoba.getKontaktiraneOsobe().isEmpty()) {
                 System.out.println("Nema kontaktiranih osoba.");
             } else {
                 for (Osoba kontaktiranaOsoba : osoba.getKontaktiraneOsobe()) {
-                    System.out.println("- " + kontaktiranaOsoba.getIme() + " " + kontaktiranaOsoba.getPrezime());
+                    System.out.println("\t- " + kontaktiranaOsoba);
+                }
+            }
+        }
+    }
+
+    /**
+     * Ispisuje podatke o bolestima i osobama oboljelim od te bolesti
+     *
+     * @param popisOboljenih podatak o mapi bolesti i oboljelih
+     */
+    private static void ispisiBolestiOboljelih(Map<Bolest, List<Osoba>> popisOboljenih) {
+        printHeader("Popis bolesti");
+
+        for (Map.Entry<Bolest, List<Osoba>> entry : popisOboljenih.entrySet()) {
+            Bolest bolest = entry.getKey();
+            List<Osoba> oboljeleOsobe = entry.getValue();
+
+            if (!oboljeleOsobe.isEmpty()) {
+                if (bolest instanceof Virus virus) {
+                    System.out.println("\nOd virusa " + virus.getNaziv().toUpperCase() + " boluju: ");
+                } else {
+                    System.out.println("\nOd bolesti " + bolest.getNaziv().toUpperCase() + " boluju: ");
+                }
+
+                for (Osoba osoba : oboljeleOsobe) {
+                    System.out.println("\t- " + osoba);
                 }
             }
         }

@@ -1,5 +1,7 @@
 package main.java.hr.java.covidportal.model;
 
+import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+
 import java.util.Objects;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Objects;
  * @author Matija
  */
 public class Simptom extends ImenovaniEntitet {
-    private String vrijednost;
+    private VrijednostSimptoma vrijednost;
 
 
     /**
@@ -17,19 +19,18 @@ public class Simptom extends ImenovaniEntitet {
      * @param naziv      podatak o nazivu simptoma
      * @param vrijednost podatak o vrijednosti simptoma
      */
-    public Simptom(String naziv, String vrijednost) {
+    public Simptom(String naziv, VrijednostSimptoma vrijednost) {
         super(naziv);
         this.vrijednost = vrijednost;
     }
 
-    public String getVrijednost() {
+    public VrijednostSimptoma getVrijednost() {
         return vrijednost;
     }
 
-    public void setVrijednost(String vrijednost) {
+    public void setVrijednost(VrijednostSimptoma vrijednost) {
         this.vrijednost = vrijednost;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -37,7 +38,7 @@ public class Simptom extends ImenovaniEntitet {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Simptom simptom = (Simptom) o;
-        return Objects.equals(vrijednost, simptom.vrijednost);
+        return vrijednost == simptom.vrijednost;
     }
 
     @Override
