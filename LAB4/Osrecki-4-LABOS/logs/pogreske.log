@@ -1,0 +1,502 @@
+2020-11-12 15:48:53,204 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 15:48:55,852 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:49:00,406 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-12 15:49:03,071 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1000000
+2020-11-12 15:49:09,306 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 5638
+2020-11-12 15:49:13,273 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 450000
+2020-11-12 15:49:18,756 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3019
+2020-11-12 15:49:23,202 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 300000
+2020-11-12 15:49:25,188 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1021
+2020-11-12 15:49:27,228 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:49:30,595 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:208] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-12 15:49:45,024 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:49:46,634 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:49:48,688 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:49:49,285 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:49:51,300 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:49:52,091 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:49:53,275 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:49:55,653 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:49:56,392 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:49:56,821 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:49:57,341 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:49:57,341 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:472)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:295)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-12 15:49:58,331 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:50:00,829 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:50:03,856 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:50:04,318 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:50:05,755 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:50:12,831 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:253)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-12 15:50:14,184 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 9
+2020-11-12 15:50:15,881 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:50:18,735 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:50:19,915 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:50:22,443 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:50:25,358 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:50:26,068 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:50:31,630 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 8
+2020-11-12 15:50:35,245 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 20
+2020-11-12 15:50:37,247 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:50:40,310 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:50:51,766 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 41
+2020-11-12 15:50:54,415 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:50:58,107 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:50:59,776 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:00,494 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:07,581 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 99
+2020-11-12 15:51:08,996 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:10,624 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:11,597 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 0
+2020-11-12 15:51:21,621 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 44
+2020-11-12 15:51:22,613 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:26,232 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:28,042 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:51:28,043 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:373] Pogreška tijekom unosa broja kontakata.
+main.java.hr.java.covidportal.iznimke.OsobaIzvanGranica: Pogreška tijekom unosa broja kontakata.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBrojaKontakata(Glavna.java:456)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:369)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-12 15:51:29,359 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:51:30,182 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:30,613 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:31,128 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:31,128 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:405] Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe: Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraKontakta(Glavna.java:440)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:402)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-12 15:51:31,637 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:51:38,173 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 20
+2020-11-12 15:51:39,168 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:42,393 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:51:43,682 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:46,347 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:47,100 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:51:55,542 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 17
+2020-11-12 15:51:57,341 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:51:58,812 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:51:59,934 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-12 15:52:01,858 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:52:08,384 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 45
+2020-11-12 15:52:10,801 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:52:12,411 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:52:15,575 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:52:17,923 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-12 15:52:19,081 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 6
+2020-11-12 15:52:24,579 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32
+2020-11-12 15:52:26,239 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-12 15:52:28,332 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-12 15:52:29,738 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 0
+2020-11-12 16:38:49,686 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:38:51,302 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:38:53,017 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:38:53,263 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:38:56,137 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:39:06,674 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:39:07,939 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:17,424 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:18,170 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:18,955 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:39:29,007 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:39:29,488 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:39:29,813 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:39:31,002 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:39:37,340 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:37,798 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:39:39,307 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:48,340 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 12
+2020-11-12 16:39:49,044 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:39:49,483 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:40:40,229 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:40:43,558 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:40:44,524 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:40:44,887 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:40:46,898 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:40:56,556 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:40:59,038 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:02,917 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:03,620 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:04,797 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:41:11,331 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:12,314 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:41:13,327 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:41:20,729 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:41:21,139 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:21,506 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:41:22,618 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:24,691 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 12
+2020-11-12 16:41:25,030 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:41:25,279 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:42:55,649 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:42:57,410 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:42:58,290 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:42:58,713 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:42:59,094 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:06,547 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:43:08,854 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:09,705 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:10,128 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:10,887 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:43:19,769 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:43:21,583 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:31,053 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:43:37,327 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:43:37,733 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 3
+2020-11-12 16:43:40,889 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:47,780 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:48,508 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:50,194 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:43:58,433 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:43:59,300 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 2
+2020-11-12 16:44:00,643 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:44:02,064 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:44:02,736 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:44:03,608 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:136] Unesen je broj: 1
+2020-11-12 16:46:51,042 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:47:12,186 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:47:15,661 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:16,939 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:17,441 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:18,659 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 3
+2020-11-12 16:47:27,365 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 3
+2020-11-12 16:47:30,370 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:36,825 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:37,301 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:39,833 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 2
+2020-11-12 16:47:46,233 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 2
+2020-11-12 16:47:46,769 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 2
+2020-11-12 16:47:47,109 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 3
+2020-11-12 16:47:47,915 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 2
+2020-11-12 16:47:56,808 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:47:57,575 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 3
+2020-11-12 16:47:58,977 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:48:02,491 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:48:02,967 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:48:03,484 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:137] Unesen je broj: 1
+2020-11-12 16:55:14,341 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 16:55:16,723 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:08,920 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:09,565 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:11,361 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 3
+2020-11-12 16:56:24,699 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 3
+2020-11-12 16:56:26,397 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:29,800 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:30,466 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:31,323 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 2
+2020-11-12 16:56:41,901 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 2
+2020-11-12 16:56:42,421 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 2
+2020-11-12 16:56:42,744 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 3
+2020-11-12 16:56:45,182 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 2
+2020-11-12 16:56:49,727 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:50,381 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 2
+2020-11-12 16:56:51,491 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:52,836 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:53,443 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 16:56:54,107 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:155] Unesen je broj: 1
+2020-11-12 17:02:42,966 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:02:44,107 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:02:44,995 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:02:45,379 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:02:46,716 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 3
+2020-11-12 17:02:58,094 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 4
+2020-11-12 17:02:59,698 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:09,165 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:09,957 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:11,374 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:21,950 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:03:22,775 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:03:23,176 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 3
+2020-11-12 17:03:24,394 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:56,310 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 3
+2020-11-12 17:03:56,700 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:03:56,967 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:03:58,146 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 3
+2020-11-12 17:03:59,153 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:05,632 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:06,936 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:06,940 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:497)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:320)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-12 17:04:12,172 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:19,569 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:20,468 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:20,900 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 3
+2020-11-12 17:04:20,900 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:497)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:320)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-12 17:04:22,825 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:29,515 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:30,321 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 2
+2020-11-12 17:04:32,146 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:34,023 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:34,543 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:04:35,091 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:156] Unesen je broj: 1
+2020-11-12 17:12:18,235 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:12:20,152 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:20,883 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:21,230 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:22,536 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:12:30,943 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 4
+2020-11-12 17:12:32,237 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:40,919 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:12:42,058 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:42,658 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:12:43,215 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:13:04,913 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:13:06,211 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:13:06,887 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:13:07,509 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:13:08,627 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:13:16,604 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 4
+2020-11-12 17:14:02,588 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:08,550 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:09,124 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:09,584 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:10,604 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:17,486 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:17,965 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:18,327 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:14:20,028 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:27,173 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:27,869 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:28,838 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:40,240 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:41,358 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:41,726 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:41,731 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:502)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:325)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-12 17:14:43,324 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:14:47,173 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:48,051 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:14:49,842 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:52,522 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 12
+2020-11-12 17:14:52,917 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:14:53,876 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:21:51,721 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:22:57,755 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:22:59,334 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:00,331 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:00,594 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:02,631 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 4
+2020-11-12 17:23:19,906 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 5
+2020-11-12 17:23:21,016 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:28,334 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:29,894 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:33,324 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:23:56,516 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:23:57,330 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:23:57,440 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 3
+2020-11-12 17:23:59,332 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:24:04,333 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:05,371 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:24:06,941 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:24:16,441 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:17,678 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 3
+2020-11-12 17:24:19,766 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:30,339 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 4
+2020-11-12 17:24:30,985 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:31,307 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 2
+2020-11-12 17:24:31,591 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 3
+2020-11-12 17:24:32,338 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 4
+2020-11-12 17:24:33,499 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:35,336 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:35,886 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:24:36,476 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:29:11,288 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:29:12,795 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:13,550 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:13,806 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:18,874 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 4
+2020-11-12 17:29:30,827 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 5
+2020-11-12 17:29:31,777 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:56,555 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:57,160 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:29:58,533 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:08,756 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:09,339 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:09,846 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:11,466 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 3
+2020-11-12 17:30:11,467 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:282] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-12 17:30:13,613 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:19,888 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:20,386 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 3
+2020-11-12 17:30:21,514 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:34,806 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:36,338 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:36,935 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 3
+2020-11-12 17:30:39,323 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:48,448 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 4
+2020-11-12 17:30:48,968 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:49,336 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 2
+2020-11-12 17:30:49,612 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 3
+2020-11-12 17:30:50,453 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 4
+2020-11-12 17:30:51,768 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:54,468 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:54,909 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:30:55,508 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:172] Unesen je broj: 1
+2020-11-12 17:33:06,276 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:33:08,866 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:09,561 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:09,816 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:11,663 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 4
+2020-11-12 17:33:23,256 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 5
+2020-11-12 17:33:25,254 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:33:33,855 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 23
+2020-11-12 17:33:35,338 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:36,343 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:38,288 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:49,568 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:33:50,207 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:50,350 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:33:51,853 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:55,732 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:33:57,339 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 3
+2020-11-12 17:33:58,512 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:34:10,861 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:34:11,842 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 3
+2020-11-12 17:34:12,343 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 4
+2020-11-12 17:34:13,908 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 2
+2020-11-12 17:34:20,882 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:34:21,738 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 4
+2020-11-12 17:34:22,803 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:34:25,342 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:34:25,626 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:34:26,331 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:165] Unesen je broj: 1
+2020-11-12 17:38:12,752 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:38:14,745 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:15,740 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:16,335 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:18,817 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 4
+2020-11-12 17:38:23,334 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:241] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-12 17:38:36,689 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 4
+2020-11-12 17:38:38,798 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:47,817 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:48,334 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:38:49,398 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:164] Unesen je broj: 1
+2020-11-12 17:41:42,523 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:41:44,424 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:45,332 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:45,617 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:45,871 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:49,961 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:41:54,078 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:54,771 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:55,524 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:41:56,820 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:42:06,701 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:239] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-12 17:42:10,633 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 4
+2020-11-12 17:42:11,765 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:17,777 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:18,335 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:19,463 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:25,340 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:25,753 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:26,133 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:27,430 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:34,336 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:35,411 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:35,879 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:42:37,545 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:43,221 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:42:44,910 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:45,303 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:42:45,777 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:42:46,542 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:50,363 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:50,726 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:42:51,402 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:03,952 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:51:11,600 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:12,799 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:13,183 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:14,518 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:51:23,972 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 4
+2020-11-12 17:51:24,979 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:29,522 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:29,886 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:30,189 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:31,151 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:39,396 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:40,286 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:40,591 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:51:41,645 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:48,853 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:49,677 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 3
+2020-11-12 17:51:50,704 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:57,204 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:51:57,917 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 2
+2020-11-12 17:51:59,083 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:52:00,784 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 12
+2020-11-12 17:52:01,122 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:52:01,357 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:162] Unesen je broj: 1
+2020-11-12 17:54:11,780 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:54:16,147 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:16,742 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:16,967 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:18,846 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:54:30,313 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:54:31,282 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:35,418 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:35,672 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:36,774 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:42,492 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:54:43,120 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:54:43,419 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:54:44,169 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:54:51,169 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:52,144 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:54:53,235 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:54,695 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:54,947 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:54:55,678 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:06,301 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:57:08,338 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:10,116 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:10,367 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:12,669 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:19,808 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-12 17:57:29,792 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:30,467 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:31,682 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:33,466 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:57:42,964 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:57:44,130 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:48,790 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:49,125 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:50,108 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:54,959 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:57:55,292 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 2
+2020-11-12 17:57:56,391 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:58:00,173 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:58:00,874 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 3
+2020-11-12 17:58:01,608 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:58:03,586 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:58:03,984 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
+2020-11-12 17:58:04,671 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:161] Unesen je broj: 1
