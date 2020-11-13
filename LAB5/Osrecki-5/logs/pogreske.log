@@ -1,0 +1,298 @@
+2020-11-13 12:51:45,063 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 12:51:47,274 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:51:55,692 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 12:51:57,572 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unesiBrojZeljenihPodataka(Glavna.java:146)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:42)
+2020-11-13 12:52:00,184 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:52:04,686 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-13 12:52:06,544 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1000000
+2020-11-13 12:52:08,640 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 10211
+2020-11-13 12:52:13,478 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 450000
+2020-11-13 12:52:16,930 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 23244
+2020-11-13 12:52:19,236 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 12:52:36,019 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 12:52:38,310 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:40,369 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:52:41,091 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:41,746 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:52:43,284 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:45,476 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 7
+2020-11-13 12:52:45,477 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:256] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 12:52:46,327 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:46,793 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:52:53,227 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:56,888 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:52:57,614 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:52:57,614 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:467)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:296)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 12:52:59,432 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:03,309 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:04,094 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:04,094 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:467)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:296)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 12:53:05,397 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:09,314 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:09,952 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:12,085 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-13 12:53:15,267 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 23
+2020-11-13 12:53:15,715 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:17,263 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:21,981 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32
+2020-11-13 12:53:23,859 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:25,153 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 54
+2020-11-13 12:53:25,153 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:352] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 12:53:26,291 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:348)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-13 12:53:27,599 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 12:53:28,610 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:29,018 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:35,190 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 58
+2020-11-13 12:53:36,232 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:39,208 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:40,034 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 12:53:40,035 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:370] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 12:53:40,797 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:41,506 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:41,966 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:41,966 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:401] Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe: Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraKontakta(Glavna.java:449)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:398)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-13 12:53:42,545 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 12:53:45,614 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 39
+2020-11-13 12:53:46,516 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 12:53:47,905 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 12:53:48,725 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 0
+2020-11-13 13:09:56,794 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 13:09:58,451 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:10:02,037 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 100000
+2020-11-13 13:10:02,840 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 121221
+2020-11-13 13:10:05,176 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-13 13:10:06,694 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 13232132
+2020-11-13 13:10:07,503 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1211
+2020-11-13 13:10:09,312 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32423
+2020-11-13 13:10:11,026 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 22323
+2020-11-13 13:10:12,855 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:10:17,116 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:208] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-13 13:10:23,376 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:10:27,047 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:248)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 13:10:32,203 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-13 13:10:32,203 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:252] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:10:33,081 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:10:35,494 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:10:36,009 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:11:37,514 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 13:12:00,424 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 13:12:01,744 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:03,998 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 100000
+2020-11-13 13:12:04,804 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1000
+2020-11-13 13:12:07,436 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-13 13:12:08,638 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-13 13:12:09,519 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32023023
+2020-11-13 13:12:10,182 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1212
+2020-11-13 13:12:12,791 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 432091
+2020-11-13 13:12:13,546 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 21
+2020-11-13 13:12:14,982 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:21,177 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:208] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-13 13:12:23,481 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:24,573 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:12:27,253 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 5
+2020-11-13 13:12:27,253 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:266] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:12:28,429 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:29,148 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:12:29,564 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:29,942 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:31,401 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:33,509 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:35,758 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 4
+2020-11-13 13:12:35,758 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:293] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:12:36,930 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:289)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 13:12:37,888 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:12:38,519 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:39,893 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:43,394 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:43,787 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:12:44,754 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:12:44,754 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:467)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:307)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 13:12:51,434 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:12:57,180 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:12:58,217 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:13:02,015 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:13:04,766 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32
+2020-11-13 13:13:05,508 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:20,811 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:25,214 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32
+2020-11-13 13:15:26,084 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:15:27,259 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:15:28,383 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:15:28,383 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:383] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:15:31,099 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:32,615 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:15:32,615 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:407] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:15:33,099 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:36,738 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 12
+2020-11-13 13:15:37,576 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:38,611 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:40,302 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:15:40,817 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:41,217 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:15:41,217 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:414] Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe: Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraKontakta(Glavna.java:449)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:411)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-13 13:16:16,904 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:16:16,904 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:414] Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe: Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraKontakta(Glavna.java:449)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:411)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-13 13:16:17,432 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:24:27,760 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:39] Pokrenuli smo program!
+2020-11-13 13:24:29,428 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:24:32,539 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1000
+2020-11-13 13:24:33,460 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 11
+2020-11-13 13:24:35,415 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 12121
+2020-11-13 13:24:35,935 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 12
+2020-11-13 13:24:38,022 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosZupanije(Glavna.java:175)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:45)
+2020-11-13 13:24:39,288 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 323232
+2020-11-13 13:24:39,730 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 12
+2020-11-13 13:24:41,378 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:24:43,408 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:208] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-13 13:24:44,415 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:208] Unesena je vrijednost simptoma koja ne postoji.
+2020-11-13 13:24:53,396 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:24:54,816 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:24:57,047 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:24:57,457 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:24:57,768 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:24:58,607 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:00,711 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:01,735 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:02,049 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:02,301 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:03,321 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:124] Pogreška u formatu podataka, jer je unesen String koji se ne može parsirati
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at main.java.hr.java.covidportal.main.Glavna.unosBroja(Glavna.java:120)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:231)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 13:25:05,047 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:15,907 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:16,560 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:17,060 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:17,060 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:65] Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+main.java.hr.java.covidportal.iznimke.BolestIstihSimptoma: Bolest s izabranim simptomima već postoji. Molimo unesite novu bolest.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraBolesti(Glavna.java:428)
+	at main.java.hr.java.covidportal.main.Glavna.unosBolesti(Glavna.java:283)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:62)
+2020-11-13 13:25:18,218 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:20,292 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:21,806 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:23,010 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:27,196 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 81
+2020-11-13 13:25:27,802 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:28,979 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 32
+2020-11-13 13:25:28,979 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:327] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:25:29,916 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:35,888 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 34
+2020-11-13 13:25:37,257 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:39,218 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:25:48,653 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 0
+2020-11-13 13:25:54,223 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 71
+2020-11-13 13:25:55,047 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:25:57,951 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:58,863 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 3
+2020-11-13 13:25:58,864 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:345] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-13 13:25:59,554 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
+2020-11-13 13:26:00,229 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:26:00,725 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 1
+2020-11-13 13:26:00,726 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:375] Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+main.java.hr.java.covidportal.iznimke.DuplikatKontaktiraneOsobe: Odabrana osoba se već nalazi među kontaktiranim osobama. Odaberite neku drugu osobu.
+	at main.java.hr.java.covidportal.main.Glavna.provjeraKontakta(Glavna.java:410)
+	at main.java.hr.java.covidportal.main.Glavna.unosOsobe(Glavna.java:372)
+	at main.java.hr.java.covidportal.main.Glavna.main(Glavna.java:76)
+2020-11-13 13:26:01,375 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:131] Unesen je broj: 2
