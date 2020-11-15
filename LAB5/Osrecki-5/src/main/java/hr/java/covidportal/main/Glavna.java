@@ -1,6 +1,7 @@
 package main.java.hr.java.covidportal.main;
 
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+import main.java.hr.java.covidportal.genericsi.KlinikaZaInfektivneBolesti;
 import main.java.hr.java.covidportal.iznimke.*;
 import main.java.hr.java.covidportal.model.*;
 
@@ -9,8 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Predstavlja glavnu klasu u kojoj se izvodi program
@@ -76,18 +80,85 @@ public class Glavna {
             osobe.add(unosOsobe(scanner, zupanije, bolesti, osobe, i));
         }
 
-        Map<Bolest, List<Osoba>> mapaBolesti = osobe
-                .stream()
-                .collect(Collectors.groupingBy(Osoba::getZarazenBolescu));
+        ispisOsoba(osobe);
 
-        ispisiOsobe(osobe);
-        ispisiBolestiOboljelih(mapaBolesti);
+        Map<Bolest, List<Osoba>> mapaBolesti = osobe.stream().collect(Collectors.groupingBy(Osoba::getZarazenBolescu));
+        ispisMapeBolesti(mapaBolesti);
 
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        System.out.println("\nNajviše zaraženih osoba ima u županiji "
-                + zupanije.first().getNaziv() + ": "
-                + df.format(zupanije.first().getPostotakZarazenih()) + "%");
+        ispisZarazenostiZupanije(zupanije);
+
+        List<Virus> virusi = bolesti.stream()
+                .filter(bolest -> bolest instanceof Virus)
+                .map(virus -> (Virus) virus)
+                .collect(Collectors.toList());
+
+        List<Osoba> zarazeneOsobe = osobe.stream()
+                .filter(osoba -> osoba.getZarazenBolescu() instanceof Virus)
+                .collect(Collectors.toList());
+
+        KlinikaZaInfektivneBolesti<Virus, Osoba> klinika = new KlinikaZaInfektivneBolesti<>(virusi, zarazeneOsobe);
+
+        Instant start1 = Instant.now();
+        List<Virus> sortedVirusi = sortiranjeUzLambdu(klinika);
+        Instant end1 = Instant.now();
+        Long vrijeme1 = Duration.between(start1, end1).toMillis();
+
+        Instant start2 = Instant.now();
+        List<Virus> sortedVirusi2 = sortiranjeBezLambde(klinika);
+        Instant end2 = Instant.now();
+        Long vrijeme2 = Duration.between(start2, end2).toMillis();
+
+        System.out.println("\nSortiranje objekata korištenjem lambdi traje " +
+                vrijeme1 + " milisekundi, a bez lambda traje " +
+                vrijeme2 + " milisekundi.");
+
+        klinika.setVirusi(sortedVirusi);
+
+        ispisSortiranihVirusa(sortedVirusi);
+
+        printHeader("Pretraga osoba");
+        String pretraga = unosPodatka(scanner, "\n>> Unesite string za pretragu po prezimenu: ");
+        ispisPretrazenihOsoba(osobe, pretraga);
+
+        ispisBrojaSimptomaBolesti(bolesti);
+
+    }
+
+    private static void ispisPretrazenihOsoba(List<Osoba> osobe, String pretraga) {
+
+        List<Osoba> filtriraneOsobe = osobe.stream()
+                .filter(osoba -> osoba.getPrezime().toUpperCase().contains(pretraga.toUpperCase()))
+                .collect(Collectors.toList());
+
+
+        Optional<Osoba> optionalOsoba = Optional.of(filtriraneOsobe.stream().findAny())
+                .get();
+        
+        if (optionalOsoba.isPresent()) {
+            System.out.println("\nOsobe čije prezime sadrži " + pretraga + " su sljedeće: ");
+            filtriraneOsobe.forEach(o -> System.out.println("\t- " + o));
+        } else {
+            System.out.println("Osoba nije pronađena.");
+        }
+
+        System.out.println();
+    }
+
+    private static List<Virus> sortiranjeUzLambdu(KlinikaZaInfektivneBolesti<Virus, Osoba> klinika) {
+        return klinika.getVirusi().stream()
+                .sorted(Comparator.comparing(Virus::getNaziv).reversed())
+                .collect(Collectors.toList());
+    }
+
+    private static List<Virus> sortiranjeBezLambde(KlinikaZaInfektivneBolesti<Virus, Osoba> klinika) {
+        return klinika.getVirusi().stream()
+                .sorted(new Comparator<>() {
+                    @Override
+                    public int compare(Virus o1, Virus o2) {
+                        return o2.getNaziv().compareTo(o1.getNaziv());
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
 
@@ -431,7 +502,7 @@ public class Glavna {
         Integer remaining = size - title.length();
         String left = "";
         String right = "";
-        for (int i = 0; i < (int) (remaining / 2); i++) {
+        for (int i = 0; i < (remaining / 2); i++) {
             left += '-';
         }
         for (int i = 0; i < remaining - left.length(); i++) {
@@ -463,7 +534,7 @@ public class Glavna {
      *
      * @param osobe podatak o unesenim osobama
      */
-    private static void ispisiOsobe(List<Osoba> osobe) {
+    private static void ispisOsoba(List<Osoba> osobe) {
         printHeader("Popis osoba");
 
         for (Osoba osoba : osobe) {
@@ -472,7 +543,6 @@ public class Glavna {
             System.out.println("Županija prebivališta: " + osoba.getZupanija().getNaziv());
             System.out.println("Zaražen bolešću: " + osoba.getZarazenBolescu().getNaziv());
             System.out.println("Kontaktirane osobe:");
-            // todo optional
             if (osoba.getKontaktiraneOsobe().isEmpty()) {
                 System.out.println("Nema kontaktiranih osoba.");
             } else {
@@ -484,12 +554,12 @@ public class Glavna {
     /**
      * Ispisuje podatke o bolestima i osobama oboljelim od te bolesti
      *
-     * @param popisOboljenih podatak o mapi bolesti i oboljelih
+     * @param mapaBolesti podatak o mapi bolesti i oboljelih
      */
-    private static void ispisiBolestiOboljelih(Map<Bolest, List<Osoba>> popisOboljenih) {
-        printHeader("Popis bolesti");
+    private static void ispisMapeBolesti(Map<Bolest, List<Osoba>> mapaBolesti) {
+        printHeader("Popis bolesti i oboljelih");
 
-        for (Map.Entry<Bolest, List<Osoba>> entry : popisOboljenih.entrySet()) {
+        for (Map.Entry<Bolest, List<Osoba>> entry : mapaBolesti.entrySet()) {
             Bolest bolest = entry.getKey();
             List<Osoba> oboljeleOsobe = entry.getValue();
 
@@ -502,5 +572,28 @@ public class Glavna {
             }
             oboljeleOsobe.forEach(osoba -> System.out.println("\t- " + osoba));
         }
+    }
+
+
+    private static void ispisBrojaSimptomaBolesti(Set<Bolest> bolesti) {
+        bolesti.stream()
+                .map(b -> b.getNaziv() + " ima " + b.getSimptomi().size() + " simptoma.")
+                .forEach(System.out::println);
+    }
+
+    private static void ispisSortiranihVirusa(List<Virus> sortedVirusi) {
+        System.out.println("\nVirusi sortirani po nazivu suprotno od poretka abecede:");
+        Integer i = 0;
+        for (Virus virus : sortedVirusi) {
+            System.out.println(++i + ". " + virus);
+        }
+    }
+
+    private static void ispisZarazenostiZupanije(SortedSet<Zupanija> zupanije) {
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        System.out.println("\nNajviše zaraženih osoba ima u županiji "
+                + zupanije.first().getNaziv() + ": "
+                + df.format(zupanije.first().getPostotakZarazenih()) + "%");
     }
 }
