@@ -14,7 +14,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Predstavlja glavnu klasu u kojoj se izvodi program
@@ -85,73 +84,75 @@ public class Glavna {
         Map<Bolest, List<Osoba>> mapaBolesti = osobe.stream().collect(Collectors.groupingBy(Osoba::getZarazenBolescu));
         ispisMapeBolesti(mapaBolesti);
 
-        ispisZarazenostiZupanije(zupanije);
 
-        List<Virus> virusi = bolesti.stream()
-                .filter(bolest -> bolest instanceof Virus)
-                .map(virus -> (Virus) virus)
-                .collect(Collectors.toList());
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        System.out.println("\nNajviše zaraženih osoba ima u županiji "
+                + zupanije.first().getNaziv() + ": "
+                + df.format(zupanije.first().getPostotakZarazenih()) + "%");
 
-        List<Osoba> zarazeneOsobe = osobe.stream()
-                .filter(osoba -> osoba.getZarazenBolescu() instanceof Virus)
-                .collect(Collectors.toList());
 
-        KlinikaZaInfektivneBolesti<Virus, Osoba> klinika = new KlinikaZaInfektivneBolesti<>(virusi, zarazeneOsobe);
+        KlinikaZaInfektivneBolesti<Virus, Osoba> klinika = new KlinikaZaInfektivneBolesti<>(
+                bolesti.stream()
+                        .filter(bolest -> bolest instanceof Virus)
+                        .map(virus -> (Virus) virus)
+                        .collect(Collectors.toList()),
+                osobe.stream()
+                        .filter(osoba -> osoba.getZarazenBolescu() instanceof Virus)
+                        .collect(Collectors.toList()));
 
         Instant start1 = Instant.now();
-        List<Virus> sortedVirusi = sortiranjeUzLambdu(klinika);
+        List<Virus> sortedVirusi = sortiranjeUzLambdu(klinika.getVirusi());
         Instant end1 = Instant.now();
         Long vrijeme1 = Duration.between(start1, end1).toMillis();
 
         Instant start2 = Instant.now();
-        List<Virus> sortedVirusi2 = sortiranjeBezLambde(klinika);
+        List<Virus> sortedVirusi2 = sortiranjeBezLambde(klinika.getVirusi());
         Instant end2 = Instant.now();
         Long vrijeme2 = Duration.between(start2, end2).toMillis();
+
+        klinika.setVirusi(sortedVirusi);
+
+        System.out.println("\nVirusi sortirani po nazivu suprotno od poretka abecede:");
+        Integer i = 0;
+        for (Virus virus : klinika.getVirusi()) {
+            System.out.println(++i + ". " + virus);
+        }
 
         System.out.println("\nSortiranje objekata korištenjem lambdi traje " +
                 vrijeme1 + " milisekundi, a bez lambda traje " +
                 vrijeme2 + " milisekundi.");
 
-        klinika.setVirusi(sortedVirusi);
-
-        ispisSortiranihVirusa(sortedVirusi);
-
         printHeader("Pretraga osoba");
         String pretraga = unosPodatka(scanner, "\n>> Unesite string za pretragu po prezimenu: ");
         ispisPretrazenihOsoba(osobe, pretraga);
 
-        ispisBrojaSimptomaBolesti(bolesti);
+        bolesti.stream()
+                .map(b -> b.getNaziv() + " ima " + b.getSimptomi().size() + " simptoma.")
+                .forEach(System.out::println);
 
     }
 
-    private static void ispisPretrazenihOsoba(List<Osoba> osobe, String pretraga) {
-
-        List<Osoba> filtriraneOsobe = osobe.stream()
-                .filter(osoba -> osoba.getPrezime().toUpperCase().contains(pretraga.toUpperCase()))
-                .collect(Collectors.toList());
-
-
-        Optional<Osoba> optionalOsoba = Optional.of(filtriraneOsobe.stream().findAny())
-                .get();
-        
-        if (optionalOsoba.isPresent()) {
-            System.out.println("\nOsobe čije prezime sadrži " + pretraga + " su sljedeće: ");
-            filtriraneOsobe.forEach(o -> System.out.println("\t- " + o));
-        } else {
-            System.out.println("Osoba nije pronađena.");
-        }
-
-        System.out.println();
-    }
-
-    private static List<Virus> sortiranjeUzLambdu(KlinikaZaInfektivneBolesti<Virus, Osoba> klinika) {
-        return klinika.getVirusi().stream()
+    /**
+     * Sortira viruse putem lambde
+     *
+     * @param virusi podatak o listi virusa
+     * @return lista sortiranih virusa
+     */
+    private static List<Virus> sortiranjeUzLambdu(List<Virus> virusi) {
+        return virusi.stream()
                 .sorted(Comparator.comparing(Virus::getNaziv).reversed())
                 .collect(Collectors.toList());
     }
 
-    private static List<Virus> sortiranjeBezLambde(KlinikaZaInfektivneBolesti<Virus, Osoba> klinika) {
-        return klinika.getVirusi().stream()
+    /**
+     * Sortira viruse bez lambde
+     *
+     * @param virusi podatak o listi virusa
+     * @return lista sortiranih virusa
+     */
+    private static List<Virus> sortiranjeBezLambde(List<Virus> virusi) {
+        return virusi.stream()
                 .sorted(new Comparator<>() {
                     @Override
                     public int compare(Virus o1, Virus o2) {
@@ -574,26 +575,30 @@ public class Glavna {
         }
     }
 
+    /**
+     * Ispis osoba koje smo pretrazili kljucnom riječju
+     *
+     * @param osobe    podatak o listi osoba
+     * @param pretraga podatak o riječi koju pretražujemo
+     */
+    private static void ispisPretrazenihOsoba(List<Osoba> osobe, String pretraga) {
 
-    private static void ispisBrojaSimptomaBolesti(Set<Bolest> bolesti) {
-        bolesti.stream()
-                .map(b -> b.getNaziv() + " ima " + b.getSimptomi().size() + " simptoma.")
-                .forEach(System.out::println);
-    }
+        List<Osoba> filtriraneOsobe = osobe.stream()
+                .filter(osoba -> osoba.getPrezime().toUpperCase().contains(pretraga.toUpperCase()))
+                .collect(Collectors.toList());
 
-    private static void ispisSortiranihVirusa(List<Virus> sortedVirusi) {
-        System.out.println("\nVirusi sortirani po nazivu suprotno od poretka abecede:");
-        Integer i = 0;
-        for (Virus virus : sortedVirusi) {
-            System.out.println(++i + ". " + virus);
+
+        Optional<Osoba> optionalOsoba = Optional.of(filtriraneOsobe.stream().findAny())
+                .get();
+
+        if (optionalOsoba.isPresent()) {
+            System.out.println("\nOsobe čije prezime sadrži " + pretraga + " su sljedeće: ");
+            filtriraneOsobe.forEach(o -> System.out.println("\t- " + o));
+        } else {
+            System.out.println("Osoba nije pronađena.");
         }
+
+        System.out.println();
     }
 
-    private static void ispisZarazenostiZupanije(SortedSet<Zupanija> zupanije) {
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        System.out.println("\nNajviše zaraženih osoba ima u županiji "
-                + zupanije.first().getNaziv() + ": "
-                + df.format(zupanije.first().getPostotakZarazenih()) + "%");
-    }
 }
