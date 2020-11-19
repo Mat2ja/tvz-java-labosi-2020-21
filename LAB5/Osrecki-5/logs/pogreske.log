@@ -1,0 +1,21 @@
+2020-11-19 13:09:13,182 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:42] Pokrenuli smo program!
+2020-11-19 13:09:22,229 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:24,436 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:24,963 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:28,268 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 32
+2020-11-19 13:09:28,671 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:29,985 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:37,411 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:37,934 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:40,948 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 23
+2020-11-19 13:09:40,948 ERROR [main] m.j.h.j.c.m.Glavna [Glavna.java:320] Pogreška u odabiru, odabir je izvan intervala dopuštenih vrijednosti
+2020-11-19 13:09:42,108 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:42,600 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:43,785 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:45,472 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:45,851 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 2
+2020-11-19 13:09:46,211 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:47,356 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:50,595 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 11
+2020-11-19 13:09:51,314 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1
+2020-11-19 13:09:51,748 INFO [main] m.j.h.j.c.m.Glavna [Glavna.java:202] Unesen je broj: 1

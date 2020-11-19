@@ -2,6 +2,7 @@ package main.java.hr.java.covidportal.main;
 
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.genericsi.KlinikaZaInfektivneBolesti;
+import main.java.hr.java.covidportal.genericsi.SamoSimptomi;
 import main.java.hr.java.covidportal.iznimke.*;
 import main.java.hr.java.covidportal.model.*;
 
@@ -130,6 +131,48 @@ public class Glavna {
         bolesti.stream()
                 .map(b -> b.getNaziv() + " ima " + b.getSimptomi().size() + " simptoma.")
                 .forEach(System.out::println);
+
+        // zadatak 2
+        System.out.println("\nSuma duljine naziva simptoma: " +
+                simptomi.stream()
+                        .mapToInt(s -> s.getNaziv().length())
+                        .sum());
+
+        System.out.println("Prosjek duljine naziva simptoma: " +
+                simptomi.stream()
+                        .mapToInt(s -> s.getNaziv().length())
+                        .average()
+                        .orElseThrow(NoSuchElementException::new));
+
+        System.out.println("Najkraći naziv simptoma: " +
+                simptomi.stream()
+                        .mapToInt(s -> s.getNaziv().length())
+                        .min()
+                        .orElseThrow(NoSuchElementException::new));
+
+        System.out.println("Najduži naziv simptoma: " +
+                simptomi.stream()
+                        .mapToInt(s -> s.getNaziv().length())
+                        .max()
+                        .orElseThrow(NoSuchElementException::new));
+
+
+        // zadatak 1
+        System.out.println("\nSimptomi koji počinju na 'g' i sadrže 'bolja', sortirano uzlazno po vrijednostima");
+        simptomi.stream()
+                .filter(s -> s.getNaziv().toLowerCase().startsWith("g") && s.getNaziv().toLowerCase().contains("bolja"))
+                .sorted(Comparator.comparing(Simptom::getVrijednost))
+                .forEach(simptom -> System.out.println("\t- " + simptom));
+
+        // zadatak 3
+        SamoSimptomi<Simptom> samoSimptomi = new SamoSimptomi<>();
+        for (Simptom s : simptomi){
+            samoSimptomi.add(s);
+        }
+
+        System.out.println("\nSamo simptomi: ");
+        samoSimptomi.getSimptomi().forEach(simptom -> System.out.println("\t- " + simptom));
+
 
     }
 
