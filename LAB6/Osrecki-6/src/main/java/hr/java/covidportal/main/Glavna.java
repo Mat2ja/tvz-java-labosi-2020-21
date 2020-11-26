@@ -1,5 +1,6 @@
 package main.java.hr.java.covidportal.main;
 
+import main.java.hr.java.covidportal.enumeracije.Serijalizacija;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.genericsi.KlinikaZaInfektivneBolesti;
 import main.java.hr.java.covidportal.model.*;
@@ -99,6 +100,54 @@ public class Glavna {
                 .map(b -> b.getClass().getSimpleName() + " " + b.getNaziv() + " ima " + b.getSimptomi().size() + " simptoma.")
                 .forEach(System.out::println);
 
+
+        serializeZupanije(zupanije, Serijalizacija.ZARAZENE_ZUPANIJE.getPath());
+    }
+
+    /**
+     * Serijalizira županije sa zaraženošću većom od 2%
+     * @param zupanije podatak o setu županija
+     * @param path podatak o putanji do datoteke
+     */
+    private static void serializeZupanije(SortedSet<Zupanija> zupanije, String path) {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(path))) {
+
+            List<Zupanija> zarazeneZupanije = zupanije.stream()
+                    .filter(z -> z.getPostotakZarazenih() > 2)
+                    .collect(Collectors.toList());
+
+            out.writeObject(zarazeneZupanije);
+
+            System.out.println("\nSerijalizirane županije:");
+            for (Zupanija zupanija : zarazeneZupanije) {
+                System.out.println("\t- " + zupanija);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * erijalizira županije sa zaraženošću većom od 2%
+     * @param path podatak o putanji do datoteke
+     */
+    private static void deserializeZupanije(String path) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
+
+            List<Zupanija> procitaneZupanija = (List<Zupanija>) in.readObject();
+
+            System.out.println("\nDeserijalizirane županije:");
+            for (Zupanija zupanija : procitaneZupanija) {
+                System.out.println("\t- " + zupanija);
+
+            }
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -317,14 +366,10 @@ public class Glavna {
     private static void printHeader(String title) {
         Integer size = 50;
         Integer remaining = size - title.length();
-        String left = "";
-        String right = "";
-        for (int i = 0; i < (remaining / 2); i++) {
-            left += '-';
-        }
-        for (int i = 0; i < remaining - left.length(); i++) {
-            right += '-';
-        }
+        StringBuilder left = new StringBuilder();
+        StringBuilder right = new StringBuilder();
+        left.append("-".repeat(Math.max(0, (remaining / 2))));
+        right.append("-".repeat(Math.max(0, remaining - left.length())));
         System.out.println("\n" + left + " " + title + " " + right + "\n");
     }
 

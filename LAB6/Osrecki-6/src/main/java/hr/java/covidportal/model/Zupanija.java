@@ -1,5 +1,6 @@
 package main.java.hr.java.covidportal.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -16,7 +17,7 @@ public class Zupanija extends ImenovaniEntitet {
     /**
      * Inicijalizira podatak o nazivu i broju stanovnika županije
      *
-     * @param id podatak o id županije
+     * @param id             podatak o id županije
      * @param naziv          podatak o nazivu županije
      * @param brojStanovnika podatak o broju stanovnika županije
      * @param brojZarazenih  podatak o broju zaraženih osoba

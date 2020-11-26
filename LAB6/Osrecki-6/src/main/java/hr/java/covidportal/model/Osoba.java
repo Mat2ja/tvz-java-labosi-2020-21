@@ -1,7 +1,7 @@
 package main.java.hr.java.covidportal.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Matija
  */
-public class Osoba {
+public class Osoba implements Serializable {
     private Long id;
     private String ime;
     private String prezime;

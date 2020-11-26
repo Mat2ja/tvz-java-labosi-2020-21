@@ -1,6 +1,7 @@
 package main.java.hr.java.covidportal.model;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -15,7 +16,7 @@ public class Bolest extends ImenovaniEntitet {
     /**
      * Inicijalizira podatak o nazivu i simptomima bolesti
      *
-     * @param id podatak o id bolesti
+     * @param id       podatak o id bolesti
      * @param naziv    podatak o nazivu bolesti
      * @param simptomi podatak o listi simptoma bolesti
      */

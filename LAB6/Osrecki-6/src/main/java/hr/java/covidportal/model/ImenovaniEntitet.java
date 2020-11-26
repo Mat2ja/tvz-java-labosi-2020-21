@@ -1,11 +1,12 @@
 package main.java.hr.java.covidportal.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Predstavlja entitet definiram nazivom
  */
-public abstract class ImenovaniEntitet {
+public abstract class ImenovaniEntitet implements Serializable {
     private Long id;
     private String naziv;
 
