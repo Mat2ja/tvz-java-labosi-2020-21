@@ -1,0 +1,4 @@
+Suma duljine: 24
+Prosjek duljine: 6.0
+Najkraći naziv: GRIPA
+Najdulji naziv: COVID-19

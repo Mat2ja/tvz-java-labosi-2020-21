@@ -1,0 +1,20 @@
+ID: 4
+Naziv: SPLITSKO-DALMATINSKA
+Broj stanovnika: 450000
+Broj zaraženih: 13980
+Postotak zaraženih: 3.1066668
+ID: 1
+Naziv: GRAD ZAGREB
+Broj stanovnika: 1000000
+Broj zaraženih: 24500
+Postotak zaraženih: 2.45
+ID: 2
+Naziv: MEĐIMURSKA
+Broj stanovnika: 100000
+Broj zaraženih: 700
+Postotak zaraženih: 0.70000005
+ID: 3
+Naziv: VARAŽDINSKA
+Broj stanovnika: 200000
+Broj zaraženih: 1200
+Postotak zaraženih: 0.6
