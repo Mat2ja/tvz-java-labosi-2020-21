@@ -42,7 +42,6 @@ public class Glavna {
      */
     public static void main(String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
 
         SortedSet<Zupanija> zupanije = new TreeSet<>(new CovidSorter());
@@ -56,6 +55,7 @@ public class Glavna {
         ispisStatseVirusa(FILE_NAME_VIRUSI_STATS);
 
         printHeader("Učitavanje podataka");
+        
         System.out.println("Učitavanje podataka o županijama...");
         ucitavanjeZupanija(zupanije, FILE_NAME_ZUPANIJE);
 
@@ -124,9 +124,9 @@ public class Glavna {
                 .forEach(System.out::println);
 
 
-        //printHeader("Serijalizacija");
-        //serializeZupanije(zupanije, FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
-        //deserializeZupanije(FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
+        printHeader("Serijalizacija");
+        serializeZupanije(zupanije, FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
+        deserializeZupanije(FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
 
     }
 

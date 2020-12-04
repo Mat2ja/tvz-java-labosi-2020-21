@@ -10,7 +10,7 @@ import java.util.*;
  * @author Matija
  */
 public class Bolest extends ImenovaniEntitet {
-    private Set<Simptom> simptomi = new HashSet<>();
+    private List<Simptom> simptomi = new ArrayList<>();
 
 
     /**
@@ -20,16 +20,16 @@ public class Bolest extends ImenovaniEntitet {
      * @param naziv    podatak o nazivu bolesti
      * @param simptomi podatak o listi simptoma bolesti
      */
-    public Bolest(Long id, String naziv, Set<Simptom> simptomi) {
+    public Bolest(Long id, String naziv, List<Simptom> simptomi) {
         super(id, naziv);
         this.simptomi = simptomi;
     }
 
-    public Set<Simptom> getSimptomi() {
+    public List<Simptom> getSimptomi() {
         return simptomi;
     }
 
-    public void setSimptomi(Set<Simptom> simptomi) {
+    public void setSimptomi(List<Simptom> simptomi) {
         this.simptomi = simptomi;
     }
 

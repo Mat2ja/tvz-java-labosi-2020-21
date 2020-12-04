@@ -1,6 +1,5 @@
 package main.java.hr.java.covidportal.main;
 
-import main.java.hr.java.covidportal.enumeracije.Serijalizacija;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.genericsi.KlinikaZaInfektivneBolesti;
 import main.java.hr.java.covidportal.model.*;
@@ -22,7 +21,14 @@ import org.slf4j.LoggerFactory;
  * @author Matija
  */
 public class Glavna {
+
     private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
+    private static final String FILE_NAME_ZUPANIJE = "./dat/zupanije.txt";
+    private static final String FILE_NAME_SIMPTOMI = "./dat/simptomi.txt";
+    private static final String FILE_NAME_BOLESTI = "./dat/bolesti.txt";
+    private static final String FILE_NAME_VIRUSI = "./dat/virusi.txt";
+    private static final String FILE_NAME_OSOBE = "./dat/osobe.txt";
+    private static final String FILE_NAME_SERIJALIZACIJA_ZUPANIJA = "./dat/zarazene_zupanije.dat";
 
 
     /**
@@ -32,32 +38,32 @@ public class Glavna {
      */
     public static void main(String[] args) {
 
-        System.out.println("\n***** Pokretanje programa *****\n");
+        printHeader("Učitavanje podataka");
 
         Scanner scanner = new Scanner(System.in);
 
         SortedSet<Zupanija> zupanije = new TreeSet<>(new CovidSorter());
-        Set<Simptom> simptomi = new HashSet<>();
-        Set<Bolest> bolesti = new LinkedHashSet<>();
-        Set<Virus> virusi = new LinkedHashSet<>();
+        List<Simptom> simptomi = new ArrayList<>();
+        List<Bolest> bolesti = new ArrayList<>();
+        List<Virus> virusi = new ArrayList<>();
         List<Osoba> osobe = new ArrayList<>();
 
         System.out.println("Učitavanje podataka o županijama...");
-        ucitavanjeZupanija(zupanije);
+        ucitavanjeZupanija(zupanije, FILE_NAME_ZUPANIJE);
 
         System.out.println("Učitavanje podataka o simptomima...");
-        ucitavanjeSimptoma(simptomi);
+        ucitavanjeSimptoma(simptomi, FILE_NAME_SIMPTOMI);
 
         System.out.println("Učitavanje podataka o bolestima...");
-        ucitavanjeBolesti(bolesti, simptomi);
+        ucitavanjeBolesti(bolesti, simptomi, FILE_NAME_BOLESTI);
 
         System.out.println("Učitavanje podataka o virusima...");
-        ucitavanjeVirusa(virusi, simptomi);
+        ucitavanjeVirusa(virusi, simptomi, FILE_NAME_VIRUSI);
 
         System.out.println("Učitavanje osoba...");
-        ucitavanjeOsoba(osobe, zupanije, bolesti, virusi);
+        ucitavanjeOsoba(osobe, zupanije, bolesti, virusi, FILE_NAME_OSOBE);
 
-        Set<Bolest> sveBolesti = new LinkedHashSet<>(bolesti);
+        List<Bolest> sveBolesti = new ArrayList<>(bolesti);
         sveBolesti.addAll(virusi);
 
         printHeader("Popis osoba");
@@ -101,17 +107,21 @@ public class Glavna {
                 .forEach(System.out::println);
 
 
-        serializeZupanije(zupanije, Serijalizacija.ZARAZENE_ZUPANIJE.getPath());
+        printHeader("Serijalizacija");
+        serializeZupanije(zupanije, FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
+        deserializeZupanije(FILE_NAME_SERIJALIZACIJA_ZUPANIJA);
     }
 
     /**
      * Serijalizira županije sa zaraženošću većom od 2%
+     *
      * @param zupanije podatak o setu županija
-     * @param path podatak o putanji do datoteke
+     * @param filename podatak o putanji do datoteke
      */
-    private static void serializeZupanije(SortedSet<Zupanija> zupanije, String path) {
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new FileOutputStream(path))) {
+    private static void serializeZupanije(SortedSet<Zupanija> zupanije, String filename) {
+        File file = new File(filename);
+
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
 
             List<Zupanija> zarazeneZupanije = zupanije.stream()
                     .filter(z -> z.getPostotakZarazenih() > 2)
@@ -119,10 +129,8 @@ public class Glavna {
 
             out.writeObject(zarazeneZupanije);
 
-            System.out.println("\nSerijalizirane županije:");
-            for (Zupanija zupanija : zarazeneZupanije) {
-                System.out.println("\t- " + zupanija);
-            }
+            System.out.println("Serijalizirane županije:");
+            zarazeneZupanije.forEach(zupanija -> System.out.println("\t- " + zupanija));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,20 +138,21 @@ public class Glavna {
     }
 
     /**
-     * erijalizira županije sa zaraženošću većom od 2%
-     * @param path podatak o putanji do datoteke
+     * Deserijalizira županije sa zaraženošću većom od 2%
+     *
+     * @param filename podatak o putanji do datoteke
      */
-    private static void deserializeZupanije(String path) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
+    private static void deserializeZupanije(String filename) {
+        File file = new File(filename);
 
-            List<Zupanija> procitaneZupanija = (List<Zupanija>) in.readObject();
+        if (!file.exists()) return;
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+
+            List<Zupanija> procitaneZupanije = (List<Zupanija>) in.readObject();
 
             System.out.println("\nDeserijalizirane županije:");
-            for (Zupanija zupanija : procitaneZupanija) {
-                System.out.println("\t- " + zupanija);
-
-            }
-
+            procitaneZupanije.forEach(zupanija -> System.out.println("\t- " + zupanija));
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -168,12 +177,12 @@ public class Glavna {
      * Učitava podatke o županijama iz datoteke
      *
      * @param zupanije podatak o setu županija
+     * @param filename podatak o putanji do datoteke
      */
-    private static void ucitavanjeZupanija(SortedSet<Zupanija> zupanije) {
-        File zupanijeFile = new File("./dat/zupanije.txt");
-
-        try (FileReader fileReader = new FileReader(zupanijeFile);
+    private static void ucitavanjeZupanija(SortedSet<Zupanija> zupanije, String filename) {
+        try (FileReader fileReader = new FileReader(filename);
              BufferedReader reader = new BufferedReader(fileReader)) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 Long id = Long.parseLong(line);
@@ -186,7 +195,7 @@ public class Glavna {
             }
 
         } catch (IOException e) {
-            System.out.println("File " + zupanijeFile.getName() + " not found.");
+            System.out.println("File " + filename + " not found.");
             logger.error(e.getMessage(), e);
         }
     }
@@ -194,29 +203,25 @@ public class Glavna {
     /**
      * Učitava podatke o simptomima iz datoteke
      *
-     * @param simptomi podatak o setu simptoma
+     * @param simptomi podatak o listi simptoma
+     * @param filename podatak o putanji do datoteke
      */
-    private static void ucitavanjeSimptoma(Set<Simptom> simptomi) {
-        File simptomiFile = new File("./dat/simptomi.txt");
+    private static void ucitavanjeSimptoma(List<Simptom> simptomi, String filename) {
 
-        try (FileReader fileReader = new FileReader(simptomiFile);
+        try (FileReader fileReader = new FileReader(filename);
              BufferedReader reader = new BufferedReader(fileReader)) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 Long id = Long.parseLong(line);
                 String naziv = reader.readLine();
-                VrijednostSimptoma vrijednost = switch (reader.readLine()) {
-                    case "RIJETKO" -> VrijednostSimptoma.RIJETKO;
-                    case "SREDNJE" -> VrijednostSimptoma.SREDNJE;
-                    case "ČESTO" -> VrijednostSimptoma.CESTO;
-                    default -> throw new IllegalStateException("Unexpected value: " + reader.readLine());
-                };
+                VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(reader.readLine());
 
                 Simptom simptom = new Simptom(id, naziv, vrijednost);
                 simptomi.add(simptom);
             }
         } catch (IOException e) {
-            System.out.println("File " + simptomiFile.getName() + " not found.");
+            System.out.println("File " + filename + " not found.");
             logger.error(e.getMessage(), e);
         }
     }
@@ -225,34 +230,35 @@ public class Glavna {
     /**
      * Učitava podatke o bolestima iz datoteke
      *
-     * @param bolesti  podatak o setu bolesti
-     * @param simptomi podatak o setu simptoma
+     * @param bolesti  podatak o listi bolesti
+     * @param simptomi podatak o listi simptoma
+     * @param filename podatak o putanji do datoteke
      */
-    private static void ucitavanjeBolesti(Set<Bolest> bolesti, Set<Simptom> simptomi) {
-        File bolestiFile = new File("./dat/bolesti.txt");
+    private static void ucitavanjeBolesti(List<Bolest> bolesti, List<Simptom> simptomi, String filename) {
 
-        try (FileReader fileReader = new FileReader(bolestiFile);
+        try (FileReader fileReader = new FileReader(filename);
              BufferedReader reader = new BufferedReader(fileReader)) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 Long id = Long.parseLong(line);
                 String naziv = reader.readLine();
 
-                Set<Simptom> simptomiBolesti = new HashSet<>();
-                for (String idS : reader.readLine().split(",")) {
-                    Long idSimptoma = Long.parseLong(idS);
-                    Simptom simptom = simptomi.stream()
-                            .filter(s -> s.getId().equals(idSimptoma))
-                            .findAny()
-                            .orElse(null);
-                    simptomiBolesti.add(simptom);
-                }
+
+                List<Long> simptomiIds = Arrays.stream(reader.readLine()
+                        .split(","))
+                        .map(Long::parseLong)
+                        .collect(Collectors.toList());
+                List<Simptom> simptomiBolesti = simptomi.stream()
+                        .filter(s -> simptomiIds.contains(s.getId()))
+                        .collect(Collectors.toList());
+
 
                 Bolest bolest = new Bolest(id, naziv, simptomiBolesti);
                 bolesti.add(bolest);
             }
         } catch (IOException e) {
-            System.out.println("File " + bolestiFile.getName() + " not found.");
+            System.out.println("File " + filename + " not found.");
             logger.error(e.getMessage(), e);
         }
     }
@@ -260,20 +266,21 @@ public class Glavna {
     /**
      * Učitava podatke o virusima iz datoteke
      *
-     * @param virusi   podatak o setu virusa
-     * @param simptomi podatak o setu simptoma
+     * @param virusi   podatak o listi virusa
+     * @param simptomi podatak o listi simptoma
+     * @param filename podatak o putanji do datoteke
      */
-    private static void ucitavanjeVirusa(Set<Virus> virusi, Set<Simptom> simptomi) {
-        File virusiFile = new File("./dat/virusi.txt");
+    private static void ucitavanjeVirusa(List<Virus> virusi, List<Simptom> simptomi, String filename) {
 
-        try (FileReader fileReader = new FileReader(virusiFile);
+        try (FileReader fileReader = new FileReader(filename);
              BufferedReader reader = new BufferedReader(fileReader)) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 Long id = Long.parseLong(line);
                 String naziv = reader.readLine();
 
-                Set<Simptom> simptomiVirusa = new HashSet<>();
+                List<Simptom> simptomiVirusa = new ArrayList<>();
                 for (String sId : reader.readLine().split(",")) {
                     Long simptomId = Long.parseLong(sId);
                     simptomi.stream()
@@ -286,7 +293,7 @@ public class Glavna {
                 virusi.add(virus);
             }
         } catch (IOException e) {
-            System.out.println("File " + virusiFile.getName() + " not found.");
+            System.out.println("File " + filename + " not found.");
             logger.error(e.getMessage(), e);
         }
     }
@@ -295,14 +302,14 @@ public class Glavna {
      * Učitava podatke o osobama iz datoteke
      *
      * @param osobe    podatak o listi osoba
-     * @param zupanije podatak o setu zupanija
-     * @param bolesti  podatak o setu bolesti
-     * @param virusi   podatak o setu virusa
+     * @param zupanije podatak o listi zupanija
+     * @param bolesti  podatak o listi bolesti
+     * @param virusi   podatak o listi virusa
+     * @param filename podatak o putanji do datoteke
      */
-    private static void ucitavanjeOsoba(List<Osoba> osobe, SortedSet<Zupanija> zupanije, Set<Bolest> bolesti, Set<Virus> virusi) {
-        File osobeFile = new File("./dat/osobe.txt");
+    private static void ucitavanjeOsoba(List<Osoba> osobe, SortedSet<Zupanija> zupanije, List<Bolest> bolesti, List<Virus> virusi, String filename) {
 
-        try (FileReader fileReader = new FileReader(osobeFile);
+        try (FileReader fileReader = new FileReader(filename);
              BufferedReader reader = new BufferedReader(fileReader)) {
 
             String line;
@@ -331,17 +338,16 @@ public class Glavna {
                             .orElse(null);
                 }
 
-                List<Osoba> kontaktiOsobe = new ArrayList<>();
-                String konkaktiId = reader.readLine();
-                if (!konkaktiId.trim().isEmpty()) {
-                    for (String kId : konkaktiId.split(",")) {
-                        Long kontkatkId = Long.parseLong(kId);
-                        osobe.stream()
-                                .filter(osoba -> osoba.getId().equals(kontkatkId))
-                                .findAny()
-                                .ifPresent(kontaktiOsobe::add);
-                    }
-                }
+                List<Long> kontaktiIds = Arrays.stream(reader.readLine()
+                        .split(","))
+                        .filter(item -> !item.isBlank())
+                        .map(Long::parseLong)
+                        .collect(Collectors.toList());
+
+                List<Osoba> kontaktiOsobe = osobe.stream()
+                        .filter(o -> kontaktiIds.contains(o.getId()))
+                        .collect(Collectors.toList());
+
                 Osoba osoba = new Osoba.Builder(id)
                         .hasIme(ime)
                         .hasPrezime(prezime)
@@ -354,7 +360,7 @@ public class Glavna {
 
             }
         } catch (IOException e) {
-            System.out.println("File " + osobeFile.getName() + " not found.");
+            System.out.println("File " + filename + " not found.");
             logger.error(e.getMessage(), e);
         }
     }
@@ -390,15 +396,16 @@ public class Glavna {
             } else {
                 osoba.getKontaktiraneOsobe().forEach(kontakt -> System.out.println("\t- " + kontakt));
             }
+            System.out.println();
         }
     }
 
     /**
      * Ispisuje sortirane viruse
      *
-     * @param virusi podatak o setu virusa
+     * @param virusi podatak o listi virusa
      */
-    private static void ispisSortiranihVirusa(Set<Virus> virusi) {
+    private static void ispisSortiranihVirusa(List<Virus> virusi) {
         List<Virus> sortiraniVirusi = virusi.stream()
                 .sorted(Comparator.comparing(Virus::getNaziv).reversed())
                 .collect(Collectors.toList());

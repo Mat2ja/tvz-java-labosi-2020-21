@@ -18,7 +18,7 @@ public class Virus extends Bolest implements Zarazno {
      * @param simptomi podatak o simptomima virusa
      */
 
-    public Virus(Long id, String naziv, Set<Simptom> simptomi) {
+    public Virus(Long id, String naziv, List<Simptom> simptomi) {
         super(id, naziv, simptomi);
     }
 
