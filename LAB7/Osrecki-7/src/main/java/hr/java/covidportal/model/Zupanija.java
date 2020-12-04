@@ -1,8 +1,5 @@
 package main.java.hr.java.covidportal.model;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 /**
  * Predstavlja entitet županije definirane nazivom i brojem stanovnika
  *

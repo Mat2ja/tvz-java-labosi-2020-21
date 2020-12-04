@@ -1,7 +1,6 @@
 package main.java.hr.java.covidportal.model;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Predstavlja entitet virusa definiranog nazivom i simtptomima

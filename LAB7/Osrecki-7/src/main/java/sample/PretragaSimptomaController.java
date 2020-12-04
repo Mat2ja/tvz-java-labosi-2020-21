@@ -1,4 +1,4 @@
 package main.java.sample;
 
-public class PretragaZupanijaController {
+public class PretragaSimptomaController {
 }

@@ -1,0 +1,53 @@
+.panel {
+    -fx-background-color: #dfe6e9;
+}
+
+.panel .label {
+    -fx-text-fill: #212930;
+    -fx-font-family: Consolas;
+}
+
+.menu-bar {
+    -fx-background-color: #9ebdd7;
+}
+
+.menu {
+    -fx-cursor: hand;
+    -fx-padding: 6px 10px;
+}
+
+.menu-item {
+    -fx-cursor: hand;
+}
+
+.table-view {
+    -fx-background-color: #f0f3f5;
+}
+
+.table-column {
+    -fx-background-color: #9ebdd7;
+}
+
+.table-column .label {
+    -fx-text-fill: #212930;
+}
+
+.button {
+    -fx-background-color: #0077b6;
+    -fx-cursor: hand;
+    -fx-padding: 8px 18px;
+}
+
+.button .label {
+    -fx-text-fill: #f0f3f5;
+}
+
+.button:hover {
+    -fx-opacity: .9;
+}
+
+.text-field {
+    -fx-background-color: #f0f3f5;
+    -fx-padding: 6px 12px;
+}
+

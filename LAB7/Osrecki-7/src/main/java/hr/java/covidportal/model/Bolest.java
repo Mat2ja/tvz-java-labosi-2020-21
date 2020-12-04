@@ -1,8 +1,9 @@
 package main.java.hr.java.covidportal.model;
 
 
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Predstavlja entitet bolesti definiran nazivom i simptomima

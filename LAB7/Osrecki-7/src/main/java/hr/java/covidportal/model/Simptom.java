@@ -2,7 +2,6 @@ package main.java.hr.java.covidportal.model;
 
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 /**

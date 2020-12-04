@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <Label text="Pretraga županija" BorderPane.alignment="CENTER">
+            <Label text="Pretraga osoba" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -47,7 +46,7 @@
                      </GridPane.margin>
                   </TextField>
                   <Button mnemonicParsing="false" text="Pretraga" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Label text="Naziv županije" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label text="Ime osobe" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="16.0" />
                      </GridPane.margin>
@@ -60,9 +59,12 @@
    <bottom>
       <TableView prefHeight="208.0" prefWidth="600.0" stylesheets="@application.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="196.79998779296875" text="Naziv županije" />
-          <TableColumn prefWidth="209.60003662109375" text="Broj stanovnika" />
-            <TableColumn prefWidth="200.0" text="Broj zaraženih" />
+          <TableColumn prefWidth="109.60003662109375" text="Ime" />
+          <TableColumn minWidth="0.0" prefWidth="102.39996337890625" text="Prezime" />
+            <TableColumn prefWidth="70.4000244140625" text="Starost" />
+            <TableColumn prefWidth="84.79998779296875" text="Županija" />
+            <TableColumn prefWidth="85.5999755859375" text="Bolest" />
+            <TableColumn prefWidth="150.4000244140625" text="Konktakti" />
         </columns>
       </TableView>
    </bottom>
