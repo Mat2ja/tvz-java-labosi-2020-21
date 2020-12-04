@@ -8,6 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+    private static final String FILE_NAME_SIMPTOMI = "./dat/simptomi.txt";
+    private static final String FILE_NAME_BOLESTI = "./dat/bolesti.txt";
+    private static final String FILE_NAME_VIRUSI = "./dat/virusi.txt";
+    private static final String FILE_NAME_OSOBE = "./dat/osobe.txt";
+
     private static Stage mainStage;
 
     @Override

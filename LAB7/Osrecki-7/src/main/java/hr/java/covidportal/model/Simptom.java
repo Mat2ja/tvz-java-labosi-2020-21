@@ -48,7 +48,7 @@ public class Simptom extends ImenovaniEntitet {
 
     @Override
     public String toString() {
-        return getNaziv() + " (" + vrijednost.getVrijednost() + ")";
+        return getNaziv();
     }
 }
 
