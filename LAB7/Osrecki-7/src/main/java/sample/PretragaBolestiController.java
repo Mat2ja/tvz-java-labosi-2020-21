@@ -42,13 +42,20 @@ public class PretragaBolestiController implements Initializable {
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
         listaBolesti = CitanjePodataka.ucitajBolesti();
-        observableListBolesti = FXCollections.observableArrayList(listaBolesti);
+
+        if (observableListBolesti == null) {
+            observableListBolesti = FXCollections.observableArrayList();
+        }
+        observableListBolesti.addAll(listaBolesti);
 
         tablicaBolesti.setItems(observableListBolesti);
         tablicaBolesti.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
 
+    /**
+     * Pretražuje bolesti prema zadanoj riječi i popunjuje listu filitriranim rezulatima
+     */
     public void pretrazi() {
         Main.getMainStage().getScene().setOnKeyPressed(e -> {
             if (e.getCode() != KeyCode.ENTER) return;
@@ -63,11 +70,19 @@ public class PretragaBolestiController implements Initializable {
         popuniObservableListuBolesti(filitriraneBolesti);
     }
 
+    /**
+     * Popunjuje observable listu listom svih učitanih bolesti
+     *
+     * @param bolesti podatak o listi bolesti
+     */
     public void popuniObservableListuBolesti(List<Bolest> bolesti) {
         observableListBolesti.clear();
         observableListBolesti.addAll(FXCollections.observableArrayList(bolesti));
     }
 
+    /**
+     * Postavlja početnu scenu
+     */
     public void natragNaPocetni() {
         Main.prikaziPocetniEkran();
     }

@@ -42,12 +42,18 @@ public class PretragaSimptomaController implements Initializable {
         stupacVrijednostSimptoma.setCellValueFactory(new PropertyValueFactory<>("vrijednost"));
 
         listaSimptoma = CitanjePodataka.ucitajSimptome();
-        observableListSimptoma = FXCollections.observableArrayList(listaSimptoma);
+
+        if (observableListSimptoma == null) {
+            observableListSimptoma = FXCollections.observableArrayList();
+        }
+        observableListSimptoma.addAll(listaSimptoma);
 
         tablicaSimptoma.setItems(observableListSimptoma);
         tablicaSimptoma.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
-
+    /**
+     * Pretražuje simptome prema zadanoj riječi i popunjuje listu filitriranim rezulatima
+     */
     public void pretrazi() {
         Main.getMainStage().getScene().setOnKeyPressed(e -> {
             if (e.getCode() != KeyCode.ENTER) return;
@@ -62,12 +68,18 @@ public class PretragaSimptomaController implements Initializable {
         popuniObservableListuSimptoma(filitriraniSimptomi);
     }
 
-
+    /**
+     * Popunjuje observable listu listom svih učitanih simptoma
+     *
+     * @param simptomi podatak o listi simptoma
+     */
     public void popuniObservableListuSimptoma(List<Simptom> simptomi) {
         observableListSimptoma.clear();
         observableListSimptoma.addAll(FXCollections.observableArrayList(simptomi));
     }
-
+    /**
+     * Postavlja početnu scenu
+     */
     public void natragNaPocetni() {
         Main.prikaziPocetniEkran();
     }

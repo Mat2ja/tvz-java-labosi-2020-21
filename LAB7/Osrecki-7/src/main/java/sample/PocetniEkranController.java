@@ -12,6 +12,11 @@ import java.util.ResourceBundle;
 
 public class PocetniEkranController implements Initializable {
 
+    /**
+     * Prikazuje ekran za pretragu županija
+     *
+     * @throws IOException
+     */
     @FXML
     public void prikaziEkranZaPretraguZupanija() throws IOException {
         Parent pretragaZupanijaFrame =
@@ -22,6 +27,11 @@ public class PocetniEkranController implements Initializable {
         Main.getMainStage().setScene(pretragaZupanijaScene);
     }
 
+    /**
+     * Prikazuje ekran za pretragu simptoma
+     *
+     * @throws IOException
+     */
     @FXML
     public void prikaziEkranZaPretraguSimptoma() throws IOException {
         Parent pretragaSimptomaFrame =
@@ -32,6 +42,11 @@ public class PocetniEkranController implements Initializable {
         Main.getMainStage().setScene(pretragaSimptomaScene);
     }
 
+    /**
+     * Prikazuje ekran za pretragu bolesti
+     *
+     * @throws IOException
+     */
     @FXML
     public void prikaziEkranZaPretraguBolesti() throws IOException {
         Parent pretragaBolestiFrame =
@@ -42,6 +57,11 @@ public class PocetniEkranController implements Initializable {
         Main.getMainStage().setScene(pretragaBolestiScene);
     }
 
+    /**
+     * Prikazuje ekran za pretragu virusa
+     *
+     * @throws IOException
+     */
     @FXML
     public void prikaziEkranZaPretraguVirusa() throws IOException {
         Parent pretragaVirusaFrame =
@@ -52,6 +72,11 @@ public class PocetniEkranController implements Initializable {
         Main.getMainStage().setScene(pretragaVirusaScene);
     }
 
+    /**
+     * Prikazuje ekran za pretragu osoba
+     *
+     * @throws IOException
+     */
     @FXML
     public void prikaziEkranZaPretraguOsoba() throws IOException {
         Parent pretragaOsobaFrame =

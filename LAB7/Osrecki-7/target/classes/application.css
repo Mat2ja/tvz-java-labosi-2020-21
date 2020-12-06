@@ -11,6 +11,14 @@
     -fx-opacity: 1;
 }
 
+#pocetni-ekran {
+    -fx-background-color: #bad1e5;
+}
+
+/*#pocetni-ekran .menu-bar {*/
+/*    -fx-background-color: #bad1e5;*/
+/*}*/
+
 .panel {
     -fx-background-color: #e3eaec;
     -fx-font-family: Consolas;
@@ -27,7 +35,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: #9ebdd7;
+    -fx-background-color: #bad1e5;
 }
 
 .menu {
@@ -50,7 +58,7 @@
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #b2cce7;
+    -fx-background-color: #bad1e5;
 }
 
 

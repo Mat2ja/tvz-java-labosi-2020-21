@@ -3,7 +3,6 @@ package main.java.sample;
 import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -46,12 +45,19 @@ public class PretragaZupanijaController implements Initializable {
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
         listaZupanija = CitanjePodataka.ucitajZupanije();
-        observableListZupanija = FXCollections.observableArrayList(listaZupanija);
+
+        if (observableListZupanija == null) {
+            observableListZupanija = FXCollections.observableArrayList();
+        }
+        observableListZupanija.addAll(listaZupanija);
 
         tablicaZupanija.setItems(observableListZupanija);
         tablicaZupanija.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+    /**
+     * Pretražuje županije prema zadanoj riječi i popunjuje listu filitriranim rezulatima
+     */
     public void pretrazi() {
         Main.getMainStage().getScene().setOnKeyPressed(e -> {
             if (e.getCode() != KeyCode.ENTER) return;
@@ -66,10 +72,19 @@ public class PretragaZupanijaController implements Initializable {
         popuniObservableListuZupanija(filitriraneZupanije);
     }
 
+    /**
+     * Postavlja početnu scenu
+     */
     public void natragNaPocetni() {
         Main.prikaziPocetniEkran();
     }
 
+
+    /**
+     * Popunjuje observable listu listom svih učitanih županija
+     *
+     * @param zupanije podatak o listi županija
+     */
     public void popuniObservableListuZupanija(List<Zupanija> zupanije) {
         observableListZupanija.clear();
         observableListZupanija.addAll(FXCollections.observableArrayList(zupanije));

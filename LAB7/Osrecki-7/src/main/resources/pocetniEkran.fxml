@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.PocetniEkranController">
+<BorderPane id="pocetni-ekran" prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.PocetniEkranController">
     <top>
         <fx:include source="izbornik.fxml" />
     </top>
@@ -21,6 +21,6 @@
       </ImageView>
    </center>
    <bottom>
-      <Label id="program-name" styleClass="back-icon" text="COVID PORTAL" textFill="WHITE" BorderPane.alignment="CENTER"></Label>
+      <Label id="program-name" styleClass="back-icon" text="COVID PORTAL" textFill="WHITE" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

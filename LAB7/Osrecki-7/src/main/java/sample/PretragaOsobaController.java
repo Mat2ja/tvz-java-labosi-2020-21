@@ -56,12 +56,19 @@ public class PretragaOsobaController implements Initializable {
                 data.getValue().getKontaktiraneOsobe().toString().replaceAll("[\\[\\]]", "")));
 
         listaOsoba = CitanjePodataka.ucitajOsobe();
-        observableListOsoba = FXCollections.observableArrayList(listaOsoba);
+
+        if (observableListOsoba == null) {
+            observableListOsoba = FXCollections.observableArrayList();
+        }
+        observableListOsoba.addAll(listaOsoba);
 
         tablicaOsoba.setItems(observableListOsoba);
         tablicaOsoba.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+    /**
+     * Pretražuje osobe prema zadanoj riječi i popunjuje listu filitriranim rezulatima
+     */
     public void pretrazi() {
         Main.getMainStage().getScene().setOnKeyPressed(e -> {
             if (e.getCode() != KeyCode.ENTER) return;
@@ -70,17 +77,24 @@ public class PretragaOsobaController implements Initializable {
         String imePrezime = imePrezimeOsobe.getText();
 
         List<Osoba> filtriraneOsobe = listaOsoba.stream()
-                .filter(o ->(o.toString()).toLowerCase().contains(imePrezime.toLowerCase()))
+                .filter(o -> (o.toString()).toLowerCase().contains(imePrezime.toLowerCase()))
                 .collect(Collectors.toList());
 
         popuniObservableListuOsoba(filtriraneOsobe);
     }
 
+    /**
+     * Popunjuje observable listu listom svih učitanih osoba
+     *
+     * @param osobe podatak o listi osoba
+     */
     public void popuniObservableListuOsoba(List<Osoba> osobe) {
         observableListOsoba.clear();
         observableListOsoba.addAll(osobe);
     }
-
+    /**
+     * Postavlja početnu scenu
+     */
     public void natragNaPocetni() {
         Main.prikaziPocetniEkran();
     }

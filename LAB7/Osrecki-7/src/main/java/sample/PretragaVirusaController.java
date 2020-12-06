@@ -43,13 +43,19 @@ public class PretragaVirusaController implements Initializable {
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
         listaVirusa = CitanjePodataka.ucitajViruse();
-        observableListVirusa = FXCollections.observableArrayList(listaVirusa);
+
+        if (observableListVirusa == null) {
+            observableListVirusa = FXCollections.observableArrayList();
+        }
+        observableListVirusa.addAll(listaVirusa);
 
         tablicaVirusa.setItems(observableListVirusa);
         tablicaVirusa.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
-
+    /**
+     * Pretražuje viruse prema zadanoj riječi i popunjuje listu filitriranim rezulatima
+     */
     public void pretrazi() {
         Main.getMainStage().getScene().setOnKeyPressed(e -> {
             if (e.getCode() != KeyCode.ENTER) return;
@@ -64,11 +70,18 @@ public class PretragaVirusaController implements Initializable {
         popuniObservableListuVirusa(filtriraniVirusi);
     }
 
+    /**
+     * Popunjuje observable listu listom svih učitanih virusa
+     *
+     * @param virusi podatak o listi virusa
+     */
     public void popuniObservableListuVirusa(List<Virus> virusi) {
         observableListVirusa.clear();
         observableListVirusa.addAll(FXCollections.observableArrayList(virusi));
     }
-
+    /**
+     * Postavlja početnu scenu
+     */
     public void natragNaPocetni() {
         Main.prikaziPocetniEkran();
     }

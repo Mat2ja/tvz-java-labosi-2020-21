@@ -19,9 +19,13 @@ public class Main extends Application {
         Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
         homeScene = new Scene(pocetniEkran, 800, 500);
         prikaziPocetniEkran();
+        primaryStage.getIcons().add(new Image("file:images/coronavirus.png"));
         primaryStage.show();
     }
 
+    /**
+     * Postavlja scenu i naslov na zadani Stage
+     */
     public static void prikaziPocetniEkran() {
         mainStage.setTitle("Covid Portal");
         mainStage.setScene(getHomeScene());
