@@ -46,7 +46,7 @@ public class PocetniEkranController implements Initializable {
     public void prikaziEkranZaPretraguVirusa() throws IOException {
         Parent pretragaVirusaFrame =
                 FXMLLoader.load(getClass().getClassLoader().getResource("pretragaVirusa.fxml"));
-        Scene pretragaVirusaScene = new Scene(pretragaVirusaFrame, 600, 400);
+        Scene pretragaVirusaScene = new Scene(pretragaVirusaFrame);
 
         Main.getMainStage().setTitle("Pretraga virusa");
         Main.getMainStage().setScene(pretragaVirusaScene);
@@ -56,7 +56,7 @@ public class PocetniEkranController implements Initializable {
     public void prikaziEkranZaPretraguOsoba() throws IOException {
         Parent pretragaOsobaFrame =
                 FXMLLoader.load(getClass().getClassLoader().getResource("pretragaOsoba.fxml"));
-        Scene pretragaOsobaScene = new Scene(pretragaOsobaFrame, 600, 400);
+        Scene pretragaOsobaScene = new Scene(pretragaOsobaFrame);
 
         Main.getMainStage().setTitle("Pretraga osoba");
         Main.getMainStage().setScene(pretragaOsobaScene);

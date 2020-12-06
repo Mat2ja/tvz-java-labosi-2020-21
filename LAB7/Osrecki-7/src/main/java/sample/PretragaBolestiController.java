@@ -1,28 +1,20 @@
 package main.java.sample;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableStringValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Bolest;
-import main.java.hr.java.covidportal.model.Simptom;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PretragaBolestiController implements Initializable {
@@ -53,10 +45,15 @@ public class PretragaBolestiController implements Initializable {
         observableListBolesti = FXCollections.observableArrayList(listaBolesti);
 
         tablicaBolesti.setItems(observableListBolesti);
+        tablicaBolesti.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
 
     public void pretrazi() {
+        Main.getMainStage().getScene().setOnKeyPressed(e -> {
+            if (e.getCode() != KeyCode.ENTER) return;
+        });
+
         String naziv = nazivBolesti.getText();
 
         List<Bolest> filitriraneBolesti = listaBolesti.stream()
@@ -71,12 +68,8 @@ public class PretragaBolestiController implements Initializable {
         observableListBolesti.addAll(FXCollections.observableArrayList(bolesti));
     }
 
-
-    public void natragNaPocetni() throws IOException {
-        Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
-        Main.getMainStage().setTitle("Covid Tester 9000");
-        Main.getMainStage().setScene(new Scene(pocetniEkran, 600, 400));
-        Main.getMainStage().show();
+    public void natragNaPocetni() {
+        Main.prikaziPocetniEkran();
     }
 
     public static ObservableList<Bolest> getObservableListBolesti() {

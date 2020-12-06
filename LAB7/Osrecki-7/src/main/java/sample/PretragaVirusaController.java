@@ -4,18 +4,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import main.java.hr.java.covidportal.model.Simptom;
+import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Virus;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -50,10 +46,15 @@ public class PretragaVirusaController implements Initializable {
         observableListVirusa = FXCollections.observableArrayList(listaVirusa);
 
         tablicaVirusa.setItems(observableListVirusa);
+        tablicaVirusa.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
 
     public void pretrazi() {
+        Main.getMainStage().getScene().setOnKeyPressed(e -> {
+            if (e.getCode() != KeyCode.ENTER) return;
+        });
+
         String naziv = nazivVirusa.getText();
 
         List<Virus> filtriraniVirusi = listaVirusa.stream()
@@ -68,12 +69,8 @@ public class PretragaVirusaController implements Initializable {
         observableListVirusa.addAll(FXCollections.observableArrayList(virusi));
     }
 
-
-    public void natragNaPocetni() throws IOException {
-        Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
-        Main.getMainStage().setTitle("Covid Tester 9000");
-        Main.getMainStage().setScene(new Scene(pocetniEkran, 600, 400));
-        Main.getMainStage().show();
+    public void natragNaPocetni() {
+        Main.prikaziPocetniEkran();
     }
 
     public static ObservableList<Virus> getObservableListVirusa() {

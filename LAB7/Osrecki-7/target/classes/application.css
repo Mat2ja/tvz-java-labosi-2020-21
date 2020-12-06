@@ -1,17 +1,29 @@
+@font-face {
+    font-family: 'Staatliches';
+    src: url("fonts/Staatliches-Regular.ttf");
+}
+
+#program-name {
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 64px;
+    -fx-translate-y: -40px;
+    -fx-text-fill: #428DFF;
+    -fx-opacity: 1;
+}
+
 .panel {
     -fx-background-color: #e3eaec;
     -fx-font-family: Consolas;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
 }
 
 .panel .label {
-    -fx-text-fill: #212930;
+    -fx-text-fill: #2f3845;
 }
-.panel.label {
 
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-font-family: Consolas;
+.naslov {
+    -fx-font-size: 26px;
+    -fx-font-family: "Staatliches", Arial, Consolas;
 }
 
 .menu-bar {
@@ -30,7 +42,6 @@
 
 .table-view {
     -fx-font-size: 12px;
-
 }
 
 .table-view .column-header {
@@ -53,13 +64,11 @@
 
 
 .button {
-    -fx-background-color: #0077b6;
+    -fx-background-color: #428DFF;
     -fx-cursor: hand;
     -fx-padding: 8px 18px;
-}
-
-.button .label {
     -fx-text-fill: #f0f3f5;
+    -fx-font-family: "Staatliches", Arial, Consolas;
 }
 
 .button:hover {
@@ -67,12 +76,16 @@
 }
 
 .text-field {
-    -fx-text-fill: #0077b6;
+    -fx-text-fill: #428DFF;
     -fx-background-color: #f0f3f5;
     -fx-padding: 6px 12px;
 }
 
 .back-icon {
     -fx-cursor: hand;
+    -fx-opacity: .5;
 }
 
+.back-icon:hover {
+    -fx-opacity: 1;
+}

@@ -3,18 +3,15 @@ package main.java.sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.Simptom;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,9 +45,14 @@ public class PretragaSimptomaController implements Initializable {
         observableListSimptoma = FXCollections.observableArrayList(listaSimptoma);
 
         tablicaSimptoma.setItems(observableListSimptoma);
+        tablicaSimptoma.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     public void pretrazi() {
+        Main.getMainStage().getScene().setOnKeyPressed(e -> {
+            if (e.getCode() != KeyCode.ENTER) return;
+        });
+
         String naziv = nazivSimptoma.getText();
 
         List<Simptom> filitriraniSimptomi = listaSimptoma.stream()
@@ -66,12 +68,8 @@ public class PretragaSimptomaController implements Initializable {
         observableListSimptoma.addAll(FXCollections.observableArrayList(simptomi));
     }
 
-
-    public void natragNaPocetni() throws IOException {
-        Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
-        Main.getMainStage().setTitle("Covid Tester 9000");
-        Main.getMainStage().setScene(new Scene(pocetniEkran, 600, 400));
-        Main.getMainStage().show();
+    public void natragNaPocetni() {
+        Main.prikaziPocetniEkran();
     }
 
     public static ObservableList<Simptom> getObservableListSimptoma() {

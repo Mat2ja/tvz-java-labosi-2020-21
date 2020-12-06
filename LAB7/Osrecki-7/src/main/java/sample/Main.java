@@ -4,29 +4,38 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     private static Stage mainStage;
+    private static Scene homeScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainStage = primaryStage;
         Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
-
-        primaryStage.setTitle("Covid Tester 9000");
-        primaryStage.setScene(new Scene(pocetniEkran, 600, 400));
+        homeScene = new Scene(pocetniEkran, 800, 500);
+        prikaziPocetniEkran();
         primaryStage.show();
     }
 
-    public static Stage getMainStage() {
-        return mainStage;
+    public static void prikaziPocetniEkran() {
+        mainStage.setTitle("Covid Portal");
+        mainStage.setScene(getHomeScene());
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public static Stage getMainStage() {
+        return mainStage;
+    }
 
+    public static Scene getHomeScene() {
+        return homeScene;
+    }
 }
