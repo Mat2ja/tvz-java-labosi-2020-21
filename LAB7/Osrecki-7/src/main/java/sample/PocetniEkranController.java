@@ -16,7 +16,7 @@ public class PocetniEkranController implements Initializable {
     public void prikaziEkranZaPretraguZupanija() throws IOException {
         Parent pretragaZupanijaFrame =
                 FXMLLoader.load(getClass().getClassLoader().getResource("pretragaZupanija.fxml"));
-        Scene pretragaZupanijaScene = new Scene(pretragaZupanijaFrame, 600, 400);
+        Scene pretragaZupanijaScene = new Scene(pretragaZupanijaFrame);
 
         Main.getMainStage().setTitle("Pretraga županija");
         Main.getMainStage().setScene(pretragaZupanijaScene);
@@ -26,7 +26,7 @@ public class PocetniEkranController implements Initializable {
     public void prikaziEkranZaPretraguSimptoma() throws IOException {
         Parent pretragaSimptomaFrame =
                 FXMLLoader.load(getClass().getClassLoader().getResource("pretragaSimptoma.fxml"));
-        Scene pretragaSimptomaScene = new Scene(pretragaSimptomaFrame, 600, 400);
+        Scene pretragaSimptomaScene = new Scene(pretragaSimptomaFrame);
 
         Main.getMainStage().setTitle("Pretraga simptoma");
         Main.getMainStage().setScene(pretragaSimptomaScene);
@@ -36,7 +36,7 @@ public class PocetniEkranController implements Initializable {
     public void prikaziEkranZaPretraguBolesti() throws IOException {
         Parent pretragaBolestiFrame =
                 FXMLLoader.load(getClass().getClassLoader().getResource("pretragaBolesti.fxml"));
-        Scene pretragaBolestiScene = new Scene(pretragaBolestiFrame, 600, 400);
+        Scene pretragaBolestiScene = new Scene(pretragaBolestiFrame);
 
         Main.getMainStage().setTitle("Pretraga bolesti");
         Main.getMainStage().setScene(pretragaBolestiScene);
@@ -65,4 +65,5 @@ public class PocetniEkranController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
+
 }

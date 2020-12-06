@@ -1,9 +1,16 @@
 .panel {
     -fx-background-color: #e3eaec;
+    -fx-font-family: Consolas;
+    -fx-font-size: 14px;
 }
 
 .panel .label {
     -fx-text-fill: #212930;
+}
+.panel.label {
+
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
     -fx-font-family: Consolas;
 }
 
@@ -14,18 +21,25 @@
 .menu {
     -fx-cursor: hand;
     -fx-padding: 6px 10px;
+    -fx-font-size: 12px;
 }
 
 .menu-item {
     -fx-cursor: hand;
 }
 
-.table-view .column-header {
-    /*-fx-background-color: transparent;*/
+.table-view {
+    -fx-font-size: 12px;
+
 }
 
-.table-view .column-header-background{
-    /*-fx-background-color: #b2cce7;*/
+.table-view .column-header {
+    -fx-background-color: transparent;
+
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #b2cce7;
 }
 
 
@@ -36,7 +50,6 @@
 .table-column .label {
     /*-fx-text-fill: #212930;*/
 }
-
 
 
 .button {
@@ -54,8 +67,12 @@
 }
 
 .text-field {
+    -fx-text-fill: #0077b6;
     -fx-background-color: #f0f3f5;
     -fx-padding: 6px 12px;
 }
 
+.back-icon {
+    -fx-cursor: hand;
+}
 
