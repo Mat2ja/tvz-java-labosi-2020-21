@@ -54,27 +54,41 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
-
 }
 
 .table-view .column-header-background {
     -fx-background-color: #bad1e5;
 }
-
-
-.table-column {
-    /*-fx-background-color: #9ebdd7;*/
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
 }
 
-.table-column .label {
-    /*-fx-text-fill: #212930;*/
+.table-view .table-cell{
+    -fx-border-color: transparent;
 }
 
+.table-row-cell:hover {
+}
+
+.table-row-cell:odd{
+}
+.table-row-cell:even{
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  #bad1e5;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  #bad1e5;
+}
 
 .button {
     -fx-background-color: #428DFF;
     -fx-cursor: hand;
-    -fx-padding: 8px 18px;
+    -fx-padding: .6em 1.6em;
     -fx-text-fill: #f0f3f5;
     -fx-font-family: "Staatliches", Arial, Consolas;
 }

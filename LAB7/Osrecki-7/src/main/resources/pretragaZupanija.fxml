@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.PretragaZupanijaController">
+<BorderPane prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PretragaZupanijaController">
     <top>
         <BorderPane BorderPane.alignment="CENTER" onKeyPressed="#pretrazi">
             <top>
