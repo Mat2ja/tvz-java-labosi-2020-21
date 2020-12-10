@@ -38,8 +38,10 @@ public interface CitanjePodataka {
                     String naziv = br.readLine();
                     Integer brojStanovnika = Integer.parseInt(br.readLine());
                     Integer brojZarazenih = Integer.parseInt(br.readLine());
+                    // zadatak 1
+                    String sifra = br.readLine();
 
-                    Zupanija zupanija = new Zupanija(id, naziv, brojStanovnika, brojZarazenih);
+                    Zupanija zupanija = new Zupanija(id, naziv, brojStanovnika, brojZarazenih, sifra);
                     zupanije.add(zupanija);
                 }
             } catch (IOException e) {

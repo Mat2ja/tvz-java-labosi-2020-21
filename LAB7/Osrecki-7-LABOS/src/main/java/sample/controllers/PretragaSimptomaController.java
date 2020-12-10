@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontoler za pretragu simptoma
+ */
 public class PretragaSimptomaController implements Initializable {
 
     private static ObservableList<Simptom> observableListSimptoma;

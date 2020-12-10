@@ -12,6 +12,10 @@
     -fx-font-size: 26px;
 }
 
+.entitet-stat {
+    -fx-font-weight: bold;
+}
+
 #program-name {
     -fx-font-family: "Staatliches", Arial, Consolas;
     -fx-font-size: 64px;
@@ -120,3 +124,4 @@
 .back-icon:hover {
     -fx-opacity: 1;
 }
+

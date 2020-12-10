@@ -27,6 +27,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         logger.error("Pokrenuli smo program");
         mainStage = primaryStage;
+
         Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
         homeScene = new Scene(pocetniEkran, 800, 500);
         prikaziPocetniEkran();

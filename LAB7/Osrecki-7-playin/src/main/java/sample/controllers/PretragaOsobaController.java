@@ -14,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
@@ -93,14 +92,14 @@ public class PretragaOsobaController implements Initializable {
     }
 
     public void clicked(Osoba osoba) {
-        System.out.println(osoba);
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("prikazOsobe.fxml"));
-            Stage prikazOsobeStage = new Stage();
-            Scene prikazOsobeScene = new Scene(loader.load(), 600,400);
-            prikazOsobeStage.setScene(prikazOsobeScene);
-            prikazOsobeStage.show();
+//            Stage prikazOsobeStage = new Stage();
+//            Scene prikazOsobeScene = new Scene(loader.load(), 600,400);
+//            prikazOsobeStage.setScene(prikazOsobeScene);
+//            prikazOsobeStage.show();
+
+            Main.getMainStage().setScene(new Scene(loader.load()));
 
             PrikazOsobeController controller = loader.getController();
             controller.prikaziOsobu(osoba);

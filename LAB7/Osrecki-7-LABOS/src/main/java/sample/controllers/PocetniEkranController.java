@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Kontoler za početni ekran
+ */
 public class PocetniEkranController implements Initializable {
 
     /**

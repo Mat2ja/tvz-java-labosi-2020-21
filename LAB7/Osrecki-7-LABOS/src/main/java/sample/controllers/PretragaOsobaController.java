@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontoler za pretragu osoba
+ */
 public class PretragaOsobaController implements Initializable {
 
     private static ObservableList<Osoba> observableListOsoba;

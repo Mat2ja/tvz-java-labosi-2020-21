@@ -15,7 +15,7 @@
 
 <BorderPane prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PretragaZupanijaController">
     <top>
-        <BorderPane BorderPane.alignment="CENTER" onKeyPressed="#pretrazi">
+        <BorderPane onKeyPressed="#pretrazi" BorderPane.alignment="CENTER">
             <top>
                 <fx:include source="izbornik.fxml" />
             </top>
@@ -56,6 +56,7 @@
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -66,12 +67,22 @@
                                 <Insets right="32.0" />
                             </GridPane.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#pretrazi" text="Pretraga" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#pretrazi" text="Pretraga" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         <Label text="Naziv županije" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <GridPane.margin>
                                 <Insets right="16.0" />
                             </GridPane.margin>
                         </Label>
+                  <TextField fx:id="sifraZupanije" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="32.0" top="16.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Šifra županije" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="16.0" top="16.0" />
+                     </GridPane.margin>
+                  </Label>
                     </children>
                 </GridPane>
             </bottom>
@@ -83,6 +94,7 @@
                 <TableColumn fx:id="stupacNazivZupanije" text="Naziv županije" />
                 <TableColumn fx:id="stupacBrojStanovnikaZupanije" text="Broj stanovnika" />
                 <TableColumn fx:id="stupacBrojZarazenihZupanije" text="Broj zaraženih" />
+                <TableColumn fx:id="stupacSifraZupanije" text="Šifra županije" />
             </columns>
         </TableView>
     </center>
