@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane id="pocetni-ekran" prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PocetniEkranController">
+    <top>
+        <fx:include source="izbornik.fxml" />
+    </top>
+   <center>
+      <ImageView fitHeight="197.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@assets/virus.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets right="12.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </center>
+   <bottom>
+      <Label id="program-name" styleClass="back-icon" text="COVID PORTAL" textFill="WHITE" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Staatliches';
+    src: url("fonts/Staatliches-Regular.ttf");
+}
+
+#program-name {
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 64px;
+    -fx-translate-y: -40px;
+    -fx-text-fill: #428DFF;
+    -fx-opacity: 1;
+}
+
+#pocetni-ekran {
+    -fx-background-color: #bad1e5;
+}
+
+/*#pocetni-ekran .menu-bar {*/
+/*    -fx-background-color: #bad1e5;*/
+/*}*/
+
+.panel {
+    -fx-background-color: #e3eaec;
+    -fx-font-family: Consolas;
+    -fx-font-size: 15px;
+}
+
+.panel .label {
+    -fx-text-fill: #2f3845;
+}
+
+.naslov {
+    -fx-font-size: 26px;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+}
+
+.menu-bar {
+    -fx-background-color: #bad1e5;
+}
+
+.menu {
+    -fx-cursor: hand;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 12px;
+}
+
+.menu-item {
+    -fx-cursor: hand;
+}
+
+.table-view {
+    -fx-font-size: 12px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #bad1e5;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:hover {
+}
+
+.table-row-cell:odd{
+}
+.table-row-cell:even{
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  #bad1e5;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  #bad1e5;
+}
+
+.button {
+    -fx-background-color: #428DFF;
+    -fx-cursor: hand;
+    -fx-padding: .6em 1.6em;
+    -fx-text-fill: #f0f3f5;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+}
+
+.button:hover {
+    -fx-opacity: .9;
+}
+
+.text-field {
+    -fx-text-fill: #428DFF;
+    -fx-background-color: #f0f3f5;
+    -fx-padding: 6px 12px;
+}
+
+.back-icon {
+    -fx-cursor: hand;
+    -fx-opacity: .5;
+}
+
+.back-icon:hover {
+    -fx-opacity: 1;
+}
