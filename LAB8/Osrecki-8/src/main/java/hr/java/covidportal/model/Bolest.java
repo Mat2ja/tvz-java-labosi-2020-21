@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Matija
  */
 public class Bolest extends ImenovaniEntitet {
-    private List<Simptom> simptomi = new ArrayList<>();
+    private List<Simptom> simptomi;
 
 
     /**

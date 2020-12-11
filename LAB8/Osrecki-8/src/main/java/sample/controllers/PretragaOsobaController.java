@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.hr.java.covidportal.model.CitanjePodataka;
+import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
 import java.net.URL;
@@ -65,7 +64,7 @@ public class PretragaOsobaController implements Initializable {
         stupacKontaktiOsobe.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getKontaktiraneOsobe().toString().replaceAll("[\\[\\]]", "")));
 
-        listaOsoba = CitanjePodataka.ucitajOsobe();
+        listaOsoba = UcitavanjePodataka.ucitajOsobe();
 
         if (observableListOsoba == null) {
             observableListOsoba = FXCollections.observableArrayList();
@@ -80,10 +79,6 @@ public class PretragaOsobaController implements Initializable {
      * Pretražuje osobe prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     public void pretrazi() {
-        Main.getMainStage().getScene().setOnKeyPressed(e -> {
-            if (e.getCode() != KeyCode.ENTER) return;
-        });
-
         String ime = imeOsobe.getText();
         String prezime = prezimeOsobe.getText();
 

@@ -3,16 +3,16 @@ package main.java.hr.java.covidportal.model;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.sample.Main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface CitanjePodataka {
+public interface UcitavanjePodataka {
 
     String FILE_NAME_ZUPANIJE = "./dat/zupanije.txt";
     String FILE_NAME_SIMPTOMI = "./dat/simptomi.txt";
@@ -240,5 +240,31 @@ public interface CitanjePodataka {
         }
 
         return osobe;
+    }
+
+
+    static void zapisiZupaniju(Zupanija zupanija) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, true))) {
+            out.println();
+            out.println(zupanija.getId());
+            out.println(zupanija.getNaziv());
+            out.println(zupanija.getBrojStanovnika());
+            out.print(zupanija.getBrojZarazenih());
+        } catch (IOException e) {
+            Main.logger.error("File not found", e);
+            System.out.println("File " + FILE_NAME_ZUPANIJE + " not found.");
+        }
+    }
+
+    static void zapisiSimptom(Simptom simptom) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_SIMPTOMI, true))) {
+            out.println();
+            out.println(simptom.getId());
+            out.println(simptom.getNaziv());
+            out.print(simptom.getVrijednost());
+        } catch (IOException e) {
+            Main.logger.error("File not found", e);
+            System.out.println("File " + FILE_NAME_SIMPTOMI + " not found.");
+        }
     }
 }

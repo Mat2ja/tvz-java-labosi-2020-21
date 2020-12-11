@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Bolest;
-import main.java.hr.java.covidportal.model.CitanjePodataka;
+import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
 import java.net.URL;
@@ -47,7 +47,7 @@ public class PretragaBolestiController implements Initializable {
         stupacSimptomiBolesti.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
-        listaBolesti = CitanjePodataka.ucitajBolesti();
+        listaBolesti = UcitavanjePodataka.ucitajBolesti();
 
         if (observableListBolesti == null) {
             observableListBolesti = FXCollections.observableArrayList();
@@ -63,10 +63,6 @@ public class PretragaBolestiController implements Initializable {
      * Pretražuje bolesti prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     public void pretrazi() {
-        Main.getMainStage().getScene().setOnKeyPressed(e -> {
-            if (e.getCode() != KeyCode.ENTER) return;
-        });
-
         String naziv = nazivBolesti.getText();
 
         Predicate<Bolest> predNaziv = bolest -> bolest.getNaziv().toLowerCase().contains(naziv.toLowerCase());

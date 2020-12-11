@@ -111,3 +111,7 @@
 .back-icon:hover {
     -fx-opacity: 1;
 }
+
+.radio-button {
+    -fx-cursor: hand;
+}

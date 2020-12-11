@@ -9,9 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.hr.java.covidportal.model.CitanjePodataka;
+import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
 import java.net.URL;
@@ -50,7 +49,7 @@ public class PretragaZupanijaController implements Initializable {
         stupacBrojStanovnikaZupanije.setCellValueFactory(new PropertyValueFactory<>("brojStanovnika"));
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
-        listaZupanija = CitanjePodataka.ucitajZupanije();
+        listaZupanija = UcitavanjePodataka.ucitajZupanije();
 
         if (observableListZupanija == null) {
             observableListZupanija = FXCollections.observableArrayList();
@@ -65,10 +64,6 @@ public class PretragaZupanijaController implements Initializable {
      * Pretražuje županije prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     public void pretrazi() {
-        Main.getMainStage().getScene().setOnKeyPressed(e -> {
-            if (e.getCode() != KeyCode.ENTER) return;
-        });
-
         String naziv = nazivZupanije.getText();
 
         Predicate<Zupanija> predNaziv = zupanija -> zupanija.getNaziv().toLowerCase().contains(naziv.toLowerCase());
