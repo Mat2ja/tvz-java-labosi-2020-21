@@ -196,3 +196,94 @@
 2020-12-11 22:17:30,266 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:28] Pokrenuli smo program
 2020-12-11 22:18:21,442 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:28] Pokrenuli smo program
 2020-12-11 22:25:04,371 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:28] Pokrenuli smo program
+2020-12-12 11:14:40,808 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:15:30,650 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:17:34,813 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:18:53,085 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:19:19,555 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:19:36,320 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:20:56,171 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:20:59,156 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:20:59,157 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:21:16,408 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:21:19,686 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:21:19,686 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:21:21,960 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:21:21,960 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:23:02,859 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:23:14,673 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:23:25,813 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:24:23,368 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:24:33,764 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:24:33,765 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:29:16,534 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:30:33,608 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:30:47,461 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:29] Pokrenuli smo program
+2020-12-12 11:30:54,656 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:30:54,657 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 11:36:42,162 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 11:38:39,786 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 11:38:42,934 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos bolesti
+2020-12-12 11:40:34,757 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 11:45:54,838 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:00:54,828 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:02:14,320 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:03:17,308 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:04:34,483 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:09:18,727 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:09:29,026 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:12:00,723 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:13:19,296 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:15:27,084 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:17:56,586 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:26:10,706 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 12:51:55,945 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:02:04,753 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:02:17,829 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:02:26,219 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:03:35,567 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:04:14,253 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:30:00,696 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:30:02,886 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos bolesti
+2020-12-12 13:33:35,027 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:34:43,147 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:39:01,830 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:39:59,569 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:40:11,918 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:40:14,165 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos bolesti
+2020-12-12 13:41:27,809 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:41:51,314 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:56:42,358 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:56:53,748 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:58:46,429 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 13:58:48,675 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos bolesti
+2020-12-12 13:59:06,788 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:04:06,787 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:08:33,181 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:11:28,045 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:11:53,132 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:17:12,539 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 14:17:35,126 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:21:44,098 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:28:03,968 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:28:06,110 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos osobe
+2020-12-12 15:28:12,551 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:37:12,935 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:37:22,227 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:37:24,862 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos osobe
+2020-12-12 15:37:58,090 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:38:34,729 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:42:28,726 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:50:19,775 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:50:42,736 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Pretraga osoba
+2020-12-12 15:51:43,202 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:51:45,354 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Unos osobe
+2020-12-12 15:52:14,473 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:53:20,109 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:54:21,665 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:21] Greška kod prikaza ekrana Pretraga osoba
+2020-12-12 15:55:01,897 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:55:13,122 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:55:39,418 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program
+2020-12-12 15:56:18,387 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 15:56:18,388 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-12 16:03:59,215 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:32] Pokrenuli smo program

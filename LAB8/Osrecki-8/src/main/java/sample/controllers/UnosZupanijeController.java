@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Kontroler unosa županija
+ */
 public class UnosZupanijeController implements Initializable {
 
     private static List<Zupanija> listaZupanija;
@@ -34,7 +37,7 @@ public class UnosZupanijeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaZupanija = UcitavanjePodataka.ucitajZupanije();
-        brojZupanija = Long.valueOf(listaZupanija.size());
+        brojZupanija = (long) listaZupanija.size();
 
         prikaziStatus();
     }
@@ -45,11 +48,7 @@ public class UnosZupanijeController implements Initializable {
         Integer brZarazenih = Utility.ucitajBroj(brZarazenihZupanije.getText());
 
         if (naziv.isBlank() || brStanovnika == null || brZarazenih == null) {
-            Alert errorAlert = new Alert(AlertType.ERROR);
-            errorAlert.setTitle("Unos županije");
-            errorAlert.setHeaderText("Pogrešan unos!");
-            errorAlert.setContentText("Unijeli ste županiju s nedozvoljenim vrijednostima.");
-            errorAlert.showAndWait();
+            Main.prikaziErrorUnosAlert("Unos županije", "Unijeli ste županiju s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -58,12 +57,8 @@ public class UnosZupanijeController implements Initializable {
         UcitavanjePodataka.zapisiZupaniju(novaZupanija);
         listaZupanija.add(novaZupanija);
 
-
-        Alert successAlert = new Alert(AlertType.INFORMATION);
-        successAlert.setTitle("Unos županije");
-        successAlert.setHeaderText("Županija dodana!");
-        successAlert.setContentText("Unijeli ste županiju: " + novaZupanija);
-        successAlert.showAndWait();
+        Main.prikaziSuccessUnosAlert(
+                "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
 
         ocistiUnos();
         prikaziStatus();
@@ -76,11 +71,14 @@ public class UnosZupanijeController implements Initializable {
         Main.prikaziPocetniEkran();
     }
 
-    public void prikaziStatus(){
+    public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + brojZupanija + " županija");
     }
 
-    public void ocistiUnos(){
+    /**
+     * Resetira unose za upisivanje podataka
+     */
+    public void ocistiUnos() {
         nazivZupanije.clear();
         brStanovnikaZupanije.clear();
         brZarazenihZupanije.clear();

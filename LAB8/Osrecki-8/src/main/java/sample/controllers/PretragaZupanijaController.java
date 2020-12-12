@@ -19,6 +19,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontoler pretrage županija
+ */
 public class PretragaZupanijaController implements Initializable {
 
     private static ObservableList<Zupanija> observableListZupanija;
@@ -99,13 +102,5 @@ public class PretragaZupanijaController implements Initializable {
 
     public static void setObservableListZupanija(ObservableList<Zupanija> observableList) {
         observableListZupanija = observableList;
-    }
-
-    public static List<Zupanija> getListaZupanija() {
-        return listaZupanija;
-    }
-
-    public static void setListaZupanija(List<Zupanija> zupanije) {
-        listaZupanija = zupanije;
     }
 }

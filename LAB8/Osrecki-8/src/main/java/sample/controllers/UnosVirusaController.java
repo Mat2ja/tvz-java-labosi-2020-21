@@ -4,7 +4,7 @@ package main.java.sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import main.java.hr.java.covidportal.model.Bolest;
+import main.java.hr.java.covidportal.model.Virus;
 import main.java.hr.java.covidportal.model.Simptom;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
@@ -15,18 +15,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-/**
- * Kontroler unosa bolesti
- */
-public class UnosBolestiController implements Initializable {
+public class UnosVirusaController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
-    private static List<Bolest> listaBolesti;
-    private static Long brojBolesti;
+    private static List<Virus> listaVirusa;
+    private static Long brojVirusa;
     private static List<CheckBox> listaCheckBoxa = new ArrayList<>();
 
     @FXML
-    private TextField nazivBolesti;
+    private TextField nazivVirusa;
     @FXML
     private MenuButton simptomiMenuBtn;
     @FXML
@@ -37,8 +34,8 @@ public class UnosBolestiController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
-        listaBolesti = UcitavanjePodataka.ucitajBolesti();
-        brojBolesti = (long) listaBolesti.size();
+        listaVirusa = UcitavanjePodataka.ucitajViruse();
+        brojVirusa = (long) listaVirusa.size();
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -53,27 +50,28 @@ public class UnosBolestiController implements Initializable {
                     simptomiMenuBtn.getItems().add(menuItem);
                 });
 
+        prikaziStatus();
     }
 
     public void dodaj() {
-        String naziv = nazivBolesti.getText().toUpperCase();
+        String naziv = nazivVirusa.getText().toUpperCase();
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
                 .collect(Collectors.toList());
 
         if (naziv.isBlank() || odabraniSimptomi.isEmpty()) {
-            Main.prikaziErrorUnosAlert("Unos bolesti", "Unijeli ste bolest s nedozvoljenim vrijednostima.");
+            Main.prikaziErrorUnosAlert("Unos virusa", "Unijeli ste virus s nedozvoljenim vrijednostima.");
             return;
         }
 
-        Long id = ++brojBolesti;
-        Bolest novaBolest = new Bolest(id, naziv, odabraniSimptomi);
-        UcitavanjePodataka.zapisiBolest(novaBolest);
-        listaBolesti.add(novaBolest);
+        Long id = ++brojVirusa + 100;
+        Virus noviVirus = new Virus(id, naziv, odabraniSimptomi);
+        UcitavanjePodataka.zapisiVirus(noviVirus);
+        listaVirusa.add(noviVirus);
 
         Main.prikaziSuccessUnosAlert(
-                "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
+                "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 
         ocistiUnos();
         prikaziStatus();
@@ -87,14 +85,14 @@ public class UnosBolestiController implements Initializable {
     }
 
     public void prikaziStatus() {
-        status.setText("U sustavu je trenutno " + brojBolesti + " bolesti");
+        status.setText("U sustavu je trenutno " + brojVirusa + " virusa");
     }
 
     /**
      * Resetira unose za upisivanje podataka
      */
     public void ocistiUnos() {
-        nazivBolesti.clear();
+        nazivVirusa.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
     }
 }

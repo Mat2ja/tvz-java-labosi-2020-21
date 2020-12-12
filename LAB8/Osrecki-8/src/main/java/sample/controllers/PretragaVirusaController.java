@@ -9,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Virus;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
@@ -20,6 +19,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontoler pretrage virusa
+ */
 public class PretragaVirusaController implements Initializable {
 
     private static ObservableList<Virus> observableListVirusa;
@@ -96,13 +98,5 @@ public class PretragaVirusaController implements Initializable {
 
     public static void setObservableListVirusa(ObservableList<Virus> observableList) {
         observableListVirusa = observableList;
-    }
-
-    public static List<Virus> getListaVirusa() {
-        return listaVirusa;
-    }
-
-    public static void setListaVirusa(List<Virus> virusi) {
-        listaVirusa = virusi;
     }
 }

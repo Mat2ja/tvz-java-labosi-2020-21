@@ -4,9 +4,6 @@ import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.sample.Main;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +40,7 @@ public interface UcitavanjePodataka {
                     zupanije.add(zupanija);
                 }
             } catch (IOException e) {
-                Main.logger.error("File not found", e);
+                Main.logger.error("File " + FILE_NAME_ZUPANIJE + " not found.", e);
                 e.printStackTrace();
                 System.out.println("File " + FILE_NAME_ZUPANIJE + " not found.");
             }
@@ -78,7 +75,7 @@ public interface UcitavanjePodataka {
                     simptomi.add(simptom);
                 }
             } catch (IOException e) {
-                Main.logger.error("File not found", e);
+                Main.logger.error("File " + FILE_NAME_SIMPTOMI + " not found.", e);
                 System.out.println("File " + FILE_NAME_SIMPTOMI + " not found.");
             }
         }
@@ -120,7 +117,7 @@ public interface UcitavanjePodataka {
                     bolesti.add(bolest);
                 }
             } catch (IOException e) {
-                Main.logger.error("File not found", e);
+                Main.logger.error("File " + FILE_NAME_BOLESTI + " not found.", e);
                 System.out.println("File " + FILE_NAME_BOLESTI + " not found.");
             }
         }
@@ -161,7 +158,7 @@ public interface UcitavanjePodataka {
                     virusi.add(virus);
                 }
             } catch (IOException e) {
-                Main.logger.error("File not found", e);
+                Main.logger.error("File " + FILE_NAME_VIRUSA + " not found.", e);
                 System.out.println("File " + FILE_NAME_VIRUSA + " not found.");
             }
         }
@@ -234,7 +231,7 @@ public interface UcitavanjePodataka {
 
                 }
             } catch (IOException e) {
-                Main.logger.error("File not found", e);
+                Main.logger.error("File " + FILE_NAME_OSOBA + " not found.", e);
                 System.out.println("File " + FILE_NAME_OSOBA + " not found.");
             }
         }
@@ -263,8 +260,94 @@ public interface UcitavanjePodataka {
             out.println(simptom.getNaziv());
             out.print(simptom.getVrijednost());
         } catch (IOException e) {
-            Main.logger.error("File not found", e);
+            Main.logger.error("File " + FILE_NAME_SIMPTOMI + " not found.", e);
             System.out.println("File " + FILE_NAME_SIMPTOMI + " not found.");
         }
+    }
+
+    static void zapisiBolest(Bolest bolest) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_BOLESTI, true))) {
+            out.println();
+            out.println(bolest.getId());
+            out.println(bolest.getNaziv());
+
+            List<String> simptomiIds = bolest.getSimptomi().stream()
+                    .map(s -> s.getId().toString())
+                    .collect(Collectors.toList());
+            String commaSepSimptomi = String.join(",", simptomiIds);
+            out.print(commaSepSimptomi);
+        } catch (IOException e) {
+            Main.logger.error("File " + FILE_NAME_BOLESTI + " not found.", e);
+            System.out.println("File " + FILE_NAME_BOLESTI + " not found.");
+        }
+    }
+
+    static void zapisiVirus(Virus virus) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_VIRUSA, true))) {
+            out.println();
+            out.println(virus.getId());
+            out.println(virus.getNaziv());
+
+            List<String> simptomiIds = virus.getSimptomi().stream()
+                    .map(s -> s.getId().toString())
+                    .collect(Collectors.toList());
+            String commaSepSimptomi = String.join(",", simptomiIds);
+            out.print(commaSepSimptomi);
+        } catch (IOException e) {
+            Main.logger.error("File " + FILE_NAME_VIRUSA + " not found.", e);
+            System.out.println("File " + FILE_NAME_VIRUSA + " not found.");
+        }
+    }
+
+
+    static void zapisiOsobu(Osoba osoba) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_OSOBA, true))) {
+            out.println();
+            out.println(osoba.getId());
+            out.println(osoba.getIme());
+            out.println(osoba.getPrezime());
+            out.println(osoba.getStarost());
+            out.println(osoba.getZupanija().getId());
+            out.println(osoba.getZarazenBolescu().getId());
+
+            List<String> kontaktiIds = osoba.getKontaktiraneOsobe().stream()
+                    .map(os -> os.getId().toString())
+                    .collect(Collectors.toList());
+            String commaSepSimptomi = String.join(",", kontaktiIds);
+            out.print(commaSepSimptomi);
+        } catch (IOException e) {
+            Main.logger.error("File " + FILE_NAME_OSOBA + " not found", e);
+            System.out.println("File " + FILE_NAME_OSOBA + " not found.");
+        }
+    }
+
+    static Zupanija dohvatiZupanijuPrekoId(List<Zupanija> zupanije, Long id) {
+        return zupanije.stream()
+                .filter(z -> z.getId().equals(id))
+                .findFirst().get();
+    }
+
+    static Simptom dohvatiSimptomPrekoId(List<Simptom> simptomi, Long id) {
+        return simptomi.stream()
+                .filter(s -> s.getId().equals(id))
+                .findFirst().get();
+    }
+
+    static Bolest dohvatiBolestPrekoId(List<Bolest> bolesti, Long id) {
+        return bolesti.stream()
+                .filter(b -> b.getId().equals(id))
+                .findFirst().get();
+    }
+
+    static Virus dohvatiVirusPrekoId(List<Virus> virusi, Long id) {
+        return virusi.stream()
+                .filter(v -> v.getId().equals(id))
+                .findFirst().get();
+    }
+
+    static Osoba dohvatiOsobuPrekoId(List<Osoba> osobe, Long id) {
+        return osobe.stream()
+                .filter(o -> o.getId().equals(id))
+                .findFirst().get();
     }
 }

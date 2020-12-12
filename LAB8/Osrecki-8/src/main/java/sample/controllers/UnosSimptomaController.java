@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Kontroler unosa simptoma
+ */
 public class UnosSimptomaController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
@@ -25,7 +28,7 @@ public class UnosSimptomaController implements Initializable {
     private TextField nazivSimptoma;
 
     @FXML
-    ToggleGroup vrijSimptomaGroup;
+    public ToggleGroup vrijSimptomaGroup;
     @FXML
     public RadioButton vrijRijetko;
     @FXML
@@ -41,7 +44,7 @@ public class UnosSimptomaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
-        brojSimptoma = Long.valueOf(listaSimptoma.size());
+        brojSimptoma = (long) listaSimptoma.size();
 
         vrijRijetko.setToggleGroup(vrijSimptomaGroup);
         vrijSrednje.setToggleGroup(vrijSimptomaGroup);
@@ -57,11 +60,7 @@ public class UnosSimptomaController implements Initializable {
 
 
         if (naziv.isBlank() || vrijednosatRadioBtn == null) {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Unos simptoma");
-            errorAlert.setHeaderText("Pogrešan unos!");
-            errorAlert.setContentText("Unijeli ste simptom s nedozvoljenim vrijednostima.");
-            errorAlert.showAndWait();
+            Main.prikaziErrorUnosAlert("Unos simptoma", "Unijeli ste simptom s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -72,11 +71,8 @@ public class UnosSimptomaController implements Initializable {
         UcitavanjePodataka.zapisiSimptom(noviSimptom);
         listaSimptoma.add(noviSimptom);
 
-        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-        successAlert.setTitle("Unos simptoma");
-        successAlert.setHeaderText("Simptom dodan!");
-        successAlert.setContentText("Unijeli ste simptom: " + noviSimptom);
-        successAlert.showAndWait();
+        Main.prikaziSuccessUnosAlert(
+                "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);
 
         prikaziStatus();
         ocistiUnos();
@@ -93,6 +89,9 @@ public class UnosSimptomaController implements Initializable {
         status.setText("U sustavu je trenutno " + brojSimptoma + " simptoma");
     }
 
+    /**
+     * Resetira unose za upisivanje podataka
+     */
     public void ocistiUnos() {
         nazivSimptoma.clear();
         vrijSimptomaGroup.getSelectedToggle().setSelected(false);

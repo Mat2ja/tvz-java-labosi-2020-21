@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
@@ -23,6 +22,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontroler pretrage simptoma
+ */
 public class PretragaOsobaController implements Initializable {
 
     private static ObservableList<Osoba> observableListOsoba;
@@ -117,13 +119,5 @@ public class PretragaOsobaController implements Initializable {
 
     public static void setObservableListOsoba(ObservableList<Osoba> observableList) {
         observableListOsoba = observableList;
-    }
-
-    public static List<Osoba> getListaOsoba() {
-        return listaOsoba;
-    }
-
-    public static void setListaOsoba(List<Osoba> osobe) {
-        listaOsoba = osobe;
     }
 }

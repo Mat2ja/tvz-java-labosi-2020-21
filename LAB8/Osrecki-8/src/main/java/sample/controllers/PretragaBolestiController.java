@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Kontoler pretrage bolesti
+ */
 public class PretragaBolestiController implements Initializable {
 
     private static ObservableList<Bolest> observableListBolesti;
@@ -97,13 +100,5 @@ public class PretragaBolestiController implements Initializable {
 
     public static void setObservableListBolesti(ObservableList<Bolest> observableList) {
         observableListBolesti = observableList;
-    }
-
-    public static List<Bolest> getListaBolesti() {
-        return listaBolesti;
-    }
-
-    public static void setListaBolesti(List<Bolest> bolesti) {
-        listaBolesti = bolesti;
     }
 }

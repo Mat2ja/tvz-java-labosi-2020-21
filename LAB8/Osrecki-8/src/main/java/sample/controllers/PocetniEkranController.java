@@ -8,8 +8,10 @@ import main.java.sample.Main;
 
 import java.io.IOException;
 
-public class PocetniEkranController{
-
+/**
+ * Kontoler glavnog izbornika
+ */
+public class PocetniEkranController {
 
     public void prikaziEkran(String fxmlFile, String title) {
         try {
@@ -41,8 +43,6 @@ public class PocetniEkranController{
 
     /**
      * Prikazuje ekran za pretragu simptoma
-     *
-     *
      */
     @FXML
     public void prikaziEkranZaPretraguSimptoma() {
@@ -56,11 +56,9 @@ public class PocetniEkranController{
 
     /**
      * Prikazuje ekran za pretragu bolesti
-     *
-     *
      */
     @FXML
-    public void prikaziEkranZaPretraguBolesti(){
+    public void prikaziEkranZaPretraguBolesti() {
         prikaziEkran("pretragaBolesti.fxml", "Pretraga bolesti");
     }
 
@@ -73,11 +71,9 @@ public class PocetniEkranController{
 
     /**
      * Prikazuje ekran za pretragu virusa
-     *
-     *
      */
     @FXML
-    public void prikaziEkranZaPretraguVirusa()  {
+    public void prikaziEkranZaPretraguVirusa() {
         prikaziEkran("pretragaVirusa.fxml", "Pretraga virusa");
 
     }
@@ -90,7 +86,6 @@ public class PocetniEkranController{
 
     /**
      * Prikazuje ekran za pretragu osoba
-     *
      */
     @FXML
     public void prikaziEkranZaPretraguOsoba() {
@@ -100,7 +95,7 @@ public class PocetniEkranController{
 
     @FXML
     public void prikaziEkranZaUnosOsobe() {
-        prikaziEkran("unosOsoba.fxml", "Unos osobe");
+        prikaziEkran("unosOsobe.fxml", "Unos osobe");
 
     }
 
