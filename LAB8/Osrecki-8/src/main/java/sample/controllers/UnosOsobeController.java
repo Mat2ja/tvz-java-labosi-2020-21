@@ -39,11 +39,12 @@ public class UnosOsobeController implements Initializable {
     public MenuButton kontaktiOsobeMenuBtn;
 
     @FXML
+    private Label starostVrijednost;
+    @FXML
     private Label status;
 
 
     /**
-     *
      * @param url
      * @param resourceBundle
      */
@@ -72,11 +73,15 @@ public class UnosOsobeController implements Initializable {
                     kontaktiOsobeMenuBtn.getItems().add(menuItem);
                 });
 
-
+        starostVrijednost.setText(String.valueOf(0));
+        starostOsobe.valueProperty().addListener((observable, oldValue, newValue) -> {
+            starostVrijednost.setText(String.format("%d", (int) starostOsobe.getValue()));
+        });
         prikaziStatus();
     }
 
     /**
+     * Dodaje novu osobu
      *
      */
     public void dodaj() {
@@ -132,6 +137,11 @@ public class UnosOsobeController implements Initializable {
         imeOsobe.clear();
         prezimeOsobe.clear();
         imeOsobe.clear();
+        zupanijaOsobe.getItems().clear();
+        zupanijaOsobe.getItems().addAll(listaZupanija);
+        bolestOsobe.getItems().clear();
+        bolestOsobe.getItems().addAll(listaSvihBolesti);
+        starostOsobe.setValue(0);
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
     }
 

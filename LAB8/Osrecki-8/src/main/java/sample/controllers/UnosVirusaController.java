@@ -30,6 +30,11 @@ public class UnosVirusaController implements Initializable {
     private Label status;
 
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -53,6 +58,10 @@ public class UnosVirusaController implements Initializable {
         prikaziStatus();
     }
 
+    /**
+     * Dodaje novi virus
+     *
+     */
     public void dodaj() {
         String naziv = nazivVirusa.getText().toUpperCase();
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()

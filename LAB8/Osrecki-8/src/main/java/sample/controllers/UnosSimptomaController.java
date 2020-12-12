@@ -3,17 +3,13 @@ package main.java.sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.Simptom;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
-import main.java.hr.java.covidportal.model.Utility;
-import main.java.hr.java.covidportal.model.Zupanija;
 import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -39,7 +35,11 @@ public class UnosSimptomaController implements Initializable {
     @FXML
     private Label status;
 
-
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -54,6 +54,10 @@ public class UnosSimptomaController implements Initializable {
 
     }
 
+    /**
+     * Dodaje novu osobu
+     *
+     */
     public void dodaj() {
         String naziv = nazivSimptoma.getText().toUpperCase();
         RadioButton vrijednosatRadioBtn = (RadioButton) vrijSimptomaGroup.getSelectedToggle();

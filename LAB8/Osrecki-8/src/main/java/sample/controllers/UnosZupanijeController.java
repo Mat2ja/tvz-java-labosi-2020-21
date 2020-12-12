@@ -2,8 +2,6 @@ package main.java.sample.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
@@ -33,6 +31,11 @@ public class UnosZupanijeController implements Initializable {
     private Label status;
 
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -42,6 +45,10 @@ public class UnosZupanijeController implements Initializable {
         prikaziStatus();
     }
 
+    /**
+     * Dodaje novu županiju
+     *
+     */
     public void dodaj() {
         String naziv = nazivZupanije.getText().toUpperCase();
         Integer brStanovnika = Utility.ucitajBroj(brStanovnikaZupanije.getText());
