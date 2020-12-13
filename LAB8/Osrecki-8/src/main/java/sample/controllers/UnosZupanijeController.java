@@ -32,6 +32,7 @@ public class UnosZupanijeController implements Initializable {
 
 
     /**
+     * Inicijalizira kontroler
      *
      * @param url
      * @param resourceBundle
@@ -47,7 +48,6 @@ public class UnosZupanijeController implements Initializable {
 
     /**
      * Dodaje novu županiju
-     *
      */
     public void dodaj() {
         String naziv = nazivZupanije.getText().toUpperCase();

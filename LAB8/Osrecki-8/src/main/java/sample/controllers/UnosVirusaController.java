@@ -31,6 +31,7 @@ public class UnosVirusaController implements Initializable {
 
 
     /**
+     * Inicijalizira kontroler
      *
      * @param url
      * @param resourceBundle
@@ -60,7 +61,6 @@ public class UnosVirusaController implements Initializable {
 
     /**
      * Dodaje novi virus
-     *
      */
     public void dodaj() {
         String naziv = nazivVirusa.getText().toUpperCase();

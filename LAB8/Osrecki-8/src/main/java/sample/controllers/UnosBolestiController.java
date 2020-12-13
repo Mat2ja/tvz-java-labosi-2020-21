@@ -32,7 +32,12 @@ public class UnosBolestiController implements Initializable {
     @FXML
     private Label status;
 
-
+    /**
+     * Inicijalizira kontroler
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -53,6 +58,7 @@ public class UnosBolestiController implements Initializable {
                     simptomiMenuBtn.getItems().add(menuItem);
                 });
 
+        prikaziStatus();
     }
 
     public void dodaj() {

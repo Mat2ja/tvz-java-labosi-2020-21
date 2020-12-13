@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 
 
-<MenuBar minWidth="-Infinity" GridPane.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1"
+<MenuBar fx:id="izbornik" styleClass="izbornik" minWidth="-Infinity" GridPane.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1"
          xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PocetniEkranController">
     <menus>
         <Menu mnemonicParsing="false" styleClass="menu" text="Županije">

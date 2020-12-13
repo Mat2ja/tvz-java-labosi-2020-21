@@ -45,6 +45,8 @@ public class UnosOsobeController implements Initializable {
 
 
     /**
+     * Inicijalizira kontroler
+     *
      * @param url
      * @param resourceBundle
      */
@@ -52,8 +54,7 @@ public class UnosOsobeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listaZupanija = UcitavanjePodataka.ucitajZupanije();
         listaSvihBolesti = UcitavanjePodataka.ucitajBolesti();
-        List<Virus> listaVirusa = UcitavanjePodataka.ucitajViruse();
-        listaSvihBolesti.addAll(listaVirusa);
+        listaSvihBolesti.addAll(UcitavanjePodataka.ucitajViruse());
         listaOsoba = UcitavanjePodataka.ucitajOsobe();
         brojOsoba = (long) listaOsoba.size();
 
@@ -82,7 +83,6 @@ public class UnosOsobeController implements Initializable {
 
     /**
      * Dodaje novu osobu
-     *
      */
     public void dodaj() {
         String ime = toTitleCase(imeOsobe.getText());
@@ -160,7 +160,7 @@ public class UnosOsobeController implements Initializable {
 
         for (int i = 0; i < arr.length; i++) {
             sb.append(Character.toUpperCase(arr[i].charAt(0)))
-                    .append(arr[i].substring(1)).append(" ");
+                    .append(arr[i].substring(1).toLowerCase()).append(" ");
         }
         return sb.toString().trim();
     }

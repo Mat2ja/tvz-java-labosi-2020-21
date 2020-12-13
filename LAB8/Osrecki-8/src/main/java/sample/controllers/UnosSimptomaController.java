@@ -36,6 +36,7 @@ public class UnosSimptomaController implements Initializable {
     private Label status;
 
     /**
+     * Inicijalizira kontroler
      *
      * @param url
      * @param resourceBundle
@@ -56,7 +57,6 @@ public class UnosSimptomaController implements Initializable {
 
     /**
      * Dodaje novu osobu
-     *
      */
     public void dodaj() {
         String naziv = nazivSimptoma.getText().toUpperCase();

@@ -8,7 +8,7 @@
 
 <BorderPane id="pocetni-ekran" prefHeight="500.0" prefWidth="800.0" styleClass="panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PocetniEkranController">
     <top>
-        <fx:include source="izbornik.fxml" />
+        <fx:include  fx:id="izbornik" source="izbornik.fxml" />
     </top>
    <center>
       <ImageView fitHeight="197.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
