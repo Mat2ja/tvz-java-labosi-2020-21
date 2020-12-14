@@ -1,5 +1,6 @@
 package main.java.sample.controllers;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -53,7 +54,7 @@ public class UnosZupanijeController implements Initializable {
         String naziv = nazivZupanije.getText().toUpperCase();
         Integer brStanovnika = Utility.ucitajBroj(brStanovnikaZupanije.getText());
         Integer brZarazenih = Utility.ucitajBroj(brZarazenihZupanije.getText());
-
+        
         if (naziv.isBlank() || brStanovnika == null || brZarazenih == null) {
             Main.prikaziErrorUnosAlert("Unos županije", "Unijeli ste županiju s nedozvoljenim vrijednostima.");
             return;

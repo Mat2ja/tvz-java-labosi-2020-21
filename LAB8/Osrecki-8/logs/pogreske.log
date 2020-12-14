@@ -427,3 +427,71 @@
 2020-12-14 13:30:21,892 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
 2020-12-14 13:32:34,857 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
 2020-12-14 13:39:05,143 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 17:21:46,577 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 17:23:00,971 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 17:58:17,905 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 17:59:00,432 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 17:59:08,408 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 17:59:08,408 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:01:30,223 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:01:50,719 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:01:55,024 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:01:55,024 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:20,570 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:02:23,319 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:23,319 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:24,938 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:24,939 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:55,192 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:02:58,280 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:58,280 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:59,997 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:02:59,997 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:03:22,731 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:03:26,909 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:03:26,909 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:04,431 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:04:07,923 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:07,924 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:10,909 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:10,909 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:14,085 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:14,085 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:04:17,005 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:08,647 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:05:12,190 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:12,191 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:17,364 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:17,364 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:19,031 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:05:19,032 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:06:01,428 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:06:10,960 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:06:15,347 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:33,692 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:07:37,597 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:37,598 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:39,520 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:39,521 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:42,127 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:42,127 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:07:56,150 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:09:07,786 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:09:10,805 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:09:10,806 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:09:13,633 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:09:16,715 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:10:30,283 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 18:10:42,877 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 18:10:42,878 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 19:44:03,333 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 19:44:03,337 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 22:18:47,494 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:18:52,085 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 22:18:52,085 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
+2020-12-14 22:19:23,687 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:19:49,713 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:20:15,478 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:20:36,357 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:21:22,673 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:33] Pokrenuli smo program
+2020-12-14 22:21:45,527 ERROR [JavaFX Application Thread] m.j.s.Main [Utility.java:12] Unesen je podatak koji nije broj
