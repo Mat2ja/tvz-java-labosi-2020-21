@@ -111,7 +111,7 @@
         </GridPane>
     </center>
     <bottom>
-        <BorderPane prefHeight="93.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <center>
                 <Label fx:id="status" styleClass="status" BorderPane.alignment="CENTER" />
             </center>

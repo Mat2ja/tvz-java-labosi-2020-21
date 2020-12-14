@@ -16,7 +16,7 @@
 #program-name {
     -fx-font-family: "Staatliches", Arial, Consolas;
     -fx-font-size: 64px;
-    -fx-translate-y: -40px;
+    /*-fx-translate-y: -40px;*/
     -fx-text-fill: #428DFF;
     -fx-opacity: 1;
 }
@@ -308,4 +308,41 @@
 }
 
 .status {
+}
+
+.dialog-pane {
+    /*-fx-border-color: #bad1e5;*/
+    /*-fx-border-width: 6px;*/
+}
+
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #f0f3f5;
+}
+
+.dialog-pane > .content.label {
+    -fx-background-color: #f0f3f5;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: #bad1e5;
+}
+
+.dialog-pane:header .header-panel .label {
+    -fx-text-fill: #2f3845;
+}
+
+
+/**Costumization of Buttons**/
+.dialog-pane .button {
+    -fx-background-color: #428DFF;
+    -fx-cursor: hand;
+    -fx-padding: .6em 1.6em;
+    -fx-text-fill: #f0f3f5;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 15px;
+}
+
+.dialog-pane .button:hover {
+    -fx-opacity: .9;
 }

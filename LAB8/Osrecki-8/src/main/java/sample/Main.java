@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -33,9 +34,11 @@ public class Main extends Application {
         mainStage = primaryStage;
         Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
         homeScene = new Scene(pocetniEkran, 800, 500);
+        homeScene.getStylesheets().add(Main.class.getClassLoader().getResource("application.css").toExternalForm());
         prikaziPocetniEkran();
 
-        primaryStage.getIcons().add(new Image("file:images/coronavirus.png"));
+        primaryStage.getIcons().add(new Image(String.valueOf(Main.class.getClassLoader().getResource("assets/virus.png"))));
+
         primaryStage.show();
     }
 
@@ -49,7 +52,8 @@ public class Main extends Application {
 
     /**
      * Prikazuje error alert
-     * @param title naslov alerta
+     *
+     * @param title   naslov alerta
      * @param content content alerta
      */
     public static void prikaziErrorUnosAlert(String title, String content) {
@@ -59,15 +63,18 @@ public class Main extends Application {
         alert.setContentText(content);
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("file:images/coronavirus.png"));
+        stage.getIcons().add(new Image(String.valueOf(Main.class.getClassLoader().getResource("assets/virus.png"))));
+        alert.getDialogPane()
+                .getStylesheets().add(Main.class.getClassLoader().getResource("application.css").toExternalForm());
         alert.showAndWait();
 
     }
 
     /**
      * Prikazuje sucessful alert
-     * @param title naslov alerta
-     * @param header header alerta
+     *
+     * @param title   naslov alerta
+     * @param header  header alerta
      * @param content content alerta
      */
     public static void prikaziSuccessUnosAlert(String title, String header, String content) {
@@ -75,8 +82,11 @@ public class Main extends Application {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
+
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("file:images/coronavirus.png"));
+        stage.getIcons().add(new Image(String.valueOf(Main.class.getClassLoader().getResource("assets/virus.png"))));
+        alert.getDialogPane()
+                .getStylesheets().add(Main.class.getClassLoader().getResource("application.css").toExternalForm());
         alert.showAndWait();
     }
 
