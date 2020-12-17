@@ -110,3 +110,17 @@ Brozović
 2
 108
 5,13,15
+17
+Klara
+Lovric
+81
+2
+2
+2,3,4
+18
+Klara
+Lovrić
+98
+3
+3
+2,3

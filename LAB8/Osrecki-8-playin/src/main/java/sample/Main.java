@@ -95,23 +95,27 @@ public class Main extends Application {
         alert.showAndWait();
     }
 
-    public static<T> void prikaziErrorIndicator(T input) {
+    public static <T> void prikaziErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, true);
         } else if (input instanceof MenuButton mb) {
             mb.pseudoClassStateChanged(Main.errorClass, true);
         } else if (input instanceof ChoiceBox cb) {
             cb.pseudoClassStateChanged(Main.errorClass, true);
+        } else if (input instanceof Slider sl) {
+            sl.pseudoClassStateChanged(Main.errorClass, true);
         }
     }
 
-    public static<T> void makniErrorIndicator(T input) {
+    public static <T> void makniErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, false);
         } else if (input instanceof MenuButton mb) {
             mb.pseudoClassStateChanged(Main.errorClass, false);
         } else if (input instanceof ChoiceBox cb) {
             cb.pseudoClassStateChanged(Main.errorClass, false);
+        } else if (input instanceof Slider sl) {
+            sl.pseudoClassStateChanged(Main.errorClass, false);
         }
     }
 

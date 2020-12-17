@@ -202,7 +202,7 @@
 }
 
 .dropdown .context-menu {
-    -fx-min-width: 240;
+    -fx-pref-width: 220;
 }
 
 .slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark {
@@ -219,6 +219,10 @@
     -fx-pref-height: 20;
     -fx-pref-width: 20;
     -fx-background-color: #428DFF;
+}
+
+.slider:error .thumb {
+    -fx-background-color: #f89f9f;
 }
 
 .slider .thumb:hover {
