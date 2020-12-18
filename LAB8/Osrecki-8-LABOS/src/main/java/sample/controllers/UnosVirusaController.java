@@ -4,6 +4,7 @@ package main.java.sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
 import main.java.hr.java.covidportal.model.Simptom;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
@@ -21,9 +22,12 @@ public class UnosVirusaController implements Initializable {
     private static List<Virus> listaVirusa;
     private static Long brojVirusa;
     private static List<CheckBox> listaCheckBoxa = new ArrayList<>();
+//    private Integer indexPromijenjenog;
 
     @FXML
     private TextField nazivVirusa;
+    @FXML
+    private TextField opisVirusa;
     @FXML
     private MenuButton simptomiMenuBtn;
     @FXML
@@ -42,6 +46,7 @@ public class UnosVirusaController implements Initializable {
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
         listaVirusa = UcitavanjePodataka.ucitajViruse();
         brojVirusa = (long) listaVirusa.size();
+//        indexPromijenjenog = -1;
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -57,6 +62,27 @@ public class UnosVirusaController implements Initializable {
                 });
 
         prikaziStatus();
+
+
+        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivVirusa, newText));
+        opisVirusa.textProperty().addListener((obs, oldText, newText) -> validateTextField(opisVirusa, newText));
+    }
+
+    // zadatak 3
+    public void izmijeniVirus(Virus virus){
+        listaVirusa.remove(virus);
+
+        nazivVirusa.setText(virus.getNaziv());
+        opisVirusa.setText(virus.getOpis());
+        List<Long> simptomiIds = virus.getSimptomi().stream()
+                .mapToLong(Simptom::getId)
+                .boxed()
+                .collect(Collectors.toList());
+
+        listaCheckBoxa.stream()
+                .filter(cb -> simptomiIds.contains(Long.parseLong(cb.getId())))
+                .forEach(cb -> cb.setSelected(true));
+
     }
 
     /**
@@ -64,26 +90,40 @@ public class UnosVirusaController implements Initializable {
      */
     public void dodaj() {
         String naziv = nazivVirusa.getText().toUpperCase();
+        String opis = opisVirusa.getText();
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
                 .collect(Collectors.toList());
 
-        if (naziv.isBlank() || odabraniSimptomi.isEmpty()) {
+        Boolean valNaziv = validateTextField(nazivVirusa, naziv);
+        Boolean valOpis = validateTextField(opisVirusa, opis);
+        Boolean valSimptomi = validateMenuButton(simptomiMenuBtn, odabraniSimptomi);
+
+        if (!(valNaziv && valOpis && valSimptomi)) {
             Main.prikaziErrorUnosAlert("Unos virusa", "Unijeli ste virus s nedozvoljenim vrijednostima.");
             return;
         }
 
+        brojVirusa = (long) listaVirusa.size();
+
         Long id = ++brojVirusa + 100;
-        Virus noviVirus = new Virus(id, naziv, odabraniSimptomi);
+        Virus noviVirus = new Virus(id, naziv,opis, odabraniSimptomi );
         UcitavanjePodataka.zapisiVirus(noviVirus);
         listaVirusa.add(noviVirus);
+
+        UcitavanjePodataka.obrisiSveViruse();
+        for (Virus v : listaVirusa) {
+            UcitavanjePodataka.zapisiVirus(v);
+        }
 
         Main.prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 
         ocistiUnos();
         prikaziStatus();
+
+
     }
 
     /**
@@ -105,6 +145,36 @@ public class UnosVirusaController implements Initializable {
      */
     public void ocistiUnos() {
         nazivVirusa.clear();
+        opisVirusa.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
+        resetIndicators();
     }
+
+
+    public void resetIndicators() {
+        Main.makniErrorIndicator(nazivVirusa);
+        Main.makniErrorIndicator(opisVirusa);
+        Main.makniErrorIndicator(simptomiMenuBtn);
+    }
+
+    public static boolean validateTextField(TextField tf, String value) {
+        if (value.isBlank()) {
+            Main.prikaziErrorIndicator(tf);
+            return false;
+        } else {
+            Main.makniErrorIndicator(tf);
+            return true;
+        }
+    }
+
+    public static <T> boolean validateMenuButton(MenuButton mb, List<T> lista) {
+        if (lista.isEmpty()) {
+            Main.prikaziErrorIndicator(mb);
+            return false;
+        } else {
+            Main.makniErrorIndicator(mb);
+            return true;
+        }
+    }
+
 }

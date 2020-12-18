@@ -1,10 +1,11 @@
 package main.java.sample;
 
 import javafx.application.Application;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -20,6 +21,8 @@ public class Main extends Application {
 
     private static Stage mainStage;
     private static Scene homeScene;
+
+    final public static PseudoClass errorClass = PseudoClass.getPseudoClass("error");
 
     /**
      * Započinje program i stvara prozor
@@ -87,6 +90,30 @@ public class Main extends Application {
         alert.getDialogPane()
                 .getStylesheets().add(Main.class.getClassLoader().getResource("application.css").toExternalForm());
         alert.showAndWait();
+    }
+
+    public static <T> void prikaziErrorIndicator(T input) {
+        if (input instanceof TextField tf) {
+            tf.pseudoClassStateChanged(Main.errorClass, true);
+        } else if (input instanceof MenuButton mb) {
+            mb.pseudoClassStateChanged(Main.errorClass, true);
+        } else if (input instanceof ChoiceBox cb) {
+            cb.pseudoClassStateChanged(Main.errorClass, true);
+        } else if (input instanceof Slider sl) {
+            sl.pseudoClassStateChanged(Main.errorClass, true);
+        }
+    }
+
+    public static <T> void makniErrorIndicator(T input) {
+        if (input instanceof TextField tf) {
+            tf.pseudoClassStateChanged(Main.errorClass, false);
+        } else if (input instanceof MenuButton mb) {
+            mb.pseudoClassStateChanged(Main.errorClass, false);
+        } else if (input instanceof ChoiceBox cb) {
+            cb.pseudoClassStateChanged(Main.errorClass, false);
+        } else if (input instanceof Slider sl) {
+            sl.pseudoClassStateChanged(Main.errorClass, false);
+        }
     }
 
     public static void main(String[] args) {

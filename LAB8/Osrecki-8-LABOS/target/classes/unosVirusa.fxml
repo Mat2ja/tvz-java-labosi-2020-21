@@ -56,20 +56,23 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <TextField fx:id="nazivVirusa" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#dodaj" text="DODAJ" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#dodaj" text="DODAJ" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                 <Label text="Naziv" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
                 </Label>
-                <Label text="Simptomi" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                <MenuButton fx:id="simptomiMenuBtn" maxHeight="-Infinity" mnemonicParsing="false" styleClass="dropdown" text="Odaberi" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Simptomi" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <MenuButton fx:id="simptomiMenuBtn" maxHeight="-Infinity" mnemonicParsing="false" styleClass="dropdown" text="Odaberi" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Opis" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <TextField fx:id="opisVirusa" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
@@ -77,7 +80,7 @@
         </GridPane>
     </center>
     <bottom>
-        <BorderPane prefHeight="140.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="114.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <center>
                 <Label fx:id="status" styleClass="status" BorderPane.alignment="CENTER" />
             </center>

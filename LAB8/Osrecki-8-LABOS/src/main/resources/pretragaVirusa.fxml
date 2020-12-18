@@ -80,6 +80,7 @@
         <TableView fx:id="tablicaVirusa" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="stupacNazivVirusa" text="Naziv virusa" />
+            <TableColumn fx:id="stupacOpisVirusa" prefWidth="75.0" text="Opis virusa" />
                 <TableColumn fx:id="stupacSimptomiVirusa" text="Simptomi virusa" />
             </columns>
         </TableView>

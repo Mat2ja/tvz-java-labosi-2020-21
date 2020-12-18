@@ -144,6 +144,7 @@ public interface UcitavanjePodataka {
                 while ((line = reader.readLine()) != null) {
                     Long id = Long.parseLong(line);
                     String naziv = reader.readLine();
+                    String opis = reader.readLine();
 
                     List<Simptom> simptomiVirusa = new ArrayList<>();
                     for (String sId : reader.readLine().split(",")) {
@@ -154,7 +155,7 @@ public interface UcitavanjePodataka {
                                 .ifPresent(simptomiVirusa::add);
                     }
 
-                    Virus virus = new Virus(id, naziv, simptomiVirusa);
+                    Virus virus = new Virus(id, naziv, opis, simptomiVirusa);
                     virusi.add(virus);
                 }
             } catch (IOException e) {
@@ -242,10 +243,11 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu županiju u datoteku
+     *
      * @param zupanija podatak o županiji
      */
     static void zapisiZupaniju(Zupanija zupanija) {
-        try  (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, true))){
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, true))) {
             out.println();
             out.println(zupanija.getId());
             out.println(zupanija.getNaziv());
@@ -259,6 +261,7 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novi simptom u datoteku
+     *
      * @param simptom podatak o simptomu
      */
     static void zapisiSimptom(Simptom simptom) {
@@ -275,6 +278,7 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu bolest u datoteku
+     *
      * @param bolest podatak o bolest
      */
     static void zapisiBolest(Bolest bolest) {
@@ -296,6 +300,7 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novi virus u datoteku
+     * 
      * @param virus podatak o virus
      */
     static void zapisiVirus(Virus virus) {
@@ -303,6 +308,7 @@ public interface UcitavanjePodataka {
             out.println();
             out.println(virus.getId());
             out.println(virus.getNaziv());
+            out.println(virus.getOpis());
 
             List<String> simptomiIds = virus.getSimptomi().stream()
                     .map(s -> s.getId().toString())
@@ -317,6 +323,7 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu osobu u datoteku
+     *
      * @param osoba podatak o osobi
      */
     static void zapisiOsobu(Osoba osoba) {
@@ -342,8 +349,9 @@ public interface UcitavanjePodataka {
 
     /**
      * Dohvaća županiju preko id-a
+     *
      * @param zupanije podatak o listi županija
-     * @param id id
+     * @param id       id
      * @return
      */
     static Zupanija dohvatiZupanijuPrekoId(List<Zupanija> zupanije, Long id) {
@@ -354,8 +362,9 @@ public interface UcitavanjePodataka {
 
     /**
      * Dohvaća simptom preko id-a
+     *
      * @param simptomi podatak o listi simptoma
-     * @param id id
+     * @param id       id
      * @return
      */
     static Simptom dohvatiSimptomPrekoId(List<Simptom> simptomi, Long id) {
@@ -363,10 +372,12 @@ public interface UcitavanjePodataka {
                 .filter(s -> s.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća bolest preko id-a
+     *
      * @param bolesti podatak o listi bolesti
-     * @param id id
+     * @param id      id
      * @return
      */
     static Bolest dohvatiBolestPrekoId(List<Bolest> bolesti, Long id) {
@@ -374,10 +385,12 @@ public interface UcitavanjePodataka {
                 .filter(b -> b.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća virus preko id-a
+     *
      * @param virusi podatak o listi virusa
-     * @param id id
+     * @param id     id
      * @return
      */
     static Virus dohvatiVirusPrekoId(List<Virus> virusi, Long id) {
@@ -385,15 +398,27 @@ public interface UcitavanjePodataka {
                 .filter(v -> v.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća osobu preko id-a
+     *
      * @param osobe podatak o listi osoba
-     * @param id id
+     * @param id    id
      * @return
      */
     static Osoba dohvatiOsobuPrekoId(List<Osoba> osobe, Long id) {
         return osobe.stream()
                 .filter(o -> o.getId().equals(id))
                 .findFirst().get();
+    }
+
+    static void obrisiSveViruse() {
+        try {
+            PrintWriter writer = new PrintWriter(FILE_NAME_VIRUSA);
+            writer.print("");
+            writer.close();
+        } catch(IOException e) {
+
+        }
     }
 }
