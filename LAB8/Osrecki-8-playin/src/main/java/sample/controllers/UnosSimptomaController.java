@@ -71,7 +71,6 @@ public class UnosSimptomaController implements Initializable {
             return;
         }
 
-
         VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(vrijednosatRadioBtn.getUserData().toString());
 
         Long id = ++brojSimptoma;

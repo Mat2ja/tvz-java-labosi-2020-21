@@ -1,7 +1,9 @@
 package main.java.sample.controllers;
 
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * Kontroler unosa osoba
  */
-public class UnosOsobeController implements Initializable {
+public class UnosOsobeController extends UnosController implements Initializable {
 
     private static List<Zupanija> listaZupanija;
     private static List<Bolest> listaSvihBolesti;
@@ -81,6 +83,17 @@ public class UnosOsobeController implements Initializable {
         starostOsobe.valueProperty().addListener((observable, oldValue, newValue) -> {
             starostVrijednost.setText(String.format("%d", (int) starostOsobe.getValue()));
         });
+
+
+        /* Action listeneri */
+        imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(imeOsobe, newText));
+        prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(prezimeOsobe, newText));
+        starostOsobe.valueProperty().addListener((obs, oldText, newText) -> validateSlider(starostOsobe, newText));
+        zupanijaOsobe.getSelectionModel().selectedItemProperty()
+                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(zupanijaOsobe, newChoice));
+        bolestOsobe.getSelectionModel().selectedItemProperty()
+                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(bolestOsobe, newChoice));
+
         prikaziStatus();
     }
 
@@ -98,8 +111,15 @@ public class UnosOsobeController implements Initializable {
                 .map(cb -> UcitavanjePodataka.dohvatiOsobuPrekoId(listaOsoba, Long.parseLong(cb.getId())))
                 .collect(Collectors.toList());
 
-        if (ime.isBlank() || prezime.isBlank() || starost == 0 || zupanija == null || bolest == null || kontakti.isEmpty()) {
-            Main.prikaziErrorUnosAlert("Unos osobe", "Unijeli ste osobu s nedozvoljenim vrijednostima.");
+        Boolean valIme = validateTextField(imeOsobe, ime);
+        Boolean valPrezime = validateTextField(prezimeOsobe, prezime);
+        Boolean valStarost = validateSlider(starostOsobe, starost);
+        Boolean valZupanija = validateChoiceBox(zupanijaOsobe, zupanija);
+        Boolean valBolest = validateChoiceBox(bolestOsobe, bolest);
+        Boolean valKontakti = validateMenuButton(kontaktiOsobeMenuBtn, kontakti);
+
+        if (!(valIme && valPrezime && valStarost && valZupanija && valBolest && valKontakti)) {
+            prikaziErrorUnosAlert("Unos osobe", "Unijeli ste osobu s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -115,7 +135,7 @@ public class UnosOsobeController implements Initializable {
         UcitavanjePodataka.zapisiOsobu(novaOsoba);
         listaOsoba.add(novaOsoba);
 
-        Main.prikaziSuccessUnosAlert(
+        prikaziSuccessUnosAlert(
                 "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
 
         prikaziStatus();
@@ -149,26 +169,14 @@ public class UnosOsobeController implements Initializable {
         bolestOsobe.getItems().addAll(listaSvihBolesti);
         starostOsobe.setValue(0);
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
+        resetIndicators();
     }
 
-    /**
-     * Pretvara riječi u Title Case
-     *
-     * @param givenString string koji želimo obraditi
-     * @return string u Title Case obliku
-     */
-    public static String toTitleCase(String givenString) {
-        if (givenString.isBlank()) {
-            return givenString;
-        }
-        String[] arr = givenString.split(" ");
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < arr.length; i++) {
-            sb.append(Character.toUpperCase(arr[i].charAt(0)))
-                    .append(arr[i].substring(1).toLowerCase()).append(" ");
-        }
-        return sb.toString().trim();
+    public void resetIndicators() {
+        Main.makniErrorIndicator(imeOsobe);
+        Main.makniErrorIndicator(prezimeOsobe);
+        Main.makniErrorIndicator(zupanijaOsobe);
+        Main.makniErrorIndicator(bolestOsobe);
+        Main.makniErrorIndicator(kontaktiOsobeMenuBtn);
     }
-
 }

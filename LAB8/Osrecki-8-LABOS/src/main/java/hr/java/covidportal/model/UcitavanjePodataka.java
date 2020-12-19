@@ -322,6 +322,28 @@ public interface UcitavanjePodataka {
     }
 
     /**
+     * Zapisuje novi virus u datoteku
+     *
+     * @param virus podatak o virus
+     */
+    static void zapisiVirusBezNovogReda(Virus virus) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_VIRUSA, true))) {
+            out.println(virus.getId());
+            out.println(virus.getNaziv());
+            out.println(virus.getOpis());
+
+            List<String> simptomiIds = virus.getSimptomi().stream()
+                    .map(s -> s.getId().toString())
+                    .collect(Collectors.toList());
+            String commaSepSimptomi = String.join(",", simptomiIds);
+            out.println(commaSepSimptomi);
+        } catch (IOException e) {
+            Main.logger.error("File " + FILE_NAME_VIRUSA + " not found.", e);
+            System.out.println("File " + FILE_NAME_VIRUSA + " not found.");
+        }
+    }
+
+    /**
      * Zapisuje novu osobu u datoteku
      *
      * @param osoba podatak o osobi

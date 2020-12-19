@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 /**
  * Kontroler unosa simptoma
  */
-public class UnosSimptomaController implements Initializable {
+public class UnosSimptomaController extends UnosController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
     private static Long brojSimptoma;
@@ -53,6 +53,7 @@ public class UnosSimptomaController implements Initializable {
 
         prikaziStatus();
 
+        nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivSimptoma, newText));
     }
 
     /**
@@ -62,9 +63,12 @@ public class UnosSimptomaController implements Initializable {
         String naziv = nazivSimptoma.getText().toUpperCase();
         RadioButton vrijednosatRadioBtn = (RadioButton) vrijSimptomaGroup.getSelectedToggle();
 
+        resetIndicators();
 
-        if (naziv.isBlank() || vrijednosatRadioBtn == null) {
-            Main.prikaziErrorUnosAlert("Unos simptoma", "Unijeli ste simptom s nedozvoljenim vrijednostima.");
+        Boolean valNaziv = validateTextField(nazivSimptoma, naziv);
+
+        if (!valNaziv || vrijednosatRadioBtn == null) {
+            prikaziErrorUnosAlert("Unos simptoma", "Unijeli ste simptom s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -75,7 +79,7 @@ public class UnosSimptomaController implements Initializable {
         UcitavanjePodataka.zapisiSimptom(noviSimptom);
         listaSimptoma.add(noviSimptom);
 
-        Main.prikaziSuccessUnosAlert(
+        prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);
 
         prikaziStatus();
@@ -102,5 +106,11 @@ public class UnosSimptomaController implements Initializable {
     public void ocistiUnos() {
         nazivSimptoma.clear();
         vrijSimptomaGroup.getSelectedToggle().setSelected(false);
+        resetIndicators();
+
+    }
+
+    public void resetIndicators() {
+        Main.makniErrorIndicator(nazivSimptoma);
     }
 }

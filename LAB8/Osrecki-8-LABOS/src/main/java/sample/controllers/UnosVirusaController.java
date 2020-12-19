@@ -22,7 +22,7 @@ public class UnosVirusaController implements Initializable {
     private static List<Virus> listaVirusa;
     private static Long brojVirusa;
     private static List<CheckBox> listaCheckBoxa = new ArrayList<>();
-//    private Integer indexPromijenjenog;
+    private Integer indexPromijenjenog;
 
     @FXML
     private TextField nazivVirusa;
@@ -46,7 +46,7 @@ public class UnosVirusaController implements Initializable {
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
         listaVirusa = UcitavanjePodataka.ucitajViruse();
         brojVirusa = (long) listaVirusa.size();
-//        indexPromijenjenog = -1;
+       indexPromijenjenog = -1;
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -70,6 +70,7 @@ public class UnosVirusaController implements Initializable {
 
     // zadatak 3
     public void izmijeniVirus(Virus virus){
+        indexPromijenjenog = virus.getId().intValue() - 100;
         listaVirusa.remove(virus);
 
         nazivVirusa.setText(virus.getNaziv());
@@ -105,16 +106,22 @@ public class UnosVirusaController implements Initializable {
             return;
         }
 
-        brojVirusa = (long) listaVirusa.size();
-
         Long id = ++brojVirusa + 100;
+        if (indexPromijenjenog != -1) {
+            id = indexPromijenjenog.longValue() + 100;
+        }
+
         Virus noviVirus = new Virus(id, naziv,opis, odabraniSimptomi );
         UcitavanjePodataka.zapisiVirus(noviVirus);
-        listaVirusa.add(noviVirus);
+        if (indexPromijenjenog != -1) {
+            listaVirusa.add(indexPromijenjenog, noviVirus);
+        } else {
+            listaVirusa.add(noviVirus);
+        }
 
         UcitavanjePodataka.obrisiSveViruse();
         for (Virus v : listaVirusa) {
-            UcitavanjePodataka.zapisiVirus(v);
+            UcitavanjePodataka.zapisiVirusBezNovogReda(v);
         }
 
         Main.prikaziSuccessUnosAlert(
@@ -122,8 +129,6 @@ public class UnosVirusaController implements Initializable {
 
         ocistiUnos();
         prikaziStatus();
-
-
     }
 
     /**

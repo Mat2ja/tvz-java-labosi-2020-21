@@ -74,7 +74,6 @@ public class UnosZupanijeController implements Initializable {
             return;
         }
 
-
         Long id = ++brojZupanija;
         Zupanija novaZupanija = new Zupanija(id, naziv, brStanovnika, brZarazenih);
         UcitavanjePodataka.zapisiZupaniju(novaZupanija);

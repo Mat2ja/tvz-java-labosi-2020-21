@@ -1,26 +1,29 @@
 package main.java.sample.controllers;
 
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
-import main.java.hr.java.covidportal.model.Utility;
 import main.java.hr.java.covidportal.model.Zupanija;
 import main.java.sample.Main;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Kontroler unosa županija
  */
-public class UnosZupanijeController implements Initializable {
+public class UnosZupanijeController extends UnosController implements Initializable {
 
     private static List<Zupanija> listaZupanija;
     private static Long brojZupanija;
+
+    private List<TextField> textFields;
 
     @FXML
     private TextField nazivZupanije;
@@ -44,7 +47,13 @@ public class UnosZupanijeController implements Initializable {
         listaZupanija = UcitavanjePodataka.ucitajZupanije();
         brojZupanija = (long) listaZupanija.size();
 
+        textFields = new ArrayList<>(Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije));
+
         prikaziStatus();
+
+        nazivZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
+        brStanovnikaZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
+        brZarazenihZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
     }
 
     /**
@@ -52,11 +61,16 @@ public class UnosZupanijeController implements Initializable {
      */
     public void dodaj() {
         String naziv = nazivZupanije.getText().toUpperCase();
-        Integer brStanovnika = Utility.ucitajBroj(brStanovnikaZupanije.getText());
-        Integer brZarazenih = Utility.ucitajBroj(brZarazenihZupanije.getText());
+        Integer brStanovnika = ucitajBroj(brStanovnikaZupanije.getText());
+        Integer brZarazenih = ucitajBroj(brZarazenihZupanije.getText());
 
-        if (naziv.isBlank() || brStanovnika == null || brZarazenih == null) {
-            Main.prikaziErrorUnosAlert("Unos županije", "Unijeli ste županiju s nedozvoljenim vrijednostima.");
+
+        Boolean valIme = validateTextField(nazivZupanije,naziv);
+        Boolean valBrStan = validateTextFieldNumber(brStanovnikaZupanije,brStanovnika);
+        Boolean valBrojZar = validateTextFieldNumber(brZarazenihZupanije,brZarazenih);
+
+        if (!(valIme && valBrStan && valBrojZar)) {
+            prikaziErrorUnosAlert("Unos županije", "Unijeli ste županiju s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -65,7 +79,7 @@ public class UnosZupanijeController implements Initializable {
         UcitavanjePodataka.zapisiZupaniju(novaZupanija);
         listaZupanija.add(novaZupanija);
 
-        Main.prikaziSuccessUnosAlert(
+        prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
 
         ocistiUnos();
@@ -90,8 +104,13 @@ public class UnosZupanijeController implements Initializable {
      * Resetira unose za upisivanje podataka
      */
     public void ocistiUnos() {
-        nazivZupanije.clear();
-        brStanovnikaZupanije.clear();
-        brZarazenihZupanije.clear();
+        textFields.forEach(TextInputControl::clear);
+        resetIndicators();
     }
+
+    public void resetIndicators() {
+        textFields.forEach(Main::makniErrorIndicator);
+    }
+
+
 }

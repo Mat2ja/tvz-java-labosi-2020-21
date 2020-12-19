@@ -1,6 +1,8 @@
 package main.java.sample.controllers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,12 +17,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class UnosVirusaController implements Initializable {
+public class UnosVirusaController extends UnosController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
     private static List<Virus> listaVirusa;
     private static Long brojVirusa;
-    private static List<CheckBox> listaCheckBoxa = new ArrayList<>();
+    private static ObservableList<CheckBox> listaCheckBoxa;
 
     @FXML
     private TextField nazivVirusa;
@@ -42,6 +44,7 @@ public class UnosVirusaController implements Initializable {
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
         listaVirusa = UcitavanjePodataka.ucitajViruse();
         brojVirusa = (long) listaVirusa.size();
+        listaCheckBoxa = FXCollections.observableArrayList();
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -57,6 +60,8 @@ public class UnosVirusaController implements Initializable {
                 });
 
         prikaziStatus();
+
+        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivVirusa, newText));
     }
 
     /**
@@ -69,8 +74,12 @@ public class UnosVirusaController implements Initializable {
                 .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
                 .collect(Collectors.toList());
 
-        if (naziv.isBlank() || odabraniSimptomi.isEmpty()) {
-            Main.prikaziErrorUnosAlert("Unos virusa", "Unijeli ste virus s nedozvoljenim vrijednostima.");
+        Boolean valNaziv = validateTextField(nazivVirusa, naziv);
+        Boolean valSimptomi = validateMenuButton(simptomiMenuBtn, odabraniSimptomi);
+
+        if (!(valNaziv && valSimptomi)) {
+
+            prikaziErrorUnosAlert("Unos virusa", "Unijeli ste virus s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -79,7 +88,7 @@ public class UnosVirusaController implements Initializable {
         UcitavanjePodataka.zapisiVirus(noviVirus);
         listaVirusa.add(noviVirus);
 
-        Main.prikaziSuccessUnosAlert(
+        prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 
         ocistiUnos();
@@ -106,5 +115,12 @@ public class UnosVirusaController implements Initializable {
     public void ocistiUnos() {
         nazivVirusa.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
+        resetIndicators();
     }
+
+    public void resetIndicators() {
+        Main.makniErrorIndicator(nazivVirusa);
+        Main.makniErrorIndicator(simptomiMenuBtn);
+    }
+
 }

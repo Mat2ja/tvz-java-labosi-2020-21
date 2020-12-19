@@ -14,23 +14,11 @@ jao uzas
 EBOLA
 africki virus jel
 3
-105
-COVID23
-even worse
-2
 106
 EBOLALALA
 africki virus jel
 3,3
-107
-COVID26
-even worse
-2
-108
-JAO
-kineski virus
-3,3,3
-109
-COVID28
-even worse
-2,3,2,3
+105
+COVID27
+even worser
+2,2

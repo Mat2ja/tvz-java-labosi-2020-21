@@ -215,6 +215,10 @@
     -fx-background-color: #428DFF;
 }
 
+.slider:error .thumb {
+    -fx-background-color: #f89f9f;
+}
+
 .slider .thumb:hover {
     -fx-cursor: hand;
 }

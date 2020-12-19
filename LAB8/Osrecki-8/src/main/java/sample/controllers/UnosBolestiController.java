@@ -1,6 +1,8 @@
 package main.java.sample.controllers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -18,12 +20,12 @@ import java.util.stream.Collectors;
 /**
  * Kontroler unosa bolesti
  */
-public class UnosBolestiController implements Initializable {
+public class UnosBolestiController extends UnosController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
     private static List<Bolest> listaBolesti;
     private static Long brojBolesti;
-    private static List<CheckBox> listaCheckBoxa = new ArrayList<>();
+    private static ObservableList<CheckBox> listaCheckBoxa;
 
     @FXML
     private TextField nazivBolesti;
@@ -44,6 +46,7 @@ public class UnosBolestiController implements Initializable {
         listaSimptoma = UcitavanjePodataka.ucitajSimptome();
         listaBolesti = UcitavanjePodataka.ucitajBolesti();
         brojBolesti = (long) listaBolesti.size();
+        listaCheckBoxa = FXCollections.observableArrayList();
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -59,6 +62,8 @@ public class UnosBolestiController implements Initializable {
                 });
 
         prikaziStatus();
+
+        nazivBolesti.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivBolesti, newText));
     }
 
     /**
@@ -71,8 +76,12 @@ public class UnosBolestiController implements Initializable {
                 .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
                 .collect(Collectors.toList());
 
-        if (naziv.isBlank() || odabraniSimptomi.isEmpty()) {
-            Main.prikaziErrorUnosAlert("Unos bolesti", "Unijeli ste bolest s nedozvoljenim vrijednostima.");
+        Boolean valNaziv = validateTextField(nazivBolesti, naziv);
+        Boolean valSimptomi = validateMenuButton(simptomiMenuBtn, odabraniSimptomi);
+
+        if (!(valNaziv && valSimptomi)) {
+
+            prikaziErrorUnosAlert("Unos bolesti", "Unijeli ste bolest s nedozvoljenim vrijednostima.");
             return;
         }
 
@@ -81,7 +90,7 @@ public class UnosBolestiController implements Initializable {
         UcitavanjePodataka.zapisiBolest(novaBolest);
         listaBolesti.add(novaBolest);
 
-        Main.prikaziSuccessUnosAlert(
+        prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
 
         ocistiUnos();
@@ -109,5 +118,12 @@ public class UnosBolestiController implements Initializable {
     public void ocistiUnos() {
         nazivBolesti.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
+        resetIndicators();
     }
+
+    public void resetIndicators() {
+        Main.makniErrorIndicator(nazivBolesti);
+        Main.makniErrorIndicator(simptomiMenuBtn);
+    }
+
 }
