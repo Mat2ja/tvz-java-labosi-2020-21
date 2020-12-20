@@ -16,7 +16,7 @@
 }
 
 #pocetni-ekran {
-    -fx-background-color: #bad1e5;
+    -fx-background-color: linear-gradient(to bottom, #bad1e5 30%, #f0f3f5);
 }
 
 .panel {
@@ -235,7 +235,6 @@
 
 .menu-bar {
     -fx-background-color: #bad1e5;
-
 }
 
 .menu-bar .label {
@@ -247,8 +246,6 @@
 }
 
 .menu:hover {
-    -fx-background-color: #428DFF;
-    -fx-text-fill: #f0f3f5;
 }
 
 .menu-bar .menu-button:hover,
