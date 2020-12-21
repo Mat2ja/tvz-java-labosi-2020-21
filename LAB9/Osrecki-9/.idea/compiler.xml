@@ -16,11 +16,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Osrecki-8" />
+        <module name="Osrecki-9" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Osrecki-8" target="15" />
+      <module name="Osrecki-9" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

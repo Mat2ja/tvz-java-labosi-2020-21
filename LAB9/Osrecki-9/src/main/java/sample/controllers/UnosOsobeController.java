@@ -10,7 +10,6 @@ import main.java.hr.java.covidportal.model.*;
 import main.java.sample.Main;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;

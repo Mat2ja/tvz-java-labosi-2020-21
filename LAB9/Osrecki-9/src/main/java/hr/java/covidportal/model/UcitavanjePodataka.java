@@ -27,14 +27,15 @@ public interface UcitavanjePodataka {
         List<Zupanija> zupanije = new ArrayList<>();
 
         if (zupanijeFile.exists()) {
-            try (BufferedReader br = new BufferedReader(new FileReader(zupanijeFile))) {
 
+            try (BufferedReader reader = new BufferedReader(new FileReader(zupanijeFile))) {
                 String line;
-                while ((line = br.readLine()) != null) {
+                while ((line = reader.readLine()) != null) {
+                    if (line.isBlank()) break;
                     Long id = Long.parseLong(line);
-                    String naziv = br.readLine();
-                    Integer brojStanovnika = Integer.parseInt(br.readLine());
-                    Integer brojZarazenih = Integer.parseInt(br.readLine());
+                    String naziv = reader.readLine();
+                    Integer brojStanovnika = Integer.parseInt(reader.readLine());
+                    Integer brojZarazenih = Integer.parseInt(reader.readLine());
 
                     Zupanija zupanija = new Zupanija(id, naziv, brojStanovnika, brojZarazenih);
                     zupanije.add(zupanija);
@@ -62,11 +63,11 @@ public interface UcitavanjePodataka {
 
         if (simptomiFile.exists()) {
 
-            try (FileReader fileReader = new FileReader(FILE_NAME_SIMPTOMI);
-                 BufferedReader reader = new BufferedReader(fileReader)) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME_SIMPTOMI))) {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
+                    if (line.isBlank()) break;
                     Long id = Long.parseLong(line);
                     String naziv = reader.readLine();
                     VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(reader.readLine());
@@ -97,11 +98,11 @@ public interface UcitavanjePodataka {
         if (bolestiFile.exists()) {
             List<Simptom> simptomi = ucitajSimptome();
 
-            try (FileReader fileReader = new FileReader(FILE_NAME_BOLESTI);
-                 BufferedReader reader = new BufferedReader(fileReader)) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME_BOLESTI))) {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
+                    if (line.isBlank()) break;
                     Long id = Long.parseLong(line);
                     String naziv = reader.readLine();
 
@@ -137,11 +138,11 @@ public interface UcitavanjePodataka {
         if (virusiFile.exists()) {
             List<Simptom> simptomi = ucitajSimptome();
 
-            try (FileReader fileReader = new FileReader(FILE_NAME_VIRUSA);
-                 BufferedReader reader = new BufferedReader(fileReader)) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME_VIRUSA))) {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
+                    if (line.isBlank()) break;
                     Long id = Long.parseLong(line);
                     String naziv = reader.readLine();
 
@@ -180,12 +181,11 @@ public interface UcitavanjePodataka {
             List<Bolest> bolesti = ucitajBolesti();
             List<Virus> virusi = ucitajViruse();
 
-            try (FileReader fileReader = new FileReader(osobeFile);
-                 BufferedReader reader = new BufferedReader(fileReader)) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME_OSOBA))) {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-
+                    if (line.isBlank()) break;
                     Long id = Long.parseLong(line);
                     String ime = reader.readLine();
                     String prezime = reader.readLine();
@@ -242,15 +242,28 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu županiju u datoteku
+     *
      * @param zupanija podatak o županiji
      */
     static void zapisiZupaniju(Zupanija zupanija) {
-        try  (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, true))){
-            out.println();
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, true))) {
             out.println(zupanija.getId());
             out.println(zupanija.getNaziv());
             out.println(zupanija.getBrojStanovnika());
-            out.print(zupanija.getBrojZarazenih());
+            out.println(zupanija.getBrojZarazenih());
+        } catch (IOException e) {
+            Main.logger.error("File not found", e);
+            System.out.println("File " + FILE_NAME_ZUPANIJE + " not found.");
+        }
+    }
+
+    /**
+     * Briše sve županije iz datoteke
+     *
+     */
+    static void clearZupanije() {
+        try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_ZUPANIJE, false))) {
+            out.print("");
         } catch (IOException e) {
             Main.logger.error("File not found", e);
             System.out.println("File " + FILE_NAME_ZUPANIJE + " not found.");
@@ -259,14 +272,14 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novi simptom u datoteku
+     *
      * @param simptom podatak o simptomu
      */
     static void zapisiSimptom(Simptom simptom) {
         try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_SIMPTOMI, true))) {
-            out.println();
             out.println(simptom.getId());
             out.println(simptom.getNaziv());
-            out.print(simptom.getVrijednost());
+            out.println(simptom.getVrijednost());
         } catch (IOException e) {
             Main.logger.error("File " + FILE_NAME_SIMPTOMI + " not found.", e);
             System.out.println("File " + FILE_NAME_SIMPTOMI + " not found.");
@@ -275,11 +288,11 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu bolest u datoteku
+     *
      * @param bolest podatak o bolest
      */
     static void zapisiBolest(Bolest bolest) {
         try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_BOLESTI, true))) {
-            out.println();
             out.println(bolest.getId());
             out.println(bolest.getNaziv());
 
@@ -287,7 +300,7 @@ public interface UcitavanjePodataka {
                     .map(s -> s.getId().toString())
                     .collect(Collectors.toList());
             String commaSepSimptomi = String.join(",", simptomiIds);
-            out.print(commaSepSimptomi);
+            out.println(commaSepSimptomi);
         } catch (IOException e) {
             Main.logger.error("File " + FILE_NAME_BOLESTI + " not found.", e);
             System.out.println("File " + FILE_NAME_BOLESTI + " not found.");
@@ -296,11 +309,11 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novi virus u datoteku
+     *
      * @param virus podatak o virus
      */
     static void zapisiVirus(Virus virus) {
         try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_VIRUSA, true))) {
-            out.println();
             out.println(virus.getId());
             out.println(virus.getNaziv());
 
@@ -308,7 +321,7 @@ public interface UcitavanjePodataka {
                     .map(s -> s.getId().toString())
                     .collect(Collectors.toList());
             String commaSepSimptomi = String.join(",", simptomiIds);
-            out.print(commaSepSimptomi);
+            out.println(commaSepSimptomi);
         } catch (IOException e) {
             Main.logger.error("File " + FILE_NAME_VIRUSA + " not found.", e);
             System.out.println("File " + FILE_NAME_VIRUSA + " not found.");
@@ -317,11 +330,11 @@ public interface UcitavanjePodataka {
 
     /**
      * Zapisuje novu osobu u datoteku
+     *
      * @param osoba podatak o osobi
      */
     static void zapisiOsobu(Osoba osoba) {
         try (PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME_OSOBA, true))) {
-            out.println();
             out.println(osoba.getId());
             out.println(osoba.getIme());
             out.println(osoba.getPrezime());
@@ -333,7 +346,7 @@ public interface UcitavanjePodataka {
                     .map(os -> os.getId().toString())
                     .collect(Collectors.toList());
             String commaSepSimptomi = String.join(",", kontaktiIds);
-            out.print(commaSepSimptomi);
+            out.println(commaSepSimptomi);
         } catch (IOException e) {
             Main.logger.error("File " + FILE_NAME_OSOBA + " not found", e);
             System.out.println("File " + FILE_NAME_OSOBA + " not found.");
@@ -342,8 +355,9 @@ public interface UcitavanjePodataka {
 
     /**
      * Dohvaća županiju preko id-a
+     *
      * @param zupanije podatak o listi županija
-     * @param id id
+     * @param id       id
      * @return
      */
     static Zupanija dohvatiZupanijuPrekoId(List<Zupanija> zupanije, Long id) {
@@ -354,8 +368,9 @@ public interface UcitavanjePodataka {
 
     /**
      * Dohvaća simptom preko id-a
+     *
      * @param simptomi podatak o listi simptoma
-     * @param id id
+     * @param id       id
      * @return
      */
     static Simptom dohvatiSimptomPrekoId(List<Simptom> simptomi, Long id) {
@@ -363,10 +378,12 @@ public interface UcitavanjePodataka {
                 .filter(s -> s.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća bolest preko id-a
+     *
      * @param bolesti podatak o listi bolesti
-     * @param id id
+     * @param id      id
      * @return
      */
     static Bolest dohvatiBolestPrekoId(List<Bolest> bolesti, Long id) {
@@ -374,10 +391,12 @@ public interface UcitavanjePodataka {
                 .filter(b -> b.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća virus preko id-a
+     *
      * @param virusi podatak o listi virusa
-     * @param id id
+     * @param id     id
      * @return
      */
     static Virus dohvatiVirusPrekoId(List<Virus> virusi, Long id) {
@@ -385,10 +404,12 @@ public interface UcitavanjePodataka {
                 .filter(v -> v.getId().equals(id))
                 .findFirst().get();
     }
- /**
+
+    /**
      * Dohvaća osobu preko id-a
+     *
      * @param osobe podatak o listi osoba
-     * @param id id
+     * @param id    id
      * @return
      */
     static Osoba dohvatiOsobuPrekoId(List<Osoba> osobe, Long id) {

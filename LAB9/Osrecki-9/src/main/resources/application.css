@@ -48,6 +48,8 @@
     -fx-cursor: hand;
 }
 
+/* Table */
+
 .table-view {
     -fx-font-size: 12px;
     -fx-font-family: Consolas;
@@ -232,6 +234,7 @@
     -fx-font-family: "Staatliches", Arial, Consolas;
 }
 
+/* MenuButton */
 
 .menu-bar {
     -fx-background-color: #bad1e5;
@@ -265,6 +268,9 @@
 .context-menu {
     -fx-background-color: #f0f3f5;
 }
+
+
+/* Radio buttons */
 
 .radio-button .radio {
     -fx-border-width: 1px;
@@ -300,6 +306,8 @@
     -fx-background-insets: 0;
 }
 
+/* Checkbox */
+
 .check-box {
     /* default properties */
     selected-box-color: #bad1e5;
@@ -328,6 +336,8 @@
 
 .status {
 }
+
+/* Dialog pane / Alert */
 
 .dialog-pane {
     /*-fx-border-color: #bad1e5;*/

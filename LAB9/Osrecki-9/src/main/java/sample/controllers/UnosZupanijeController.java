@@ -3,6 +3,7 @@ package main.java.sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
@@ -22,6 +23,8 @@ public class UnosZupanijeController extends UnosController implements Initializa
 
     private static List<Zupanija> listaZupanija;
     private static Long brojZupanija;
+
+    private Integer idPromjenjenog;
 
     private List<TextField> textFields;
 
@@ -44,6 +47,8 @@ public class UnosZupanijeController extends UnosController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        resetirajIdPromijenjenog();
+
         listaZupanija = UcitavanjePodataka.ucitajZupanije();
         brojZupanija = (long) listaZupanija.size();
 
@@ -51,9 +56,23 @@ public class UnosZupanijeController extends UnosController implements Initializa
 
         prikaziStatus();
 
-        nazivZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
-        brStanovnikaZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
-        brZarazenihZupanije.textProperty().addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
+        nazivZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
+        brStanovnikaZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
+        brZarazenihZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
+    }
+
+
+
+    public void izmijeniZupaniju(Zupanija zupanija) {
+        idPromjenjenog = zupanija.getId().intValue();
+        listaZupanija.remove(zupanija);
+
+        nazivZupanije.setText(zupanija.getNaziv());
+        brStanovnikaZupanije.setText(zupanija.getBrojStanovnika().toString());
+        brZarazenihZupanije.setText(zupanija.getBrojZarazenih().toString());
     }
 
     /**
@@ -61,29 +80,52 @@ public class UnosZupanijeController extends UnosController implements Initializa
      */
     public void dodaj() {
         String naziv = nazivZupanije.getText().toUpperCase();
-        Integer brStanovnika = ucitajBroj(brStanovnikaZupanije.getText());
-        Integer brZarazenih = ucitajBroj(brZarazenihZupanije.getText());
-
+        String brStanovnikaUnos = brStanovnikaZupanije.getText();
+        String brZarazenihUnos = brZarazenihZupanije.getText();
 
         Boolean valIme = validateTextField(nazivZupanije, naziv);
-        Boolean valBrStan = validateTextFieldNumber(brStanovnikaZupanije, brStanovnika);
-        Boolean valBrojZar = validateTextFieldNumber(brZarazenihZupanije, brZarazenih);
+        Boolean valBrStan = validateTextFieldNumber(brStanovnikaZupanije, brStanovnikaUnos);
+        Boolean valBrojZar = validateTextFieldNumber(brZarazenihZupanije, brZarazenihUnos);
 
         if (!(valIme && valBrStan && valBrojZar)) {
             prikaziErrorUnosAlert("Unos županije", "Unijeli ste županiju s nedozvoljenim vrijednostima.");
             return;
         }
 
-        Long id = ++brojZupanija;
+        Long id;
+        if (idPromjenjenog != -1) {
+            id = idPromjenjenog.longValue();
+        } else {
+            id = ++brojZupanija;
+        }
+
+        Integer brStanovnika = Integer.valueOf(brStanovnikaUnos);
+        Integer brZarazenih = Integer.valueOf(brZarazenihUnos);
+
         Zupanija novaZupanija = new Zupanija(id, naziv, brStanovnika, brZarazenih);
-        UcitavanjePodataka.zapisiZupaniju(novaZupanija);
-        listaZupanija.add(novaZupanija);
+        listaZupanija.add(id.intValue() - 1, novaZupanija);
+
+        if (idPromjenjenog != -1) {
+            UcitavanjePodataka.clearZupanije();
+            listaZupanija.forEach(UcitavanjePodataka::zapisiZupaniju);
+        } else {
+            UcitavanjePodataka.zapisiZupaniju(novaZupanija);
+        }
 
         prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
 
+        resetirajIdPromijenjenog();
         ocistiUnos();
         prikaziStatus();
+
+    }
+
+    /**
+     * Postavlja id entiteta na -1, čime se označuje da nije došlo do izmjene podataka
+     */
+    public void resetirajIdPromijenjenog() {
+        idPromjenjenog = -1;
     }
 
     /**
@@ -111,6 +153,5 @@ public class UnosZupanijeController extends UnosController implements Initializa
     public void resetIndicators() {
         textFields.forEach(UnosController::makniErrorIndicator);
     }
-
 
 }

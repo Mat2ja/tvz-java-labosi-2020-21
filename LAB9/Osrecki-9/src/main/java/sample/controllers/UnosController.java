@@ -61,16 +61,11 @@ public abstract class UnosController {
         }
     }
 
-    public <T> boolean validateTextFieldNumber(TextField tf, T value) {
-        if (value == null) {
+    public boolean validateTextFieldNumber(TextField tf, String value) {
+        if (!isValidInteger(value)) {
             prikaziErrorIndicator(tf);
             return false;
         } else {
-            Integer broj = ucitajBroj(value.toString());
-            if (broj == null) {
-                prikaziErrorIndicator(tf);
-                return false;
-            }
             makniErrorIndicator(tf);
             return true;
         }
@@ -96,15 +91,6 @@ public abstract class UnosController {
         }
     }
 
-//    public <T extends Number> boolean validateSlider(Slider slider, T value) {
-//        if (value.intValue() == 0) {
-//            prikaziErrorIndicator(slider);
-//            return false;
-//        } else {
-//            makniErrorIndicator(slider);
-//            return true;
-//        }
-//    }
 
     public  boolean validateSlider(Slider slider) {
         if (slider.valueProperty().lessThanOrEqualTo(0).get()) {
@@ -116,15 +102,8 @@ public abstract class UnosController {
         }
     }
 
-    public static Integer ucitajBroj(String value) {
-        Integer num;
-        try {
-            num = Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            Main.logger.error("Unesen je podatak koji nije broj");
-            return null;
-        }
-        return num;
+    public Boolean isValidInteger(String value){
+        return value.matches("\\d+");
     }
 
     /**

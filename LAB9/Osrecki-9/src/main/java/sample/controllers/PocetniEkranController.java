@@ -37,7 +37,7 @@ public class PocetniEkranController {
      */
     @FXML
     public void prikaziEkranZaPretraguZupanija() {
-        prikaziEkran("pretragaZupanija.fxml", "Unos županije");
+        prikaziEkran("pretragaZupanija.fxml", "Pretraga županije");
     }
 
 
