@@ -1,0 +1,377 @@
+@font-face {
+    font-family: 'Staatliches';
+    src: url("fonts/Staatliches-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("fonts/Ubuntu-Medium.ttf");
+}
+
+#program-name {
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 64px;
+    -fx-text-fill: #428DFF;
+    -fx-opacity: 1;
+}
+
+#pocetni-ekran {
+    -fx-background-color: linear-gradient(to bottom, #bad1e5 30%, #f0f3f5);
+}
+
+.panel {
+    -fx-background-color: #e3eaec;
+    -fx-font-family: "Ubuntu", Arial, Consolas;
+    -fx-font-size: 15px;
+}
+
+.label {
+    -fx-text-fill: #2f3845;
+}
+
+.naslov {
+    -fx-font-size: 26px;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+}
+
+.menu-bar {
+    -fx-background-color: #bad1e5;
+}
+
+.izbornik .menu {
+    -fx-cursor: hand;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 12px;
+}
+
+.izbornik .menu-item {
+    -fx-cursor: hand;
+}
+
+/* Table */
+
+.table-view {
+    -fx-font-size: 12px;
+    -fx-font-family: Consolas;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #bad1e5;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:hover {
+    /*-fx-background-color: #bad1e5;*/
+}
+
+.table-row-cell:odd {
+}
+
+.table-row-cell:even {
+}
+
+
+.table-row-cell:selected .text {
+    -fx-fill: #f0f3f5;
+
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: #bad1e5;
+}
+
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: #bad1e5;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #428DFF;
+}
+
+
+.button {
+    -fx-background-color: #428DFF;
+    -fx-cursor: hand;
+    -fx-padding: .6em 1.6em;
+    -fx-text-fill: #f0f3f5;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 15px;
+}
+
+.button:hover {
+    -fx-opacity: .9;
+}
+
+.text-field {
+    -fx-text-fill: #428DFF;
+    -fx-background-color: #f0f3f5;
+    -fx-padding: 6px 12px;
+    -fx-border-style: solid;
+    -fx-border-color: #bad1e5;
+    -fx-border-width: 0 0 0 5px;
+}
+
+.text-field:error {
+    -fx-border-color: #f89f9f;
+}
+
+.text-field:success {
+    -fx-border-color: #a0d4a6;
+}
+
+.dropdown:error {
+    -fx-border-color: #f89f9f;
+}
+
+.dropdown:success {
+    -fx-border-color: #a0d4a6;
+}
+
+.back-icon {
+    -fx-cursor: hand;
+    -fx-opacity: .2;
+}
+
+.back-icon:hover {
+    -fx-opacity: 1;
+}
+
+.radio-button {
+    -fx-cursor: hand;
+}
+
+.dropdown .context-menu {
+    -fx-background-color: #f0f3f5;
+}
+
+.dropdown .menu-item:hover {
+    -fx-cursor: hand;
+}
+
+.dropdown .menu-item:focused {
+    -fx-background-color: #428DFF;
+}
+
+.dropdown .menu-item > .label {
+    -fx-text-fill: #2f3845;
+}
+
+.dropdown .menu-item:focused > .label {
+    -fx-text-fill: #f0f3f5;
+}
+
+.dropdown:hover {
+    -fx-cursor: hand;
+}
+
+.dropdown {
+    -fx-background-color: #f0f3f5;
+    -fx-mark-color: #428DFF;
+    -fx-padding: 0px 6px;
+    -fx-border-style: solid;
+    -fx-border-color: #bad1e5;
+    -fx-border-width: 0 0 0 5px;
+}
+
+
+.dropdown > .label {
+    -fx-text-fill: #428DFF;
+}
+
+.dropdown {
+    -fx-pref-width: 220;
+}
+
+.dropdown .context-menu {
+    -fx-min-width: 240;
+}
+
+.slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark {
+    -fx-fill: null;
+    -fx-stroke: #bad1e5;
+}
+
+.slider .track {
+    -progress: 0.2;
+    -fx-background-color: #f0f3f5;
+}
+
+.slider .thumb {
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+    -fx-background-color: #428DFF;
+}
+
+.slider:error .thumb {
+    -fx-background-color: #f89f9f;
+}
+
+.slider .thumb:hover {
+    -fx-cursor: hand;
+}
+
+.slider .thumb:pressed {
+    -fx-cursor: hand;
+}
+
+.important-label {
+    -fx-font-size: 26px;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+}
+
+/* MenuButton */
+
+.menu-bar {
+    -fx-background-color: #bad1e5;
+}
+
+.menu-bar .label {
+    -fx-text-fill: #2f3845;
+}
+
+.menu-bar menu-button:hover .label {
+    -fx-text-fill: #f0f3f5;
+}
+
+.menu:hover {
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused,
+.menu-bar .menu-button:showing {
+    -fx-background: #428DFF;
+    -fx-text-fill: #f0f3f5;
+}
+
+.menu-item {
+    -fx-background: #bad1e5;
+}
+
+.menu-item .label {
+}
+
+.context-menu {
+    -fx-background-color: #f0f3f5;
+}
+
+
+/* Radio buttons */
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #bad1e5;
+    -fx-background-color: #f0f3f5;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+
+.radio-button .radio:selected {
+    -fx-background-color: #f0f3f5;
+}
+
+.radio-button -radio:armed {
+    -fx-background-color: #f0f3f5;
+}
+
+.radio-button -radio:determinate {
+    -fx-background-color: #f0f3f5;
+}
+
+.radio-button -radio:indeterminate {
+    -fx-background-color: #f0f3f5;
+}
+
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: #428DFF;
+    -fx-background-insets: 0;
+}
+
+/* Checkbox */
+
+.check-box {
+    /* default properties */
+    selected-box-color: #bad1e5;
+    box-color: transparent;
+    mark-color: #428DFF;
+    border-color: #bad1e5;
+}
+
+.check-box:selected > .box {
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+    -fx-border-color: border-color;
+    -fx-border-width: 2px;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
+
+.status {
+}
+
+/* Dialog pane / Alert */
+
+.dialog-pane {
+    /*-fx-border-color: #bad1e5;*/
+    /*-fx-border-width: 6px;*/
+}
+
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #f0f3f5;
+}
+
+.dialog-pane > .content.label {
+    -fx-background-color: #f0f3f5;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: #bad1e5;
+}
+
+.dialog-pane:header .header-panel .label {
+    -fx-text-fill: #2f3845;
+}
+
+
+/**Costumization of Buttons**/
+.dialog-pane .button {
+    -fx-background-color: #428DFF;
+    -fx-cursor: hand;
+    -fx-padding: .6em 1.6em;
+    -fx-text-fill: #f0f3f5;
+    -fx-font-family: "Staatliches", Arial, Consolas;
+    -fx-font-size: 15px;
+}
+
+.dialog-pane .button:hover {
+    -fx-opacity: .9;
+}
