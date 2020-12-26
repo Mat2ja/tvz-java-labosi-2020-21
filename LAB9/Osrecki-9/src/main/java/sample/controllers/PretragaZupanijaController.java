@@ -12,12 +12,14 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
 import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -56,7 +58,12 @@ public class PretragaZupanijaController implements Initializable {
         stupacBrojStanovnikaZupanije.setCellValueFactory(new PropertyValueFactory<>("brojStanovnika"));
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
-        listaZupanija = UcitavanjePodataka.ucitajZupanije();
+//        listaZupanija = UcitavanjePodataka.ucitajZupanije();
+        try {
+            listaZupanija = BazaPodataka.dohvatiSveZupanije();
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
 
         if (observableListZupanija == null) {
             observableListZupanija = FXCollections.observableArrayList();
