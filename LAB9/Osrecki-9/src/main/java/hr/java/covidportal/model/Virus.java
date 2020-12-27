@@ -9,17 +9,21 @@ import java.util.List;
  */
 public class Virus extends Bolest implements Zarazno {
 
+
     /**
      * Inicijalizira podatak o nazivu i simptomima bolesti
      *
-     * @param id    podatak o id virusa
      * @param naziv    podatak o nazivu virusa
      * @param simptomi podatak o simptomima virusa
      */
 
-    public Virus(Long id, String naziv, List<Simptom> simptomi) {
-        super(id, naziv, simptomi);
+    public Virus(String naziv, List<Simptom> simptomi) {
+        super(naziv, simptomi);
+        super.setJeVirus(true);
     }
+
+
+
 
 
     /**

@@ -6,12 +6,13 @@ import javafx.scene.control.Label;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
-import main.java.hr.java.covidportal.model.UcitavanjePodataka;
+import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
 import main.java.sample.Main;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,11 +23,6 @@ import java.util.ResourceBundle;
 public class UnosZupanijeController extends UnosController implements Initializable {
 
     private static List<Zupanija> listaZupanija;
-    private static Long brojZupanija;
-
-    private Integer idPromjenjenog;
-
-    private List<TextField> textFields;
 
     @FXML
     private TextField nazivZupanije;
@@ -47,39 +43,23 @@ public class UnosZupanijeController extends UnosController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        resetirajIdPromijenjenog();
-
-        listaZupanija = UcitavanjePodataka.ucitajZupanije();
-        brojZupanija = (long) listaZupanija.size();
-
-        textFields = new ArrayList<>(Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije));
+        try {
+            listaZupanija = BazaPodataka.dohvatiSveZupanije();
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod dohvaćanja županija iz baze podataka");
+            e.printStackTrace();
+        }
 
         prikaziStatus();
-
-        nazivZupanije.textProperty()
-                .addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
-        brStanovnikaZupanije.textProperty()
-                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
-        brZarazenihZupanije.textProperty()
-                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
+        inicijalizirajListenere();
     }
 
-
-
-    public void izmijeniZupaniju(Zupanija zupanija) {
-        idPromjenjenog = zupanija.getId().intValue();
-        listaZupanija.remove(zupanija);
-
-        nazivZupanije.setText(zupanija.getNaziv());
-        brStanovnikaZupanije.setText(zupanija.getBrojStanovnika().toString());
-        brZarazenihZupanije.setText(zupanija.getBrojZarazenih().toString());
-    }
 
     /**
      * Dodaje novu županiju
      */
     public void dodaj() {
-        String naziv = nazivZupanije.getText().toUpperCase();
+        String naziv = toTitleCase(nazivZupanije.getText(), "-");
         String brStanovnikaUnos = brStanovnikaZupanije.getText();
         String brZarazenihUnos = brZarazenihZupanije.getText();
 
@@ -92,40 +72,22 @@ public class UnosZupanijeController extends UnosController implements Initializa
             return;
         }
 
-        Long id;
-        if (idPromjenjenog != -1) {
-            id = idPromjenjenog.longValue();
-        } else {
-            id = ++brojZupanija;
-        }
-
         Integer brStanovnika = Integer.valueOf(brStanovnikaUnos);
         Integer brZarazenih = Integer.valueOf(brZarazenihUnos);
+        Zupanija novaZupanija = new Zupanija(naziv, brStanovnika, brZarazenih);
 
-        Zupanija novaZupanija = new Zupanija(id, naziv, brStanovnika, brZarazenih);
-        listaZupanija.add(id.intValue() - 1, novaZupanija);
-
-        if (idPromjenjenog != -1) {
-            UcitavanjePodataka.clearZupanije();
-            listaZupanija.forEach(UcitavanjePodataka::zapisiZupaniju);
-        } else {
-            UcitavanjePodataka.zapisiZupaniju(novaZupanija);
+        try {
+            BazaPodataka.spremiNovuZupaniju(novaZupanija);
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod spremanja nove županije");
+            e.printStackTrace();
         }
 
         prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
 
-        resetirajIdPromijenjenog();
         ocistiUnos();
         prikaziStatus();
-
-    }
-
-    /**
-     * Postavlja id entiteta na -1, čime se označuje da nije došlo do izmjene podataka
-     */
-    public void resetirajIdPromijenjenog() {
-        idPromjenjenog = -1;
     }
 
     /**
@@ -139,19 +101,28 @@ public class UnosZupanijeController extends UnosController implements Initializa
      * Prikazuje status
      */
     public void prikaziStatus() {
-        status.setText("U sustavu je trenutno " + brojZupanija + " županija");
+        status.setText("U sustavu je trenutno " + listaZupanija.size() + " županija");
     }
 
     /**
      * Resetira unose za upisivanje podataka
      */
     public void ocistiUnos() {
-        textFields.forEach(TextInputControl::clear);
+        Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(TextInputControl::clear);
         resetIndicators();
     }
 
     public void resetIndicators() {
-        textFields.forEach(UnosController::makniErrorIndicator);
+        Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(UnosController::makniErrorIndicator);
+    }
+
+    private void inicijalizirajListenere() {
+        nazivZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
+        brStanovnikaZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
+        brZarazenihZupanije.textProperty()
+                .addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
     }
 
 }

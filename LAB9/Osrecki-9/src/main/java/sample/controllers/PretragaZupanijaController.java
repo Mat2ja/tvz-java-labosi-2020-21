@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
 import java.io.IOException;
@@ -61,8 +60,9 @@ public class PretragaZupanijaController implements Initializable {
 //        listaZupanija = UcitavanjePodataka.ucitajZupanije();
         try {
             listaZupanija = BazaPodataka.dohvatiSveZupanije();
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod dohvaćanja županija iz baze podataka");
+            e.printStackTrace();
         }
 
         if (observableListZupanija == null) {
@@ -88,6 +88,7 @@ public class PretragaZupanijaController implements Initializable {
 
     /**
      * Prikazuje ekran za izmjenu izabrane županije
+     *
      * @param zupanija podatak o županiji za izmjenu
      */
     private void prikaziEkranIzmjene(Zupanija zupanija) {
@@ -95,11 +96,11 @@ public class PretragaZupanijaController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("unosZupanije.fxml"));
             Scene scene = new Scene(loader.load());
 
-           Main.getMainStage().setTitle("Unos županije");
+            Main.getMainStage().setTitle("Unos županije");
             Main.getMainStage().setScene(scene);
 
             UnosZupanijeController controller = loader.getController();
-            controller.izmijeniZupaniju(zupanija);
+//            controller.izmijeniZupaniju(zupanija);
         } catch (IOException e) {
             Main.logger.error("Greška kod prikaza ekrana");
             e.printStackTrace();

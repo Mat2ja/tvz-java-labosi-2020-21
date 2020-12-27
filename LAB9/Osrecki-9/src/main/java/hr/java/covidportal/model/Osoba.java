@@ -219,4 +219,6 @@ public class Osoba implements Serializable {
     public int hashCode() {
         return Objects.hash(id, ime, prezime, starost, zupanija, zarazenBolescu, kontaktiraneOsobe);
     }
+
+
 }

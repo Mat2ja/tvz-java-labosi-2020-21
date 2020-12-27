@@ -12,18 +12,18 @@ import java.util.Objects;
  */
 public class Bolest extends ImenovaniEntitet {
     private List<Simptom> simptomi;
-
+    private Boolean jeVirus;
 
     /**
      * Inicijalizira podatak o nazivu i simptomima bolesti
      *
-     * @param id       podatak o id bolesti
      * @param naziv    podatak o nazivu bolesti
      * @param simptomi podatak o listi simptoma bolesti
      */
-    public Bolest(Long id, String naziv, List<Simptom> simptomi) {
-        super(id, naziv);
+    public Bolest(String naziv, List<Simptom> simptomi) {
+        super(naziv);
         this.simptomi = simptomi;
+        this.jeVirus = false;
     }
 
     public List<Simptom> getSimptomi() {
@@ -32,6 +32,14 @@ public class Bolest extends ImenovaniEntitet {
 
     public void setSimptomi(List<Simptom> simptomi) {
         this.simptomi = simptomi;
+    }
+
+    public Boolean getJeVirus() {
+        return jeVirus;
+    }
+
+    public void setJeVirus(Boolean jeVirus) {
+        this.jeVirus = jeVirus;
     }
 
     @Override

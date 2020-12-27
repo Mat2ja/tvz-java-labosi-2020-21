@@ -3,14 +3,21 @@ package main.java.sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.IntStream;
 
 /**
  * Kontroler unosa simptoma
@@ -18,19 +25,14 @@ import java.util.ResourceBundle;
 public class UnosSimptomaController extends UnosController implements Initializable {
 
     private static List<Simptom> listaSimptoma;
-    private static Long brojSimptoma;
 
     @FXML
     private TextField nazivSimptoma;
 
-    @FXML
     public ToggleGroup vrijSimptomaGroup;
+
     @FXML
-    public RadioButton vrijRijetko;
-    @FXML
-    public RadioButton vrijSrednje;
-    @FXML
-    public RadioButton vrijCesto;
+    public GridPane vrijednostiGrid;
 
     @FXML
     private Label status;
@@ -44,23 +46,46 @@ public class UnosSimptomaController extends UnosController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        listaSimptoma = UcitavanjePodataka.ucitajSimptome();
-        brojSimptoma = (long) listaSimptoma.size();
 
-        vrijRijetko.setToggleGroup(vrijSimptomaGroup);
-        vrijSrednje.setToggleGroup(vrijSimptomaGroup);
-        vrijCesto.setToggleGroup(vrijSimptomaGroup);
+        try {
+            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        vrijSimptomaGroup = new ToggleGroup();
+
+        List<RadioButton> listaRb = new ArrayList<>();
+        Arrays.stream(VrijednostSimptoma.values())
+                .forEach(vrijednost -> {
+                    RadioButton rb = new RadioButton();
+                    rb.setToggleGroup(vrijSimptomaGroup);
+                    rb.setText(vrijednost.getVrijednost());
+                    rb.setUserData(vrijednost);
+                    listaRb.add(rb);
+                }
+        );
+
+        Integer numCols = VrijednostSimptoma.values().length;
+        IntStream.range(0, numCols).forEach(col -> {
+            ColumnConstraints colConst = new ColumnConstraints();
+            colConst.setPercentWidth(100.0 / numCols);
+            vrijednostiGrid.getColumnConstraints().add(colConst);
+
+            vrijednostiGrid.add(listaRb.get(col), col, 0);
+        });
 
         prikaziStatus();
 
-        nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivSimptoma, newText));
+        inicijalizirajListenere();
     }
+
 
     /**
      * Dodaje novu osobu
      */
     public void dodaj() {
-        String naziv = nazivSimptoma.getText().toUpperCase();
+        String naziv = toTitleCase(nazivSimptoma.getText(), " ");
         RadioButton vrijednosatRadioBtn = (RadioButton) vrijSimptomaGroup.getSelectedToggle();
 
         resetIndicators();
@@ -74,10 +99,14 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
         VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(vrijednosatRadioBtn.getUserData().toString());
 
-        Long id = ++brojSimptoma;
-        Simptom noviSimptom = new Simptom(id, naziv, vrijednost);
-        UcitavanjePodataka.zapisiSimptom(noviSimptom);
-        listaSimptoma.add(noviSimptom);
+        Simptom noviSimptom = new Simptom(naziv, vrijednost);
+
+        try {
+            BazaPodataka.spremiNoviSimptom(noviSimptom);
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod spremanja novog simptoma");
+            e.printStackTrace();
+        }
 
         prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);
@@ -97,7 +126,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
      * Prikazuje status
      */
     public void prikaziStatus() {
-        status.setText("U sustavu je trenutno " + brojSimptoma + " simptoma");
+        status.setText("U sustavu je trenutno " + listaSimptoma.size() + " simptoma");
     }
 
     /**
@@ -112,5 +141,9 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
     public void resetIndicators() {
         makniErrorIndicator(nazivSimptoma);
+    }
+
+    private void inicijalizirajListenere() {
+        nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivSimptoma, newText));
     }
 }

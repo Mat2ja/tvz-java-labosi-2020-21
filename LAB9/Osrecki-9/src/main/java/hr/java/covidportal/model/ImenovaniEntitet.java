@@ -7,17 +7,23 @@ import java.util.Objects;
  * Predstavlja entitet definiram nazivom
  */
 public abstract class ImenovaniEntitet implements Serializable {
-    private Long id;
     private String naziv;
+    private Long id;
 
     /**
      * Inicijalizira podatak o nazivu entiteta
      *
-     * @param id    podatak od id entiteta
      * @param naziv podatak o nazivu entiteta
      */
-    public ImenovaniEntitet(Long id, String naziv) {
-        this.id = id;
+    public ImenovaniEntitet(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
 
@@ -27,14 +33,6 @@ public abstract class ImenovaniEntitet implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNaziv() {
-        return naziv;
-    }
-
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
     }
 
     @Override

@@ -112,18 +112,18 @@ public abstract class UnosController {
      * @param givenString string koji želimo obraditi
      * @return string u Title Case obliku
      */
-    public static String toTitleCase(String givenString) {
+    public static String toTitleCase(String givenString, String sep) {
         if (givenString.isBlank()) {
             return givenString;
         }
-        String[] arr = givenString.split(" ");
+        String[] arr = givenString.split(sep);
         StringBuilder sb = new StringBuilder();
 
         for (String s : arr) {
             sb.append(Character.toUpperCase(s.charAt(0)))
-                    .append(s.substring(1).toLowerCase()).append(" ");
+                    .append(s.substring(1).toLowerCase()).append("-");
         }
-        return sb.toString().trim();
+        return sb.substring(0,sb.length()-1).trim();
     }
 
     public static <T> void prikaziErrorIndicator(T input) {

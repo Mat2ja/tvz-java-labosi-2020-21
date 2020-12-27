@@ -8,13 +8,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -50,11 +51,16 @@ public class PretragaSimptomaController implements Initializable {
         stupacNazivSimptoma.setCellValueFactory(new PropertyValueFactory<>("naziv"));
         stupacVrijednostSimptoma.setCellValueFactory(new PropertyValueFactory<>("vrijednost"));
 
-        listaSimptoma = UcitavanjePodataka.ucitajSimptome();
+        try {
+            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
 
         if (observableListSimptoma == null) {
             observableListSimptoma = FXCollections.observableArrayList();
         }
+
         popuniObservableListuSimptoma(listaSimptoma);
 
         tablicaSimptoma.setItems(observableListSimptoma);

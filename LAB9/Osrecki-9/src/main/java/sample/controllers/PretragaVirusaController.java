@@ -9,11 +9,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.java.hr.java.covidportal.model.BazaPodataka;
+import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
-import main.java.hr.java.covidportal.model.UcitavanjePodataka;
 import main.java.sample.Main;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -49,7 +52,16 @@ public class PretragaVirusaController implements Initializable {
         stupacSimptomiVirusa.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
-        listaVirusa = UcitavanjePodataka.ucitajViruse();
+        try {
+            //fixme
+            listaVirusa = BazaPodataka.dohvatiSveBolesti()
+                    .stream()
+                    .filter(Bolest::getJeVirus)
+                    .map(bolest -> (Virus) bolest)
+                    .collect(Collectors.toList());
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
 
         if (observableListVirusa == null) {
             observableListVirusa = FXCollections.observableArrayList();

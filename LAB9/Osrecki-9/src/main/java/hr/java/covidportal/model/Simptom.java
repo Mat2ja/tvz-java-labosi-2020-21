@@ -15,12 +15,11 @@ public class Simptom extends ImenovaniEntitet {
     /**
      * Inicijalizira podatak o nazivu i vrijednosti simptoma
      *
-     * @param id podatak o id simptoma
      * @param naziv      podatak o nazivu simptoma
      * @param vrijednost podatak o vrijednosti simptoma
      */
-    public Simptom(Long id, String naziv, VrijednostSimptoma vrijednost) {
-        super(id, naziv);
+    public Simptom(String naziv, VrijednostSimptoma vrijednost) {
+        super(naziv);
         this.vrijednost = vrijednost;
     }
 
@@ -34,6 +33,7 @@ public class Simptom extends ImenovaniEntitet {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
