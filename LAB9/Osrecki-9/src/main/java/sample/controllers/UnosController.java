@@ -51,12 +51,21 @@ public abstract class UnosController {
         prikaziAlert(title, header, content, Alert.AlertType.INFORMATION);
     }
 
-    public boolean validateTextField(TextField tf, String value) {
+    public <T> boolean validateField(T tf, String value) {
         if (value.isBlank()) {
             prikaziErrorIndicator(tf);
             return false;
         } else {
             makniErrorIndicator(tf);
+            return true;
+        }
+    }
+    public  boolean validateDatePicker(DatePicker dp, String value) {
+        if (value.isBlank()) {
+            prikaziErrorIndicator(dp.getEditor());
+            return false;
+        } else {
+            makniErrorIndicator(dp.getEditor());
             return true;
         }
     }

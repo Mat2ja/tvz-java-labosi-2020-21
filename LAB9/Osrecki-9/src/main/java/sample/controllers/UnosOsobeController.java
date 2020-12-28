@@ -1,190 +1,192 @@
-//package main.java.sample.controllers;
-//
-//
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.fxml.FXML;
-//import javafx.fxml.Initializable;
-//import javafx.scene.control.*;
-//import main.java.hr.java.covidportal.model.*;
-//import main.java.sample.Main;
-//
-//import java.io.IOException;
-//import java.net.URL;
-//import java.sql.SQLException;
-//import java.util.List;
-//import java.util.ResourceBundle;
-//import java.util.stream.Collectors;
-//
-///**
-// * Kontroler unosa osoba
-// */
-//public class UnosOsobeController extends UnosController implements Initializable {
-//
-//    private static List<Zupanija> listaZupanija;
-//    private static List<Bolest> listaSvihBolesti;
-//    private static List<Osoba> listaOsoba;
-//
-//    private static ObservableList<CheckBox> listaCheckBoxa;
-//
-//    @FXML
-//    public TextField imeOsobe;
-//    @FXML
-//    public TextField prezimeOsobe;
-//    @FXML
-//    public Slider starostOsobe;
-//    @FXML
-//    public ChoiceBox<Zupanija> zupanijaOsobe;
-//    @FXML
-//    public ChoiceBox<Bolest> bolestOsobe;
-//    @FXML
-//    public MenuButton kontaktiOsobeMenuBtn;
-//
-//    @FXML
-//    private Label starostVrijednost;
-//    @FXML
-//    private Label status;
-//
-//
-//    /**
-//     * Inicijalizira kontroler
-//     *
-//     * @param url
-//     * @param resourceBundle
-//     */
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//
-//        try {
-//            listaZupanija = BazaPodataka.dohvatiSveZupanije();
-//            listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
-//            listaOsoba = BazaPodataka.dohvatiSveOsobe();
-//
-//        } catch (IOException | SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        zupanijaOsobe.getItems().addAll(listaZupanija);
-//        bolestOsobe.getItems().addAll(listaSvihBolesti);
-//        listaCheckBoxa = FXCollections.observableArrayList();
-//
-//        listaOsoba.stream()
-//                .map(osoba -> {
-//                    CheckBox cb = new CheckBox(osoba.toString());
-//                    cb.setId(osoba.getId().toString());
-//                    return cb;
-//                })
-//                .forEach(cb -> {
-//                    listaCheckBoxa.add(cb);
-//                    CustomMenuItem menuItem = new CustomMenuItem(cb);
-//                    menuItem.setHideOnClick(false);
-//                    kontaktiOsobeMenuBtn.getItems().add(menuItem);
-//                });
-//
-//
-//        prikaziStatus();
-//        inicijalizirajListenere();
-//    }
-//
-//
-//    /**
-//     * Dodaje novu osobu
-//     */
-//    public void dodaj() {
-//        String ime = toTitleCase(imeOsobe.getText(), " ");
-//        String prezime = toTitleCase(prezimeOsobe.getText());
-//        Integer starost = (int) starostOsobe.getValue();
-//        Zupanija zupanija = zupanijaOsobe.getValue();
-//        Bolest bolest = bolestOsobe.getValue();
-//        List<Osoba> kontakti = listaCheckBoxa.stream()
-//                .filter(CheckBox::isSelected)
-//                .map(cb -> UcitavanjePodataka.dohvatiOsobuPrekoId(listaOsoba, Long.parseLong(cb.getId())))
-//                .collect(Collectors.toList());
-//
-//        Boolean valIme = validateTextField(imeOsobe, ime);
-//        Boolean valPrezime = validateTextField(prezimeOsobe, prezime);
-//        Boolean valStarost = validateSlider(starostOsobe);
-//        Boolean valZupanija = validateChoiceBox(zupanijaOsobe, zupanija);
-//        Boolean valBolest = validateChoiceBox(bolestOsobe, bolest);
-//        Boolean valKontakti = validateMenuButton(kontaktiOsobeMenuBtn, kontakti);
-//
-//        if (!(valIme && valPrezime && valStarost && valZupanija && valBolest && valKontakti)) {
-//            prikaziErrorUnosAlert("Unos osobe", "Unijeli ste osobu s nedozvoljenim vrijednostima.");
-//            return;
-//        }
-//
-//        Long id = ++brojOsoba;
-//        Osoba novaOsoba = new Osoba.Builder(id)
-//                .hasIme(ime)
-//                .hasPrezime(prezime)
-//                .isAged(starost)
-//                .atZupanija(zupanija)
-//                .withBolest(bolest)
-//                .withKontaktiraneOsobe(kontakti)
-//                .build();
-//        UcitavanjePodataka.zapisiOsobu(novaOsoba);
-//        listaOsoba.add(novaOsoba);
-//
-//        prikaziSuccessUnosAlert(
-//                "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
-//
-//        prikaziStatus();
-//        ocistiUnos();
-//    }
-//
-//    /**
-//     * Postavlja početnu scenu
-//     */
-//    public void natragNaPocetni() {
-//        Main.prikaziPocetniEkran();
-//    }
-//
-//    /**
-//     * Prikazuje status
-//     */
-//    public void prikaziStatus() {
-//        status.setText("U sustavu je trenutno " + listaOsoba.size() + " osoba");
-//    }
-//
-//    /**
-//     * Resetira unose za upisivanje podataka
-//     */
-//    public void ocistiUnos() {
-//        imeOsobe.clear();
-//        prezimeOsobe.clear();
-//        starostOsobe.setValue(0);
-//        makniErrorIndicator(starostOsobe);
-//        zupanijaOsobe.getItems().clear();
-//        zupanijaOsobe.getItems().addAll(listaZupanija);
-//        bolestOsobe.getItems().clear();
-//        bolestOsobe.getItems().addAll(listaSvihBolesti);
-//        listaCheckBoxa.forEach(cb -> cb.setSelected(false));
-//        resetIndicators();
-//    }
-//
-//    public void resetIndicators() {
-//        makniErrorIndicator(imeOsobe);
-//        makniErrorIndicator(prezimeOsobe);
-//        makniErrorIndicator(zupanijaOsobe);
-//        makniErrorIndicator(bolestOsobe);
-//        makniErrorIndicator(kontaktiOsobeMenuBtn);
-//    }
-//
-//
-//    private void inicijalizirajListenere() {
-//        starostVrijednost.setText(String.valueOf(0));
-//        starostOsobe.valueProperty().addListener((observable, oldValue, newValue) -> {
-//            starostVrijednost.setText(String.format("%d", (int) starostOsobe.getValue()));
-//        });
-//
-//
-//        /* Action listeneri */
-//        imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(imeOsobe, newText));
-//        prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(prezimeOsobe, newText));
-//        starostOsobe.valueProperty().addListener(observable -> validateSlider(starostOsobe));
-//        zupanijaOsobe.getSelectionModel().selectedItemProperty()
-//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(zupanijaOsobe, newChoice));
-//        bolestOsobe.getSelectionModel().selectedItemProperty()
-//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(bolestOsobe, newChoice));
-//    }
-//}
+package main.java.sample.controllers;
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import main.java.hr.java.covidportal.model.*;
+import main.java.sample.Main;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import static org.h2.util.LocalDateTimeUtils.LOCAL_DATE;
+
+/**
+ * Kontroler unosa osoba
+ */
+public class UnosOsobeController extends UnosController implements Initializable {
+
+    private static List<Zupanija> listaZupanija;
+    private static List<Bolest> listaSvihBolesti;
+    private static List<Osoba> listaOsoba;
+
+    private static ObservableList<CheckBox> listaCheckBoxa;
+
+    @FXML
+    public TextField imeOsobe;
+    @FXML
+    public TextField prezimeOsobe;
+    @FXML
+    public DatePicker datumRodjenjaOsobe;
+    @FXML
+    public ChoiceBox<Zupanija> zupanijaOsobe;
+    @FXML
+    public ChoiceBox<Bolest> bolestOsobe;
+    @FXML
+    public MenuButton kontaktiOsobeMenuBtn;
+
+    @FXML
+    private Label status;
+
+
+    /**
+     * Inicijalizira kontroler
+     *
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            listaZupanija = BazaPodataka.dohvatiSveZupanije();
+            listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
+            listaOsoba = BazaPodataka.dohvatiSveOsobe();
+
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        zupanijaOsobe.getItems().addAll(listaZupanija);
+        bolestOsobe.getItems().addAll(listaSvihBolesti);
+        listaCheckBoxa = FXCollections.observableArrayList();
+
+        listaOsoba.stream()
+                .map(osoba -> {
+                    CheckBox cb = new CheckBox(osoba.toString());
+                    cb.setId(osoba.getId().toString());
+                    return cb;
+                })
+                .forEach(cb -> {
+                    listaCheckBoxa.add(cb);
+                    CustomMenuItem menuItem = new CustomMenuItem(cb);
+                    menuItem.setHideOnClick(false);
+                    kontaktiOsobeMenuBtn.getItems().add(menuItem);
+                });
+
+        prikaziStatus();
+        inicijalizirajListenere();
+    }
+
+
+    /**
+     * Dodaje novu osobu
+     */
+    public void dodaj() {
+        String ime = toTitleCase(imeOsobe.getText(), " ");
+        String prezime = toTitleCase(prezimeOsobe.getText(), " ");
+        String datumRodjenjaString = datumRodjenjaOsobe.getEditor().getText();
+        Zupanija zupanija = zupanijaOsobe.getValue();
+        Bolest bolest = bolestOsobe.getValue();
+        List<Osoba> kontakti = listaCheckBoxa.stream()
+                .filter(CheckBox::isSelected)
+                .map(cb -> listaOsoba.stream()
+                        .filter(osoba -> osoba.getId().equals(Long.parseLong(cb.getId()))).collect(Collectors.toList())
+                        .get(0))
+                .collect(Collectors.toList());
+
+        Boolean valIme = validateField(imeOsobe, ime);
+        Boolean valPrezime = validateField(prezimeOsobe, prezime);
+        Boolean valStarost = validateDatePicker(datumRodjenjaOsobe,datumRodjenjaString);
+        Boolean valZupanija = validateChoiceBox(zupanijaOsobe, zupanija);
+        Boolean valBolest = validateChoiceBox(bolestOsobe, bolest);
+        Boolean valKontakti = validateMenuButton(kontaktiOsobeMenuBtn, kontakti);
+
+        if (!(valIme && valPrezime && valStarost && valZupanija && valBolest && valKontakti)) {
+            prikaziErrorUnosAlert("Unos osobe", "Unijeli ste osobu s nedozvoljenim vrijednostima.");
+            return;
+        }
+
+
+        LocalDate datumRodjenja = LocalDate.parse(datumRodjenjaString, DateTimeFormatter.ofPattern("d/MM/yyyy"));
+
+        Osoba novaOsoba = new Osoba.Builder()
+                .hasIme(ime)
+                .hasPrezime(prezime)
+                .isBornAt(datumRodjenja)
+                .atZupanija(zupanija)
+                .withBolest(bolest)
+                .withKontaktiraneOsobe(kontakti)
+                .build();
+        try {
+            BazaPodataka.spremiNovuOsobu(novaOsoba);
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod spremanja nove osobe");
+            e.printStackTrace();
+        }
+
+        prikaziSuccessUnosAlert(
+                "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
+
+        prikaziStatus();
+        ocistiUnos();
+    }
+
+    /**
+     * Postavlja početnu scenu
+     */
+    public void natragNaPocetni() {
+        Main.prikaziPocetniEkran();
+    }
+
+    /**
+     * Prikazuje status
+     */
+    public void prikaziStatus() {
+        status.setText("U sustavu je trenutno " + listaOsoba.size() + " osoba");
+    }
+
+    /**
+     * Resetira unose za upisivanje podataka
+     */
+    public void ocistiUnos() {
+        imeOsobe.clear();
+        prezimeOsobe.clear();
+        datumRodjenjaOsobe.getEditor().clear();
+        zupanijaOsobe.getItems().clear();
+        zupanijaOsobe.getItems().addAll(listaZupanija);
+        bolestOsobe.getItems().clear();
+        bolestOsobe.getItems().addAll(listaSvihBolesti);
+        listaCheckBoxa.forEach(cb -> cb.setSelected(false));
+        resetIndicators();
+    }
+
+    public void resetIndicators() {
+        makniErrorIndicator(imeOsobe);
+        makniErrorIndicator(prezimeOsobe);
+        makniErrorIndicator(datumRodjenjaOsobe.getEditor());
+        makniErrorIndicator(zupanijaOsobe);
+        makniErrorIndicator(bolestOsobe);
+        makniErrorIndicator(kontaktiOsobeMenuBtn);
+    }
+
+
+    private void inicijalizirajListenere() {
+        imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateField(imeOsobe, newText));
+        prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateField(prezimeOsobe, newText));
+        datumRodjenjaOsobe.getEditor().textProperty().addListener((obs, oldText, newText) -> validateDatePicker(datumRodjenjaOsobe, newText));
+        zupanijaOsobe.getSelectionModel().selectedItemProperty()
+                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(zupanijaOsobe, newChoice));
+        bolestOsobe.getSelectionModel().selectedItemProperty()
+                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(bolestOsobe, newChoice));
+    }
+}

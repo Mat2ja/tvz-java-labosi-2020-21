@@ -70,7 +70,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
 
         prikaziStatus();
 
-        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivVirusa, newText));
+        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateField(nazivVirusa, newText));
     }
 
     /**
@@ -78,10 +78,6 @@ public class UnosVirusaController extends UnosController implements Initializabl
      */
     public void dodaj() {
         String naziv = toTitleCase(nazivVirusa.getText()," ");
-//        List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
-//                .filter(CheckBox::isSelected)
-//                .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
-//                .collect(Collectors.toList());
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()
@@ -90,7 +86,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
                 .collect(Collectors.toList());
 
 
-        Boolean valNaziv = validateTextField(nazivVirusa, naziv);
+        Boolean valNaziv = validateField(nazivVirusa, naziv);
         Boolean valSimptomi = validateMenuButton(simptomiMenuBtn, odabraniSimptomi);
 
         if (!(valNaziv && valSimptomi)) {
@@ -104,7 +100,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
         try {
             BazaPodataka.spremiNovuBolest(noviVirus);
         } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja novog simptoma");
+            Main.logger.error("Greška kod spremanja novog virusa");
             e.printStackTrace();
         }
 

@@ -369,3 +369,39 @@
 2020-12-28 15:12:49,673 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga osoba
 2020-12-28 15:13:26,181 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2020-12-28 15:16:16,192 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:18:27,691 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:20:48,917 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:24:38,563 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:26:04,744 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:27:33,969 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 15:27:36,106 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga osoba
+2020-12-28 15:28:08,198 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 16:36:48,732 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 16:36:50,859 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Unos osobe
+2020-12-28 16:48:11,947 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 16:48:35,465 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Unos osobe
+2020-12-28 17:17:41,906 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:20:06,933 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:22:31,948 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:25:41,210 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:26:12,175 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:139] Greška kod spremanja novoe osobe
+2020-12-28 17:26:34,080 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:28:11,835 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:29:10,577 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:31:00,874 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:33:32,758 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:35:42,423 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:36:31,603 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:37:05,523 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:37:27,598 ERROR [JavaFX Application Thread] m.j.s.Main [UnosBolestiController.java:103] Greška kod spremanja nove bolesti
+2020-12-28 17:37:43,396 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:41:18,508 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:41:45,872 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:133] Greška kod spremanja novoe osobe
+2020-12-28 17:42:08,864 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:133] Greška kod spremanja novoe osobe
+2020-12-28 17:44:52,631 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:45:11,429 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:133] Greška kod spremanja novoe osobe
+2020-12-28 17:48:55,074 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:50:42,731 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:133] Greška kod spremanja novoe osobe
+2020-12-28 17:50:47,727 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2020-12-28 17:52:17,214 ERROR [JavaFX Application Thread] m.j.s.Main [UnosOsobeController.java:133] Greška kod spremanja nove osobe
+2020-12-28 17:52:21,525 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program

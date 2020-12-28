@@ -80,10 +80,6 @@ public class UnosBolestiController extends UnosController implements Initializab
      */
     public void dodaj() {
         String naziv = toTitleCase(nazivBolesti.getText().toUpperCase()," ");
-//        List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
-//                .filter(CheckBox::isSelected)
-//                .map(cb -> UcitavanjePodataka.dohvatiSimptomPrekoId(listaSimptoma, Long.parseLong(cb.getId())))
-//                .collect(Collectors.toList());
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()
@@ -91,7 +87,7 @@ public class UnosBolestiController extends UnosController implements Initializab
                         .get(0))
                 .collect(Collectors.toList());
 
-        Boolean valNaziv = validateTextField(nazivBolesti, naziv);
+        Boolean valNaziv = validateField(nazivBolesti, naziv);
         Boolean valSimptomi = validateMenuButton(simptomiMenuBtn, odabraniSimptomi);
 
         if (!(valNaziv && valSimptomi)) {
@@ -104,7 +100,7 @@ public class UnosBolestiController extends UnosController implements Initializab
         try {
             BazaPodataka.spremiNovuBolest(novaBolest);
         } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja novog simptoma");
+            Main.logger.error("Greška kod spremanja nove bolesti");
             e.printStackTrace();
         }
 
@@ -146,7 +142,7 @@ public class UnosBolestiController extends UnosController implements Initializab
 
 
     private void inicijalizirajListenere() {
-        nazivBolesti.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivBolesti, newText));
+        nazivBolesti.textProperty().addListener((obs, oldText, newText) -> validateField(nazivBolesti, newText));
     }
 
 }

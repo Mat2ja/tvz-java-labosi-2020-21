@@ -194,7 +194,7 @@
 }
 
 .dropdown {
-    -fx-pref-width: 220;
+    -fx-pref-width: 260;
 }
 
 .dropdown .context-menu {
@@ -233,6 +233,48 @@
     -fx-font-size: 26px;
     -fx-font-family: "Staatliches", Arial, Consolas;
 }
+
+.date-picker {
+    -fx-border-width: 0;
+    -fx-pref-width: 260;
+    -fx-background-color: transparent;
+}
+
+.date-picker > .text-field {
+    -fx-background-color:#f0f3f5;
+}
+
+.date-picker:focused > .text-field,
+.date-picker > .text-field:focused {
+    -fx-background-color:#f0f3f5;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #f0f3f5;
+}
+
+.date-picker .button {
+    -fx-background-color: transparent;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: #f0f3f5;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.date-picker:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: -0.2;
+    -fx-background-radius: 3;
+}
+.date-picker:focused > .arrow-button {
+    -fx-background-color: #bad1e5;
+}
+.date-chooser {
+    -fx-background-color:orange;
+}
+
 
 /* MenuButton */
 

@@ -211,19 +211,25 @@ public class BazaPodataka {
 
         veza.setAutoCommit(false);
 
-        PreparedStatement upit = veza.prepareStatement("INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)");
+        PreparedStatement upit = veza.prepareStatement(
+                "INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);
 
         upit.setString(1, novaBolest.getNaziv());
         upit.setBoolean(2, novaBolest.getJeVirus());
         upit.executeUpdate();
+
+        ResultSet rs = upit.getGeneratedKeys();
+        Long bolestId = 0L;
+        if (rs.next()) {
+            bolestId = rs.getLong(1);
+        }
 
 
         for (Simptom simptom : novaBolest.getSimptomi()) {
             PreparedStatement upitSimptom = veza.prepareStatement(
                     "INSERT INTO BOLEST_SIMPTOM(BOLEST_ID, SIMPTOM_ID) VALUES(?, ?)");
 
-            // fixme -> bolest nema id prije neko li je dodana u bazu
-            upitSimptom.setLong(1, novaBolest.getId());
+            upitSimptom.setLong(1, bolestId);
             upitSimptom.setLong(2, simptom.getId());
             upitSimptom.executeUpdate();
         }
@@ -260,31 +266,7 @@ public class BazaPodataka {
         Osoba osoba;
 
         while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String ime = rs.getString("IME");
-            String prezime = rs.getString("PREZIME");
-
-            Date datum = (Date) rs.getDate("DATUM_RODJENJA");
-            Instant instant = Instant.ofEpochMilli(datum.getTime());
-            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
-
-            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
-            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
-
-            Long bolestId = rs.getLong("BOLEST_ID");
-            Bolest bolest = dohvatiBolest(veza, bolestId);
-
-            List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id);
-
-            osoba = new Osoba.Builder(id)
-                    .hasIme(ime)
-                    .hasPrezime(prezime)
-                    .isBornAt(datumRodjenja)
-                    .atZupanija(zupanija)
-                    .withBolest(bolest)
-                    .withKontaktiraneOsobe(kontakti)
-                    .build();
-
+            osoba = dohvatiPodatkeOsobe(veza, rs);
             osobe.add(osoba);
         }
 
@@ -298,30 +280,40 @@ public class BazaPodataka {
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
 
         Osoba osoba = null;
+
         while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String ime = rs.getString("IME");
-            String prezime = rs.getString("PREZIME");
-
-            Date datum = (Date) rs.getDate("DATUM_RODJENJA");
-            Instant instant = Instant.ofEpochMilli(datum.getTime());
-            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
-
-            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
-            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
-
-            Long bolestId = rs.getLong("BOLEST_ID");
-            Bolest bolest = dohvatiBolest(veza, bolestId);
-
-            osoba = new Osoba.Builder(id)
-                    .hasIme(ime)
-                    .hasPrezime(prezime)
-                    .isBornAt(datumRodjenja)
-                    .atZupanija(zupanija)
-                    .withBolest(bolest)
-                    .build();
+            osoba = dohvatiPodatkeOsobe(veza, rs);
         }
 
+        return osoba;
+    }
+
+    public static Osoba dohvatiPodatkeOsobe(Connection veza, ResultSet rs) throws SQLException, IOException {
+        Long id = rs.getLong("ID");
+        String ime = rs.getString("IME");
+        String prezime = rs.getString("PREZIME");
+
+        Date datum = rs.getDate("DATUM_RODJENJA");
+        Instant instant = Instant.ofEpochMilli(datum.getTime());
+        LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+
+        Long zupanijaId = rs.getLong("ZUPANIJA_ID");
+        Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
+
+        Long bolestId = rs.getLong("BOLEST_ID");
+        Bolest bolest = dohvatiBolest(veza, bolestId);
+
+        List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id);
+
+        Osoba osoba = new Osoba.Builder()
+                .hasIme(ime)
+                .hasPrezime(prezime)
+                .isBornAt(datumRodjenja)
+                .atZupanija(zupanija)
+                .withBolest(bolest)
+                .withKontaktiraneOsobe(kontakti)
+                .build();
+        osoba.setId(id);
 
         return osoba;
     }
@@ -341,5 +333,41 @@ public class BazaPodataka {
         return kontaktiraneOsobe;
     }
 
+    public static void spremiNovuOsobu(Osoba novaOsoba) throws IOException, SQLException {
+        Connection veza = connectToDatabase();
 
+        veza.setAutoCommit(false);
+
+        PreparedStatement upit = veza.prepareStatement(
+                "INSERT INTO OSOBA(IME, PREZIME, DATUM_RODJENJA, ZUPANIJA_ID, BOLEST_ID) VALUES (?, ?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS);
+
+        upit.setString(1, novaOsoba.getIme());
+        upit.setString(2, novaOsoba.getPrezime());
+        upit.setDate(3, Date.valueOf(novaOsoba.getDatumRodjenja()));
+        upit.setLong(4, novaOsoba.getZupanija().getId());
+        upit.setLong(5, novaOsoba.getZarazenBolescu().getId());
+
+        upit.executeUpdate();
+
+        ResultSet rs = upit.getGeneratedKeys();
+        Long osobaId = 0L;
+        if (rs.next()) {
+            osobaId = rs.getLong(1);
+        }
+
+        // fixme - nisam ziher dal mi zaraze jos uvijek delaju
+        for (Osoba kontakt : novaOsoba.getKontaktiraneOsobe()) {
+            PreparedStatement upitKontakti = veza.prepareStatement("INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)");
+
+            upitKontakti.setLong(1, osobaId);
+            upitKontakti.setLong(2, kontakt.getId());
+            upitKontakti.executeUpdate();
+        }
+
+        veza.commit();
+        veza.setAutoCommit(true);
+
+        disconnectFromDatabase(veza);
+    }
 }

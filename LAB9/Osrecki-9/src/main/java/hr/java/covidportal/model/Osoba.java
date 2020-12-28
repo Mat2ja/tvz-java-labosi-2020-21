@@ -38,8 +38,7 @@ public class Osoba implements Serializable {
          *
          * @param id podatak o id osobe
          */
-        public Builder(Long id) {
-            this.id = id;
+        public Builder() {
         }
 
         /**

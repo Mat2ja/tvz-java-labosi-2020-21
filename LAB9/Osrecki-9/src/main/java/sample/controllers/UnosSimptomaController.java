@@ -90,7 +90,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
         resetIndicators();
 
-        Boolean valNaziv = validateTextField(nazivSimptoma, naziv);
+        Boolean valNaziv = validateField(nazivSimptoma, naziv);
 
         if (!valNaziv || vrijednosatRadioBtn == null) {
             prikaziErrorUnosAlert("Unos simptoma", "Unijeli ste simptom s nedozvoljenim vrijednostima.");
@@ -144,6 +144,6 @@ public class UnosSimptomaController extends UnosController implements Initializa
     }
 
     private void inicijalizirajListenere() {
-        nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateTextField(nazivSimptoma, newText));
+        nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateField(nazivSimptoma, newText));
     }
 }

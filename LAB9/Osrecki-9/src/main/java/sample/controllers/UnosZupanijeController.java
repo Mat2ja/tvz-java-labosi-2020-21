@@ -63,7 +63,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
         String brStanovnikaUnos = brStanovnikaZupanije.getText();
         String brZarazenihUnos = brZarazenihZupanije.getText();
 
-        Boolean valIme = validateTextField(nazivZupanije, naziv);
+        Boolean valIme = validateField(nazivZupanije, naziv);
         Boolean valBrStan = validateTextFieldNumber(brStanovnikaZupanije, brStanovnikaUnos);
         Boolean valBrojZar = validateTextFieldNumber(brZarazenihZupanije, brZarazenihUnos);
 
@@ -118,7 +118,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
 
     private void inicijalizirajListenere() {
         nazivZupanije.textProperty()
-                .addListener((obs, oldText, newText) -> validateTextField(nazivZupanije, newText));
+                .addListener((obs, oldText, newText) -> validateField(nazivZupanije, newText));
         brStanovnikaZupanije.textProperty()
                 .addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
         brZarazenihZupanije.textProperty()
