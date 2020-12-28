@@ -9,7 +9,9 @@
 //import main.java.hr.java.covidportal.model.*;
 //import main.java.sample.Main;
 //
+//import java.io.IOException;
 //import java.net.URL;
+//import java.sql.SQLException;
 //import java.util.List;
 //import java.util.ResourceBundle;
 //import java.util.stream.Collectors;
@@ -22,7 +24,6 @@
 //    private static List<Zupanija> listaZupanija;
 //    private static List<Bolest> listaSvihBolesti;
 //    private static List<Osoba> listaOsoba;
-//    private static Long brojOsoba;
 //
 //    private static ObservableList<CheckBox> listaCheckBoxa;
 //
@@ -53,11 +54,15 @@
 //     */
 //    @Override
 //    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        listaZupanija = UcitavanjePodataka.ucitajZupanije();
-//        listaSvihBolesti = UcitavanjePodataka.ucitajBolesti();
-//        listaSvihBolesti.addAll(UcitavanjePodataka.ucitajViruse());
-//        listaOsoba = UcitavanjePodataka.ucitajOsobe();
-//        brojOsoba = (long) listaOsoba.size();
+//
+//        try {
+//            listaZupanija = BazaPodataka.dohvatiSveZupanije();
+//            listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
+//            listaOsoba = BazaPodataka.dohvatiSveOsobe();
+//
+//        } catch (IOException | SQLException e) {
+//            e.printStackTrace();
+//        }
 //
 //        zupanijaOsobe.getItems().addAll(listaZupanija);
 //        bolestOsobe.getItems().addAll(listaSvihBolesti);
@@ -76,23 +81,11 @@
 //                    kontaktiOsobeMenuBtn.getItems().add(menuItem);
 //                });
 //
-//        starostVrijednost.setText(String.valueOf(0));
-//        starostOsobe.valueProperty().addListener((observable, oldValue, newValue) -> {
-//            starostVrijednost.setText(String.format("%d", (int) starostOsobe.getValue()));
-//        });
-//
-//
-//        /* Action listeneri */
-//        imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(imeOsobe, newText));
-//        prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(prezimeOsobe, newText));
-//        starostOsobe.valueProperty().addListener(observable -> validateSlider(starostOsobe));
-//        zupanijaOsobe.getSelectionModel().selectedItemProperty()
-//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(zupanijaOsobe, newChoice));
-//        bolestOsobe.getSelectionModel().selectedItemProperty()
-//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(bolestOsobe, newChoice));
 //
 //        prikaziStatus();
+//        inicijalizirajListenere();
 //    }
+//
 //
 //    /**
 //     * Dodaje novu osobu
@@ -150,7 +143,7 @@
 //     * Prikazuje status
 //     */
 //    public void prikaziStatus() {
-//        status.setText("U sustavu je trenutno " + brojOsoba + " osoba");
+//        status.setText("U sustavu je trenutno " + listaOsoba.size() + " osoba");
 //    }
 //
 //    /**
@@ -175,5 +168,23 @@
 //        makniErrorIndicator(zupanijaOsobe);
 //        makniErrorIndicator(bolestOsobe);
 //        makniErrorIndicator(kontaktiOsobeMenuBtn);
+//    }
+//
+//
+//    private void inicijalizirajListenere() {
+//        starostVrijednost.setText(String.valueOf(0));
+//        starostOsobe.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            starostVrijednost.setText(String.format("%d", (int) starostOsobe.getValue()));
+//        });
+//
+//
+//        /* Action listeneri */
+//        imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(imeOsobe, newText));
+//        prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateTextField(prezimeOsobe, newText));
+//        starostOsobe.valueProperty().addListener(observable -> validateSlider(starostOsobe));
+//        zupanijaOsobe.getSelectionModel().selectedItemProperty()
+//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(zupanijaOsobe, newChoice));
+//        bolestOsobe.getSelectionModel().selectedItemProperty()
+//                .addListener((obs, oldChoice, newChoice) -> validateChoiceBox(bolestOsobe, newChoice));
 //    }
 //}

@@ -53,11 +53,10 @@ public class PretragaVirusaController implements Initializable {
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
         try {
-            //fixme
             listaVirusa = BazaPodataka.dohvatiSveBolesti()
                     .stream()
                     .filter(Bolest::getJeVirus)
-                    .map(bolest -> (Virus) bolest)
+                    .map(Virus.class::cast)
                     .collect(Collectors.toList());
         } catch (IOException | SQLException e) {
             e.printStackTrace();

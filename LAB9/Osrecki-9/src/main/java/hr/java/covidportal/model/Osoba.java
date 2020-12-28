@@ -1,6 +1,7 @@
 package main.java.hr.java.covidportal.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class Osoba implements Serializable {
     private Long id;
     private String ime;
     private String prezime;
-    private Integer starost;
+    private LocalDate datumRodjenja;
     private Zupanija zupanija;
     private Bolest zarazenBolescu;
     private List<Osoba> kontaktiraneOsobe = new ArrayList<>();
@@ -27,7 +28,7 @@ public class Osoba implements Serializable {
         private Long id;
         private String ime;
         private String prezime;
-        private Integer starost;
+        private LocalDate datumRodjenja;
         private Zupanija zupanija;
         private Bolest zarazenBolescu;
         private List<Osoba> kontaktiraneOsobe = new ArrayList<>();
@@ -66,11 +67,11 @@ public class Osoba implements Serializable {
         /**
          * Postavlja Builderu podatak o starosti osobe
          *
-         * @param starost podatak o starosti osobe
+         * @param datumRodjenja podatak o datumu rođenja osobe
          * @return objekt Buildera
          */
-        public Builder isAged(Integer starost) {
-            this.starost = starost;
+        public Builder isBornAt(LocalDate datumRodjenja) {
+            this.datumRodjenja = datumRodjenja;
             return this;
         }
 
@@ -118,7 +119,7 @@ public class Osoba implements Serializable {
             osoba.id = id;
             osoba.ime = ime;
             osoba.prezime = prezime;
-            osoba.starost = starost;
+            osoba.datumRodjenja = datumRodjenja;
             osoba.zupanija = zupanija;
             osoba.zarazenBolescu = zarazenBolescu;
             osoba.kontaktiraneOsobe = kontaktiraneOsobe;
@@ -164,12 +165,12 @@ public class Osoba implements Serializable {
         this.prezime = prezime;
     }
 
-    public Integer getStarost() {
-        return starost;
+    public LocalDate getDatumRodjenja() {
+        return datumRodjenja;
     }
 
-    public void setStarost(Integer starost) {
-        this.starost = starost;
+    public void setDatumRodjenja(LocalDate datumRodjenja) {
+        this.datumRodjenja = datumRodjenja;
     }
 
     public Zupanija getZupanija() {
@@ -209,7 +210,7 @@ public class Osoba implements Serializable {
         return Objects.equals(id, osoba.id) &&
                 Objects.equals(ime, osoba.ime) &&
                 Objects.equals(prezime, osoba.prezime) &&
-                Objects.equals(starost, osoba.starost) &&
+                Objects.equals(datumRodjenja, osoba.datumRodjenja) &&
                 Objects.equals(zupanija, osoba.zupanija) &&
                 Objects.equals(zarazenBolescu, osoba.zarazenBolescu) &&
                 Objects.equals(kontaktiraneOsobe, osoba.kontaktiraneOsobe);
@@ -217,8 +218,6 @@ public class Osoba implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ime, prezime, starost, zupanija, zarazenBolescu, kontaktiraneOsobe);
+        return Objects.hash(id, ime, prezime, datumRodjenja, zupanija, zarazenBolescu, kontaktiraneOsobe);
     }
-
-
 }
