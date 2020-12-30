@@ -22,10 +22,6 @@ public class Virus extends Bolest implements Zarazno {
         super.setJeVirus(true);
     }
 
-
-
-
-
     /**
      * Zaražuje novu osobu virusom trenutno zaražene osobe
      *

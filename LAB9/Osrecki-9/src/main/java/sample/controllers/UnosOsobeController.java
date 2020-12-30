@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import static org.h2.util.LocalDateTimeUtils.LOCAL_DATE;
 
 /**
  * Kontroler unosa osoba
@@ -116,7 +115,6 @@ public class UnosOsobeController extends UnosController implements Initializable
             return;
         }
 
-
         LocalDate datumRodjenja = LocalDate.parse(datumRodjenjaString, DateTimeFormatter.ofPattern("d/MM/yyyy"));
 
         Osoba novaOsoba = new Osoba.Builder()
@@ -139,6 +137,14 @@ public class UnosOsobeController extends UnosController implements Initializable
 
         prikaziStatus();
         ocistiUnos();
+
+        try {
+            listaOsoba = BazaPodataka.dohvatiSveOsobe();
+
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

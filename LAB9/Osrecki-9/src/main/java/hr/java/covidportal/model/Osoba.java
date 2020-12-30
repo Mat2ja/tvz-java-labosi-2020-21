@@ -34,9 +34,8 @@ public class Osoba implements Serializable {
         private List<Osoba> kontaktiraneOsobe = new ArrayList<>();
 
         /**
-         * Inicijalizira Builder sa podatkom o id osobe
+         * Inicijalizira Builder
          *
-         * @param id podatak o id osobe
          */
         public Builder() {
         }
@@ -123,10 +122,8 @@ public class Osoba implements Serializable {
             osoba.zarazenBolescu = zarazenBolescu;
             osoba.kontaktiraneOsobe = kontaktiraneOsobe;
 
-            if (osoba.zarazenBolescu instanceof Virus virus && osoba.kontaktiraneOsobe != null) {
-                for (Osoba kontakt : kontaktiraneOsobe) {
-                    virus.prelazakZarazeNaOsobu(kontakt);
-                }
+            if (osoba.zarazenBolescu instanceof Virus virus) {
+                kontaktiraneOsobe.forEach(virus::prelazakZarazeNaOsobu);
             }
 
             return osoba;

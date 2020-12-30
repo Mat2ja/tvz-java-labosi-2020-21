@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class BazaPodataka {
 
@@ -58,12 +59,12 @@ public class BazaPodataka {
         return zupanije;
     }
 
-    public static Zupanija dohvatiZupaniju(Long trazeniId, Connection veza) throws IOException, SQLException {
+    public static Zupanija dohvatiZupaniju(Long trazeniId, Connection veza) throws SQLException {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA WHERE ID = " + trazeniId);
 
         Zupanija zupanija = null;
-        while (rs.next()) {
+        if (rs.next()) {
             Long id = rs.getLong("ID");
             String naziv = rs.getString("NAZIV");
             Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
@@ -121,7 +122,7 @@ public class BazaPodataka {
 
         Simptom simptom = null;
 
-        while (rs.next()) {
+        if (rs.next()) {
             Long id = rs.getLong("ID");
             String naziv = rs.getString("NAZIV");
             VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(rs.getString("VRIJEDNOST"));
@@ -184,7 +185,7 @@ public class BazaPodataka {
 
         Bolest bolest = null;
 
-        while (rs.next()) {
+        if (rs.next()) {
             Long id = rs.getLong("ID");
             String naziv = rs.getString("NAZIV");
             Boolean jeVirus = rs.getBoolean("VIRUS");
@@ -196,15 +197,14 @@ public class BazaPodataka {
             bolest.setId(id);
         }
 
-        // todo
         if (bolest.getJeVirus()) {
-            return new Virus(bolest.getNaziv(), bolest.getSimptomi());
+            Virus virus = new Virus(bolest.getNaziv(), bolest.getSimptomi());
+            virus.setId(bolest.getId());
+            return virus;
         } else {
             return bolest;
         }
-
     }
-
 
     public static void spremiNovuBolest(Bolest novaBolest) throws IOException, SQLException {
         Connection veza = connectToDatabase();
@@ -263,62 +263,65 @@ public class BazaPodataka {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA");
 
-        Osoba osoba;
 
         while (rs.next()) {
-            osoba = dohvatiPodatkeOsobe(veza, rs);
+            Long id = rs.getLong("ID");
+            Osoba osoba = dohvatiOsobu(veza, id);
+
             osobe.add(osoba);
         }
+
+       for (Osoba osoba : osobe) {
+           List<Osoba> kontakti =  dohvatiKontaktiraneOsobe(veza, osoba.getId(), osobe);
+           if (osoba.getZarazenBolescu() instanceof Virus virus) {
+               kontakti.forEach(os -> os.setZarazenBolescu(virus));
+           }
+
+           osoba.setKontaktiraneOsobe(kontakti);
+       }
 
         disconnectFromDatabase(veza);
 
         return osobe;
     }
 
-    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException, IOException {
+    // dohvaca osobu ali bez kontakata
+    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
 
         Osoba osoba = null;
 
-        while (rs.next()) {
-            osoba = dohvatiPodatkeOsobe(veza, rs);
+        if (rs.next()) {
+            Long id = rs.getLong("ID");
+            String ime = rs.getString("IME");
+            String prezime = rs.getString("PREZIME");
+
+            Date datum = rs.getDate("DATUM_RODJENJA");
+            Instant instant = Instant.ofEpochMilli(datum.getTime());
+            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+
+            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
+            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
+
+            Long bolestId = rs.getLong("BOLEST_ID");
+            Bolest bolest = dohvatiBolest(veza, bolestId);
+
+            osoba = new Osoba.Builder()
+                    .hasIme(ime)
+                    .hasPrezime(prezime)
+                    .isBornAt(datumRodjenja)
+                    .atZupanija(zupanija)
+                    .withBolest(bolest)
+                    .build();
+
+            osoba.setId(id);
         }
 
         return osoba;
     }
 
-    public static Osoba dohvatiPodatkeOsobe(Connection veza, ResultSet rs) throws SQLException, IOException {
-        Long id = rs.getLong("ID");
-        String ime = rs.getString("IME");
-        String prezime = rs.getString("PREZIME");
-
-        Date datum = rs.getDate("DATUM_RODJENJA");
-        Instant instant = Instant.ofEpochMilli(datum.getTime());
-        LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
-
-        Long zupanijaId = rs.getLong("ZUPANIJA_ID");
-        Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
-
-        Long bolestId = rs.getLong("BOLEST_ID");
-        Bolest bolest = dohvatiBolest(veza, bolestId);
-
-        List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id);
-
-        Osoba osoba = new Osoba.Builder()
-                .hasIme(ime)
-                .hasPrezime(prezime)
-                .isBornAt(datumRodjenja)
-                .atZupanija(zupanija)
-                .withBolest(bolest)
-                .withKontaktiraneOsobe(kontakti)
-                .build();
-        osoba.setId(id);
-
-        return osoba;
-    }
-
-    public static List<Osoba> dohvatiKontaktiraneOsobe(Connection veza, Long id) throws SQLException, IOException {
+    public static List<Osoba> dohvatiKontaktiraneOsobe(Connection veza, Long id, List<Osoba> osobe) throws SQLException {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM KONTAKTIRANE_OSOBE WHERE OSOBA_ID = " + id);
 
@@ -326,7 +329,10 @@ public class BazaPodataka {
 
         while (rs.next()) {
             Long kontaktiranaOsobaId = rs.getLong("KONTAKTIRANA_OSOBA_ID");
-            Osoba osoba = dohvatiOsobu(veza, kontaktiranaOsobaId);
+            Osoba osoba = osobe.stream()
+                    .filter(o -> o.getId().equals(kontaktiranaOsobaId))
+                    .collect(Collectors.toList())
+                    .get(0);
             kontaktiraneOsobe.add(osoba);
         }
 
@@ -356,7 +362,6 @@ public class BazaPodataka {
             osobaId = rs.getLong(1);
         }
 
-        // fixme - nisam ziher dal mi zaraze jos uvijek delaju
         for (Osoba kontakt : novaOsoba.getKontaktiraneOsobe()) {
             PreparedStatement upitKontakti = veza.prepareStatement("INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)");
 
