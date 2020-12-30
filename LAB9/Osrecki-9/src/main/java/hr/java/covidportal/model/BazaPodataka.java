@@ -69,7 +69,6 @@ public class BazaPodataka {
             String naziv = rs.getString("NAZIV");
             Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
             Integer brojZarazenih = rs.getInt("BROJ_ZARAZENIH_STANOVNIKA");
-
             zupanija = new Zupanija(naziv, brojStanovnika, brojZarazenih);
             zupanija.setId(id);
         }
@@ -266,27 +265,49 @@ public class BazaPodataka {
 
         while (rs.next()) {
             Long id = rs.getLong("ID");
-            Osoba osoba = dohvatiOsobu(veza, id);
+            String ime = rs.getString("IME");
+            String prezime = rs.getString("PREZIME");
+
+            Date datum = rs.getDate("DATUM_RODJENJA");
+            Instant instant = Instant.ofEpochMilli(datum.getTime());
+            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+
+            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
+            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
+
+            Long bolestId = rs.getLong("BOLEST_ID");
+            Bolest bolest = dohvatiBolest(veza, bolestId);
+
+            Osoba osoba = new Osoba.Builder()
+                    .hasIme(ime)
+                    .hasPrezime(prezime)
+                    .isBornAt(datumRodjenja)
+                    .atZupanija(zupanija)
+                    .withBolest(bolest)
+                    .build();
+
+            osoba.setId(id);
 
             osobe.add(osoba);
         }
 
-       for (Osoba osoba : osobe) {
-           List<Osoba> kontakti =  dohvatiKontaktiraneOsobe(veza, osoba.getId(), osobe);
-           if (osoba.getZarazenBolescu() instanceof Virus virus) {
-               kontakti.forEach(os -> os.setZarazenBolescu(virus));
-           }
+        for (Osoba osoba : osobe) {
+            List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, osoba.getId(), osobe);
+            if (osoba.getZarazenBolescu() instanceof Virus virus) {
+                kontakti.forEach(virus::prelazakZarazeNaOsobu);
+            }
 
-           osoba.setKontaktiraneOsobe(kontakti);
-       }
+
+            osoba.setKontaktiraneOsobe(kontakti);
+        }
 
         disconnectFromDatabase(veza);
 
         return osobe;
     }
 
-    // dohvaca osobu ali bez kontakata
-    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException {
+    // todo
+    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException, IOException {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
 
@@ -307,12 +328,15 @@ public class BazaPodataka {
             Long bolestId = rs.getLong("BOLEST_ID");
             Bolest bolest = dohvatiBolest(veza, bolestId);
 
+            List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id, dohvatiSveOsobe());
+
             osoba = new Osoba.Builder()
                     .hasIme(ime)
                     .hasPrezime(prezime)
                     .isBornAt(datumRodjenja)
                     .atZupanija(zupanija)
                     .withBolest(bolest)
+                    .withKontaktiraneOsobe(kontakti)
                     .build();
 
             osoba.setId(id);
