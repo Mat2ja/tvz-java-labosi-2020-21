@@ -13,9 +13,7 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -51,15 +49,11 @@ public class PretragaVirusaController extends PretragaController implements Init
         stupacSimptomiVirusa.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
-        try {
-            listaVirusa = BazaPodataka.dohvatiSveBolesti()
-                    .stream()
-                    .filter(Bolest::getJeVirus)
-                    .map(Virus.class::cast)
-                    .collect(Collectors.toList());
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaVirusa = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(Bolest::getJeVirus)
+                .map(Virus.class::cast)
+                .collect(Collectors.toList());
 
         if (observableListVirusa == null) {
             observableListVirusa = FXCollections.observableArrayList();

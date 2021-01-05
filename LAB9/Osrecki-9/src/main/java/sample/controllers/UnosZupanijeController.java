@@ -8,11 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.sample.Main;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,13 +39,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        try {
-            listaZupanija = BazaPodataka.dohvatiSveZupanije();
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod dohvaćanja županija iz baze podataka");
-            e.printStackTrace();
-        }
+        listaZupanija = BazaPodataka.dohvatiSveZupanije();
 
         prikaziStatus();
         inicijalizirajListenere();
@@ -77,12 +68,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
         Integer brZarazenih = Integer.valueOf(brZarazenihUnos);
         Zupanija novaZupanija = new Zupanija(naziv, brStanovnika, brZarazenih);
 
-        try {
-            BazaPodataka.spremiNovuZupaniju(novaZupanija);
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja nove županije");
-            e.printStackTrace();
-        }
+        BazaPodataka.spremiNovuZupaniju(novaZupanija);
 
         prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
@@ -115,6 +101,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
     public void resetIndicators() {
         Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(this::makniErrorIndicator);
     }
+
     /**
      * Incijalizira listenere
      */

@@ -6,12 +6,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import main.java.hr.java.covidportal.model.*;
-import main.java.sample.Main;
+import main.java.hr.java.covidportal.model.BazaPodataka;
+import main.java.hr.java.covidportal.model.Bolest;
+import main.java.hr.java.covidportal.model.Osoba;
+import main.java.hr.java.covidportal.model.Zupanija;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -56,14 +56,9 @@ public class UnosOsobeController extends UnosController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        try {
-            listaZupanija = BazaPodataka.dohvatiSveZupanije();
-            listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
-            listaOsoba = BazaPodataka.dohvatiSveOsobe();
-
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaZupanija = BazaPodataka.dohvatiSveZupanije();
+        listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
+        listaOsoba = BazaPodataka.dohvatiSveOsobe();
 
         zupanijaOsobe.getItems().addAll(listaZupanija);
         bolestOsobe.getItems().addAll(listaSvihBolesti);
@@ -126,12 +121,7 @@ public class UnosOsobeController extends UnosController implements Initializable
                 .withBolest(bolest)
                 .withKontaktiraneOsobe(kontakti)
                 .build();
-        try {
-            BazaPodataka.spremiNovuOsobu(novaOsoba);
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja nove osobe");
-            e.printStackTrace();
-        }
+        BazaPodataka.spremiNovuOsobu(novaOsoba);
 
         prikaziSuccessUnosAlert(
                 "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
@@ -139,11 +129,7 @@ public class UnosOsobeController extends UnosController implements Initializable
         prikaziStatus();
         ocistiUnos();
 
-        try {
-            listaOsoba = BazaPodataka.dohvatiSveOsobe();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaOsoba = BazaPodataka.dohvatiSveOsobe();
 
     }
 

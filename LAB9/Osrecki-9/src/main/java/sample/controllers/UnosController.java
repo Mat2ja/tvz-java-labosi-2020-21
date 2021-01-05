@@ -137,7 +137,7 @@ public abstract class UnosController {
 
         for (String s : arr) {
             sb.append(Character.toUpperCase(s.charAt(0)))
-                    .append(s.substring(1).toLowerCase()).append("-");
+                    .append(s.substring(1).toLowerCase()).append(sep);
         }
         return sb.substring(0, sb.length() - 1).trim();
     }

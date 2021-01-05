@@ -2,17 +2,17 @@ package main.java.sample.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.sample.Main;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,13 +45,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-        try {
-            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
 
         vrijSimptomaGroup = new ToggleGroup();
 
@@ -102,12 +96,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
         Simptom noviSimptom = new Simptom(naziv, vrijednost);
 
-        try {
-            BazaPodataka.spremiNoviSimptom(noviSimptom);
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja novog simptoma");
-            e.printStackTrace();
-        }
+        BazaPodataka.spremiNoviSimptom(noviSimptom);
 
         prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);

@@ -12,9 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -51,14 +49,10 @@ public class PretragaBolestiController extends PretragaController implements Ini
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
 
-        try {
-            listaBolesti = BazaPodataka.dohvatiSveBolesti()
-                    .stream()
-                    .filter(bolest -> !bolest.getJeVirus())
-                    .collect(Collectors.toList());
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaBolesti = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(bolest -> !bolest.getJeVirus())
+                .collect(Collectors.toList());
 
 
         if (observableListBolesti == null) {

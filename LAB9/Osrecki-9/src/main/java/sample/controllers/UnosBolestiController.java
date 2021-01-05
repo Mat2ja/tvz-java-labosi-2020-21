@@ -9,11 +9,8 @@ import javafx.scene.control.*;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.sample.Main;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -43,15 +40,11 @@ public class UnosBolestiController extends UnosController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        try {
-            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-            listaBolesti = BazaPodataka.dohvatiSveBolesti()
-                    .stream()
-                    .filter(bolest -> !bolest.getJeVirus())
-                    .collect(Collectors.toList());
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        listaBolesti = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(bolest -> !bolest.getJeVirus())
+                .collect(Collectors.toList());
 
         listaCheckBoxa = FXCollections.observableArrayList();
 
@@ -78,7 +71,7 @@ public class UnosBolestiController extends UnosController implements Initializab
      */
     @Override
     public void dodaj() {
-        String naziv = toTitleCase(nazivBolesti.getText().toUpperCase()," ");
+        String naziv = toTitleCase(nazivBolesti.getText().toUpperCase(), " ");
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()
@@ -96,12 +89,8 @@ public class UnosBolestiController extends UnosController implements Initializab
         }
 
         Bolest novaBolest = new Bolest(naziv, odabraniSimptomi);
-        try {
-            BazaPodataka.spremiNovuBolest(novaBolest);
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja nove bolesti");
-            e.printStackTrace();
-        }
+
+        BazaPodataka.spremiNovuBolest(novaBolest);
 
         prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);

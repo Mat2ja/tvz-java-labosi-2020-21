@@ -10,11 +10,8 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.sample.Main;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -42,16 +39,13 @@ public class UnosVirusaController extends UnosController implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        try {
-            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-            listaVirusa = BazaPodataka.dohvatiSveBolesti()
-                    .stream()
-                    .filter(Bolest::getJeVirus)
-                    .map(Virus.class::cast)
-                    .collect(Collectors.toList());
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        listaVirusa = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(Bolest::getJeVirus)
+                .map(Virus.class::cast)
+                .collect(Collectors.toList());
+
 
         listaCheckBoxa = FXCollections.observableArrayList();
 
@@ -96,12 +90,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
 
         Virus noviVirus = new Virus(naziv, odabraniSimptomi);
 
-        try {
-            BazaPodataka.spremiNovuBolest(noviVirus);
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod spremanja novog virusa");
-            e.printStackTrace();
-        }
+        BazaPodataka.spremiNovuBolest(noviVirus);
 
         prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);

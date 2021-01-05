@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,9 +14,7 @@ import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -67,11 +64,7 @@ public class PretragaOsobaController extends PretragaController implements Initi
         stupacKontaktiOsobe.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getKontaktiraneOsobe().toString().replaceAll("[\\[\\]]", "")));
 
-        try {
-            listaOsoba = BazaPodataka.dohvatiSveOsobe();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaOsoba = BazaPodataka.dohvatiSveOsobe();
 
         if (observableListOsoba == null) {
             observableListOsoba = FXCollections.observableArrayList();

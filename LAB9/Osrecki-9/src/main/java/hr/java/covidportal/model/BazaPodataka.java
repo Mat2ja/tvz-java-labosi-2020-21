@@ -1,6 +1,7 @@
 package main.java.hr.java.covidportal.model;
 
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
+import main.java.sample.Main;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,6 +19,13 @@ public final class BazaPodataka {
 
     private static final String DATABASE_FILE = "./dat/database.properties";
 
+    /**
+     * Otvara vezu s bazom podataka
+     *
+     * @return veza s bazom podataka
+     * @throws IOException
+     * @throws SQLException
+     */
     private static Connection connectToDatabase() throws IOException, SQLException {
         Properties svojstva = new Properties();
         svojstva.load(new FileReader(DATABASE_FILE));
@@ -31,168 +39,240 @@ public final class BazaPodataka {
         return veza;
     }
 
+    /**
+     * Zatvara vezu s bazom podataka
+     *
+     * @param veza veza s bazom podataka
+     * @throws SQLException
+     */
     private static void disconnectFromDatabase(Connection veza) throws SQLException {
         veza.close();
     }
 
-    public static List<Zupanija> dohvatiSveZupanije() throws IOException, SQLException {
+    /**
+     * Dohvaća sve županije iz baze podataka
+     *
+     * @return lista županija
+     */
+    public static List<Zupanija> dohvatiSveZupanije() {
         List<Zupanija> zupanije = new ArrayList<>();
 
-        Connection veza = connectToDatabase();
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA");
+        try (Connection veza = connectToDatabase()) {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA");
 
-        while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
-            Integer brojZarazenih = rs.getInt("BROJ_ZARAZENIH_STANOVNIKA");
+            while (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
+                Integer brojZarazenih = rs.getInt("BROJ_ZARAZENIH_STANOVNIKA");
 
-            Zupanija zupanija = new Zupanija(naziv, brojStanovnika, brojZarazenih);
-            zupanija.setId(id);
+                Zupanija zupanija = new Zupanija(naziv, brojStanovnika, brojZarazenih);
+                zupanija.setId(id);
 
-            zupanije.add(zupanija);
+                zupanije.add(zupanija);
+            }
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod dohvata svih županija");
+            e.printStackTrace();
         }
-
-        disconnectFromDatabase(veza);
 
         return zupanije;
     }
 
-    public static Zupanija dohvatiZupaniju(Long trazeniId, Connection veza) throws SQLException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA WHERE ID = " + trazeniId);
-
+    /**
+     * Dohvaća županiju iz baze podataka
+     *
+     * @param veza      veza s bazom podataka
+     * @param trazeniId podatak o id-u
+     * @return podatak o županiji
+     */
+    public static Zupanija dohvatiZupaniju(Connection veza, Long trazeniId) {
         Zupanija zupanija = null;
-        if (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
-            Integer brojZarazenih = rs.getInt("BROJ_ZARAZENIH_STANOVNIKA");
-            zupanija = new Zupanija(naziv, brojStanovnika, brojZarazenih);
-            zupanija.setId(id);
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA WHERE ID = " + trazeniId);
+
+            if (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                Integer brojStanovnika = rs.getInt("BROJ_STANOVNIKA");
+                Integer brojZarazenih = rs.getInt("BROJ_ZARAZENIH_STANOVNIKA");
+                zupanija = new Zupanija(naziv, brojStanovnika, brojZarazenih);
+                zupanija.setId(id);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
         return zupanija;
     }
 
-    public static void spremiNovuZupaniju(Zupanija novaZupanija) throws IOException, SQLException {
-        Connection veza = connectToDatabase();
+    /**
+     * Sprema novu županiju u bazu podataka
+     *
+     * @param novaZupanija podatak o novoj županiji
+     */
+    public static void spremiNovuZupaniju(Zupanija novaZupanija) {
+        try (Connection veza = connectToDatabase()) {
+            PreparedStatement upit = veza.prepareStatement(
+                    "INSERT INTO ZUPANIJA(NAZIV, BROJ_STANOVNIKA, BROJ_ZARAZENIH_STANOVNIKA) VALUES(?, ?, ?)");
 
-        PreparedStatement upit = veza.prepareStatement(
-                "INSERT INTO ZUPANIJA(NAZIV, BROJ_STANOVNIKA, BROJ_ZARAZENIH_STANOVNIKA) VALUES(?, ?, ?)");
+            upit.setString(1, novaZupanija.getNaziv());
+            upit.setInt(2, novaZupanija.getBrojStanovnika());
+            upit.setInt(3, novaZupanija.getBrojZarazenih());
 
-        upit.setString(1, novaZupanija.getNaziv());
-        upit.setInt(2, novaZupanija.getBrojStanovnika());
-        upit.setInt(3, novaZupanija.getBrojZarazenih());
-
-        upit.executeUpdate();
-
-        disconnectFromDatabase(veza);
-
+            upit.executeUpdate();
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod spremanja županije");
+            e.printStackTrace();
+        }
     }
 
-
-    public static List<Simptom> dohvatiSveSimptome() throws IOException, SQLException {
+    /**
+     * Dohvaća sve simptome iz baze podataka
+     *
+     * @return lista simptoma
+     */
+    public static List<Simptom> dohvatiSveSimptome() {
         List<Simptom> simptomi = new ArrayList<>();
 
-        Connection veza = connectToDatabase();
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM");
+        try (Connection veza = connectToDatabase()) {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM");
 
-        while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(rs.getString("VRIJEDNOST"));
-            Simptom simptom = new Simptom(naziv, vrijednost);
+            while (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(rs.getString("VRIJEDNOST"));
+                Simptom simptom = new Simptom(naziv, vrijednost);
 
-            simptom.setId(id);
-            simptomi.add(simptom);
+                simptom.setId(id);
+                simptomi.add(simptom);
+            }
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod dohvata svih simptoma");
+            e.printStackTrace();
         }
-
-        disconnectFromDatabase(veza);
 
         return simptomi;
     }
 
-    public static Simptom dohvatiSimptom(Connection veza, Long trazeniId) throws SQLException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM WHERE ID = " + trazeniId);
+    /**
+     * Dohvaća simptom iz baze podataka
+     *
+     * @param veza      veza s bazom podataka
+     * @param trazeniId podatak o id-u
+     * @return podatak o simptomu
+     */
+    public static Simptom dohvatiSimptom(Connection veza, Long trazeniId) {
 
         Simptom simptom = null;
 
-        if (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(rs.getString("VRIJEDNOST"));
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM WHERE ID = " + trazeniId);
 
-            simptom = new Simptom(naziv, vrijednost);
-            simptom.setId(id);
+            if (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                VrijednostSimptoma vrijednost = VrijednostSimptoma.valueOf(rs.getString("VRIJEDNOST"));
+
+                simptom = new Simptom(naziv, vrijednost);
+                simptom.setId(id);
+            }
+        } catch (SQLException throwables) {
+            Main.logger.error("Greška kod dohvata simptoma");
+            throwables.printStackTrace();
         }
+
 
         return simptom;
     }
 
-    public static void spremiNoviSimptom(Simptom noviSimptom) throws IOException, SQLException {
-        Connection veza = connectToDatabase();
+    /**
+     * Sprema novi simptom u bazu podataka
+     *
+     * @param noviSimptom podatak o novom simptomu
+     */
+    public static void spremiNoviSimptom(Simptom noviSimptom) {
+        try (Connection veza = connectToDatabase()) {
+            PreparedStatement upit = veza.prepareStatement("INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)");
 
-        PreparedStatement upit = veza.prepareStatement("INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)");
+            upit.setString(1, noviSimptom.getNaziv());
+            upit.setString(2, noviSimptom.getVrijednost().getVrijednost());
 
-        upit.setString(1, noviSimptom.getNaziv());
-        upit.setString(2, noviSimptom.getVrijednost().getVrijednost());
-
-        upit.executeUpdate();
-
-        disconnectFromDatabase(veza);
+            upit.executeUpdate();
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod spremanja simptoma");
+            e.printStackTrace();
+        }
     }
 
-
-    public static List<Bolest> dohvatiSveBolesti() throws IOException, SQLException {
+    /**
+     * Dohvaća sve bolesti iz baze podataka
+     *
+     * @return lista bolesti
+     */
+    public static List<Bolest> dohvatiSveBolesti() {
         List<Bolest> bolesti = new ArrayList<>();
 
-        Connection veza = connectToDatabase();
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST");
+        try (Connection veza = connectToDatabase()) {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST");
 
-        while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            Boolean jeVirus = rs.getBoolean("VIRUS");
-            List<Simptom> listaSimptoma = dohvatiSimptomeBolesti(veza, id);
+            while (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                Boolean jeVirus = rs.getBoolean("VIRUS");
+                List<Simptom> listaSimptoma = dohvatiSimptomeBolesti(veza, id);
 
-            if (jeVirus) {
-                Virus virus = new Virus(naziv, listaSimptoma);
-                virus.setId(id);
-                bolesti.add(virus);
-            } else {
-                Bolest bolest = new Bolest(naziv, listaSimptoma);
-                bolest.setId(id);
-                bolesti.add(bolest);
+                if (jeVirus) {
+                    Virus virus = new Virus(naziv, listaSimptoma);
+                    virus.setId(id);
+                    bolesti.add(virus);
+                } else {
+                    Bolest bolest = new Bolest(naziv, listaSimptoma);
+                    bolest.setId(id);
+                    bolesti.add(bolest);
+                }
             }
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod dohvata svih bolesti");
+            e.printStackTrace();
         }
-
-        disconnectFromDatabase(veza);
 
         return bolesti;
     }
 
-
-    public static Bolest dohvatiBolest(Connection veza, Long trazeniId) throws SQLException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST WHERE ID = " + trazeniId);
-
+    /**
+     * Dohvaća bolest iz baze podataka
+     *
+     * @param veza      veza s bazom podataka
+     * @param trazeniId podatak o id-u
+     * @return podatak o bolesti
+     */
+    public static Bolest dohvatiBolest(Connection veza, Long trazeniId) {
         Bolest bolest = null;
 
-        if (rs.next()) {
-            Long id = rs.getLong("ID");
-            String naziv = rs.getString("NAZIV");
-            Boolean jeVirus = rs.getBoolean("VIRUS");
-            List<Simptom> listaSimptoma = dohvatiSimptomeBolesti(veza, id);
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST WHERE ID = " + trazeniId);
 
-            bolest = new Bolest(naziv, listaSimptoma);
-            bolest.setJeVirus(jeVirus);
+            if (rs.next()) {
+                Long id = rs.getLong("ID");
+                String naziv = rs.getString("NAZIV");
+                Boolean jeVirus = rs.getBoolean("VIRUS");
+                List<Simptom> listaSimptoma = dohvatiSimptomeBolesti(veza, id);
 
-            bolest.setId(id);
+                bolest = new Bolest(naziv, listaSimptoma);
+                bolest.setJeVirus(jeVirus);
+
+                bolest.setId(id);
+            }
+        } catch (SQLException throwables) {
+            Main.logger.error("Greška kod dohvata bolesti");
+            throwables.printStackTrace();
         }
 
         if (bolest.getJeVirus()) {
@@ -204,195 +284,265 @@ public final class BazaPodataka {
         }
     }
 
-    public static void spremiNovuBolest(Bolest novaBolest) throws IOException, SQLException {
-        Connection veza = connectToDatabase();
+    /**
+     * Sprema novu bolest u bazu podataka
+     *
+     * @param novaBolest podatak o novoj bolesti
+     */
+    public static void spremiNovuBolest(Bolest novaBolest) {
+        try (Connection veza = connectToDatabase()) {
 
-        veza.setAutoCommit(false);
+            veza.setAutoCommit(false);
 
-        PreparedStatement upit = veza.prepareStatement(
-                "INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement upit = veza.prepareStatement(
+                    "INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-        upit.setString(1, novaBolest.getNaziv());
-        upit.setBoolean(2, novaBolest.getJeVirus());
-        upit.executeUpdate();
+            upit.setString(1, novaBolest.getNaziv());
+            upit.setBoolean(2, novaBolest.getJeVirus());
+            upit.executeUpdate();
 
-        ResultSet rs = upit.getGeneratedKeys();
-        Long bolestId = 0L;
-        if (rs.next()) {
-            bolestId = rs.getLong(1);
+            Long bolestId = dohvatiId(upit);
+
+            for (Simptom simptom : novaBolest.getSimptomi()) {
+                PreparedStatement upitSimptom = veza.prepareStatement(
+                        "INSERT INTO BOLEST_SIMPTOM(BOLEST_ID, SIMPTOM_ID) VALUES(?, ?)");
+
+                upitSimptom.setLong(1, bolestId);
+                upitSimptom.setLong(2, simptom.getId());
+                upitSimptom.executeUpdate();
+            }
+
+            veza.commit();
+            veza.setAutoCommit(true);
+        } catch (SQLException | IOException throwables) {
+            Main.logger.error("Greška kod spremanja bolesti");
+            throwables.printStackTrace();
         }
-
-
-        for (Simptom simptom : novaBolest.getSimptomi()) {
-            PreparedStatement upitSimptom = veza.prepareStatement(
-                    "INSERT INTO BOLEST_SIMPTOM(BOLEST_ID, SIMPTOM_ID) VALUES(?, ?)");
-
-            upitSimptom.setLong(1, bolestId);
-            upitSimptom.setLong(2, simptom.getId());
-            upitSimptom.executeUpdate();
-        }
-
-        veza.commit();
-        veza.setAutoCommit(true);
-
-        disconnectFromDatabase(veza);
     }
 
-
-    private static List<Simptom> dohvatiSimptomeBolesti(Connection veza, Long id) throws SQLException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST_SIMPTOM WHERE BOLEST_ID = " + id);
-
+    /**
+     * Dohvaća sve simptome bolesti iz baze podataka
+     *
+     * @param veza veza s bazom podataka
+     * @param id   podatak o id-u
+     * @return lista simptoma
+     */
+    private static List<Simptom> dohvatiSimptomeBolesti(Connection veza, Long id) {
         List<Simptom> listaSimptoma = new ArrayList<>();
 
-        while (rs.next()) {
-            Long simptomId = rs.getLong("SIMPTOM_ID");
-            Simptom simptom = dohvatiSimptom(veza, simptomId);
-            listaSimptoma.add(simptom);
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST_SIMPTOM WHERE BOLEST_ID = " + id);
+
+            while (rs.next()) {
+                Long simptomId = rs.getLong("SIMPTOM_ID");
+                Simptom simptom = dohvatiSimptom(veza, simptomId);
+                listaSimptoma.add(simptom);
+            }
+        } catch (SQLException throwables) {
+            Main.logger.error("Greška kod dohvata simptoma bolesti");
+            throwables.printStackTrace();
         }
 
         return listaSimptoma;
     }
 
-    public static List<Osoba> dohvatiSveOsobe() throws IOException, SQLException {
+    /**
+     * Dohvaća sve osobe iz baze podataka
+     *
+     * @return lista osoba
+     */
+    public static List<Osoba> dohvatiSveOsobe() {
         List<Osoba> osobe = new ArrayList<>();
 
-        Connection veza = connectToDatabase();
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA");
+        try (Connection veza = connectToDatabase()) {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA");
 
-        while (rs.next()) {
-            Long id = rs.getLong("ID");
-            String ime = rs.getString("IME");
-            String prezime = rs.getString("PREZIME");
+            while (rs.next()) {
+                Long id = rs.getLong("ID");
+                String ime = rs.getString("IME");
+                String prezime = rs.getString("PREZIME");
 
-            Date datum = rs.getDate("DATUM_RODJENJA");
-            Instant instant = Instant.ofEpochMilli(datum.getTime());
-            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+                Date datum = rs.getDate("DATUM_RODJENJA");
+                Instant instant = Instant.ofEpochMilli(datum.getTime());
+                LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 
-            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
-            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
+                Long zupanijaId = rs.getLong("ZUPANIJA_ID");
+                Zupanija zupanija = dohvatiZupaniju(veza, zupanijaId);
 
-            Long bolestId = rs.getLong("BOLEST_ID");
-            Bolest bolest = dohvatiBolest(veza, bolestId);
+                Long bolestId = rs.getLong("BOLEST_ID");
+                Bolest bolest = dohvatiBolest(veza, bolestId);
 
-            Osoba osoba = new Osoba.Builder()
-                    .hasIme(ime)
-                    .hasPrezime(prezime)
-                    .isBornAt(datumRodjenja)
-                    .atZupanija(zupanija)
-                    .withBolest(bolest)
-                    .build();
+                Osoba osoba = new Osoba.Builder()
+                        .hasIme(ime)
+                        .hasPrezime(prezime)
+                        .isBornAt(datumRodjenja)
+                        .atZupanija(zupanija)
+                        .withBolest(bolest)
+                        .build();
 
-            osoba.setId(id);
+                osoba.setId(id);
 
-            osobe.add(osoba);
-        }
-
-        for (Osoba osoba : osobe) {
-            List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, osoba.getId(), osobe);
-            if (osoba.getZarazenBolescu() instanceof Virus virus) {
-                kontakti.forEach(virus::prelazakZarazeNaOsobu);
+                osobe.add(osoba);
             }
 
-            osoba.setKontaktiraneOsobe(kontakti);
+            for (Osoba osoba : osobe) {
+                List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, osoba.getId(), osobe);
+                if (osoba.getZarazenBolescu() instanceof Virus virus) {
+                    kontakti.forEach(virus::prelazakZarazeNaOsobu);
+                }
+                osoba.setKontaktiraneOsobe(kontakti);
+            }
+        } catch (SQLException | IOException e) {
+            Main.logger.error("Greška kod dohvata svih osoba");
+            e.printStackTrace();
         }
-
-        disconnectFromDatabase(veza);
 
         return osobe;
     }
 
-    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException, IOException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
-
+    /**
+     * Dohvaća osobu iz baze podataka
+     *
+     * @param veza      veza s bazom podataka
+     * @param trazeniId podatak o id-u
+     * @return podatak o osobi
+     */
+    public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) {
         Osoba osoba = null;
 
-        if (rs.next()) {
-            Long id = rs.getLong("ID");
-            String ime = rs.getString("IME");
-            String prezime = rs.getString("PREZIME");
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
 
-            Date datum = rs.getDate("DATUM_RODJENJA");
-            Instant instant = Instant.ofEpochMilli(datum.getTime());
-            LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 
-            Long zupanijaId = rs.getLong("ZUPANIJA_ID");
-            Zupanija zupanija = dohvatiZupaniju(zupanijaId, veza);
+            if (rs.next()) {
+                Long id = rs.getLong("ID");
+                String ime = rs.getString("IME");
+                String prezime = rs.getString("PREZIME");
 
-            Long bolestId = rs.getLong("BOLEST_ID");
-            Bolest bolest = dohvatiBolest(veza, bolestId);
+                Date datum = rs.getDate("DATUM_RODJENJA");
+                Instant instant = Instant.ofEpochMilli(datum.getTime());
+                LocalDate datumRodjenja = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 
-            List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id, dohvatiSveOsobe());
+                Long zupanijaId = rs.getLong("ZUPANIJA_ID");
+                Zupanija zupanija = dohvatiZupaniju(veza, zupanijaId);
 
-            osoba = new Osoba.Builder()
-                    .hasIme(ime)
-                    .hasPrezime(prezime)
-                    .isBornAt(datumRodjenja)
-                    .atZupanija(zupanija)
-                    .withBolest(bolest)
-                    .withKontaktiraneOsobe(kontakti)
-                    .build();
+                Long bolestId = rs.getLong("BOLEST_ID");
+                Bolest bolest = dohvatiBolest(veza, bolestId);
 
-            osoba.setId(id);
+                List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id, dohvatiSveOsobe());
+
+                osoba = new Osoba.Builder()
+                        .hasIme(ime)
+                        .hasPrezime(prezime)
+                        .isBornAt(datumRodjenja)
+                        .atZupanija(zupanija)
+                        .withBolest(bolest)
+                        .withKontaktiraneOsobe(kontakti)
+                        .build();
+
+                osoba.setId(id);
+            }
+        } catch (SQLException throwables) {
+            Main.logger.error("Greška kod dohvata osobe");
+            throwables.printStackTrace();
         }
 
         return osoba;
     }
 
-    public static List<Osoba> dohvatiKontaktiraneOsobe(Connection veza, Long id, List<Osoba> osobe) throws SQLException {
-        Statement stmt = veza.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM KONTAKTIRANE_OSOBE WHERE OSOBA_ID = " + id);
-
+    /**
+     * Dohvaća kontaktirane osobe iz baze podataka
+     *
+     * @param veza  veza s bazom podataka
+     * @param id    podatak o id-u
+     * @param osobe podatak o listi svih osoba
+     * @return lista kontakata
+     */
+    public static List<Osoba> dohvatiKontaktiraneOsobe(Connection veza, Long id, List<Osoba> osobe) {
         List<Osoba> kontaktiraneOsobe = new ArrayList<>();
 
-        while (rs.next()) {
-            Long kontaktiranaOsobaId = rs.getLong("KONTAKTIRANA_OSOBA_ID");
-            Osoba osoba = osobe.stream()
-                    .filter(o -> o.getId().equals(kontaktiranaOsobaId))
-                    .collect(Collectors.toList())
-                    .get(0);
-            kontaktiraneOsobe.add(osoba);
+        try {
+            Statement stmt = veza.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM KONTAKTIRANE_OSOBE WHERE OSOBA_ID = " + id);
+
+
+            while (rs.next()) {
+                Long kontaktiranaOsobaId = rs.getLong("KONTAKTIRANA_OSOBA_ID");
+                Osoba osoba = osobe.stream()
+                        .filter(o -> o.getId().equals(kontaktiranaOsobaId))
+                        .collect(Collectors.toList())
+                        .get(0);
+                kontaktiraneOsobe.add(osoba);
+            }
+
+        } catch (SQLException throwables) {
+            Main.logger.error("Greška kod dohvata kontaktiranih osoba");
+            throwables.printStackTrace();
         }
 
         return kontaktiraneOsobe;
     }
 
-    public static void spremiNovuOsobu(Osoba novaOsoba) throws IOException, SQLException {
-        Connection veza = connectToDatabase();
+    /**
+     * Sprema novu osobu u bazu podataka
+     *
+     * @param novaOsoba podatak o novoj osobi
+     */
+    public static void spremiNovuOsobu(Osoba novaOsoba) {
+        try (Connection veza = connectToDatabase()) {
 
-        veza.setAutoCommit(false);
+            veza.setAutoCommit(false);
 
-        PreparedStatement upit = veza.prepareStatement(
-                "INSERT INTO OSOBA(IME, PREZIME, DATUM_RODJENJA, ZUPANIJA_ID, BOLEST_ID) VALUES (?, ?, ?, ?, ?)",
-                Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement upit = veza.prepareStatement(
+                    "INSERT INTO OSOBA(IME, PREZIME, DATUM_RODJENJA, ZUPANIJA_ID, BOLEST_ID) VALUES (?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
 
-        upit.setString(1, novaOsoba.getIme());
-        upit.setString(2, novaOsoba.getPrezime());
-        upit.setDate(3, Date.valueOf(novaOsoba.getDatumRodjenja()));
-        upit.setLong(4, novaOsoba.getZupanija().getId());
-        upit.setLong(5, novaOsoba.getZarazenBolescu().getId());
+            upit.setString(1, novaOsoba.getIme());
+            upit.setString(2, novaOsoba.getPrezime());
+            upit.setDate(3, Date.valueOf(novaOsoba.getDatumRodjenja()));
+            upit.setLong(4, novaOsoba.getZupanija().getId());
+            upit.setLong(5, novaOsoba.getZarazenBolescu().getId());
 
-        upit.executeUpdate();
+            upit.executeUpdate();
 
-        ResultSet rs = upit.getGeneratedKeys();
-        Long osobaId = 0L;
-        if (rs.next()) {
-            osobaId = rs.getLong(1);
+            Long osobaId = dohvatiId(upit);
+
+            for (Osoba kontakt : novaOsoba.getKontaktiraneOsobe()) {
+                PreparedStatement upitKontakti = veza.prepareStatement("INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)");
+
+                upitKontakti.setLong(1, osobaId);
+                upitKontakti.setLong(2, kontakt.getId());
+                upitKontakti.executeUpdate();
+            }
+
+            veza.commit();
+            veza.setAutoCommit(true);
+
+        } catch (SQLException | IOException e) {
+            Main.logger.error("Greška kod spremanja osobe");
+            e.printStackTrace();
         }
-
-        for (Osoba kontakt : novaOsoba.getKontaktiraneOsobe()) {
-            PreparedStatement upitKontakti = veza.prepareStatement("INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)");
-
-            upitKontakti.setLong(1, osobaId);
-            upitKontakti.setLong(2, kontakt.getId());
-            upitKontakti.executeUpdate();
-        }
-
-        veza.commit();
-        veza.setAutoCommit(true);
-
-        disconnectFromDatabase(veza);
     }
+
+
+    /**
+     * Dohvati id entiteta iz baze podataka
+     *
+     * @param upit upit iz baze podataka
+     * @return podatak o id-u
+     * @throws SQLException
+     */
+    private static Long dohvatiId(PreparedStatement upit) throws SQLException {
+        ResultSet rs = upit.getGeneratedKeys();
+        Long entitetId = 0L;
+        if (rs.next()) {
+            entitetId = rs.getLong(1);
+        }
+        return entitetId;
+    }
+
+
 }

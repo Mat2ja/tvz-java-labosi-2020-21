@@ -12,9 +12,7 @@ import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -50,11 +48,8 @@ public class PretragaSimptomaController extends PretragaController implements In
         stupacNazivSimptoma.setCellValueFactory(new PropertyValueFactory<>("naziv"));
         stupacVrijednostSimptoma.setCellValueFactory(new PropertyValueFactory<>("vrijednost"));
 
-        try {
-            listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+
 
         if (observableListSimptoma == null) {
             observableListSimptoma = FXCollections.observableArrayList();

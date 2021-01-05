@@ -57,12 +57,8 @@ public class PretragaZupanijaController extends PretragaController implements In
         stupacBrojStanovnikaZupanije.setCellValueFactory(new PropertyValueFactory<>("brojStanovnika"));
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
-        try {
-            listaZupanija = BazaPodataka.dohvatiSveZupanije();
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod dohvaćanja županija iz baze podataka");
-            e.printStackTrace();
-        }
+        listaZupanija = BazaPodataka.dohvatiSveZupanije();
+
 
         if (observableListZupanija == null) {
             observableListZupanija = FXCollections.observableArrayList();
