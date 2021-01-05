@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 /**
  * Kontoler pretrage županija
  */
-public class PretragaZupanijaController implements Initializable {
+public class PretragaZupanijaController extends PretragaController implements Initializable {
 
     private static ObservableList<Zupanija> observableListZupanija;
     private static List<Zupanija> listaZupanija;
@@ -57,7 +57,6 @@ public class PretragaZupanijaController implements Initializable {
         stupacBrojStanovnikaZupanije.setCellValueFactory(new PropertyValueFactory<>("brojStanovnika"));
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
-//        listaZupanija = UcitavanjePodataka.ucitajZupanije();
         try {
             listaZupanija = BazaPodataka.dohvatiSveZupanije();
         } catch (IOException | SQLException e) {
@@ -100,7 +99,7 @@ public class PretragaZupanijaController implements Initializable {
             Main.getMainStage().setScene(scene);
 
             UnosZupanijeController controller = loader.getController();
-//            controller.izmijeniZupaniju(zupanija);
+            controller.izmijeniZupaniju(zupanija);
         } catch (IOException e) {
             Main.logger.error("Greška kod prikaza ekrana");
             e.printStackTrace();
@@ -111,6 +110,7 @@ public class PretragaZupanijaController implements Initializable {
     /**
      * Pretražuje županije prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
+    @Override
     public void pretrazi() {
         String naziv = nazivZupanije.getText();
 
@@ -122,14 +122,6 @@ public class PretragaZupanijaController implements Initializable {
 
         popuniObservableListuZupanija(filitriraneZupanije);
     }
-
-    /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
 
     /**
      * Popunjuje observable listu listom svih učitanih županija

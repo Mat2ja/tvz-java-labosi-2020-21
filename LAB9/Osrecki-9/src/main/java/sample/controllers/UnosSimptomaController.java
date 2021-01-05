@@ -58,13 +58,13 @@ public class UnosSimptomaController extends UnosController implements Initializa
         List<RadioButton> listaRb = new ArrayList<>();
         Arrays.stream(VrijednostSimptoma.values())
                 .forEach(vrijednost -> {
-                    RadioButton rb = new RadioButton();
-                    rb.setToggleGroup(vrijSimptomaGroup);
-                    rb.setText(vrijednost.getVrijednost());
-                    rb.setUserData(vrijednost);
-                    listaRb.add(rb);
-                }
-        );
+                            RadioButton rb = new RadioButton();
+                            rb.setToggleGroup(vrijSimptomaGroup);
+                            rb.setText(vrijednost.getVrijednost());
+                            rb.setUserData(vrijednost);
+                            listaRb.add(rb);
+                        }
+                );
 
         Integer numCols = VrijednostSimptoma.values().length;
         IntStream.range(0, numCols).forEach(col -> {
@@ -84,6 +84,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
     /**
      * Dodaje novu osobu
      */
+    @Override
     public void dodaj() {
         String naziv = toTitleCase(nazivSimptoma.getText(), " ");
         RadioButton vrijednosatRadioBtn = (RadioButton) vrijSimptomaGroup.getSelectedToggle();
@@ -116,15 +117,9 @@ public class UnosSimptomaController extends UnosController implements Initializa
     }
 
     /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
-    /**
      * Prikazuje status
      */
+    @Override
     public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + listaSimptoma.size() + " simptoma");
     }
@@ -132,6 +127,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
     /**
      * Resetira unose za upisivanje podataka
      */
+    @Override
     public void ocistiUnos() {
         nazivSimptoma.clear();
         vrijSimptomaGroup.getSelectedToggle().setSelected(false);
@@ -139,11 +135,19 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
     }
 
+    /**
+     * Resetira error indikatore
+     */
+    @Override
     public void resetIndicators() {
         makniErrorIndicator(nazivSimptoma);
     }
 
-    private void inicijalizirajListenere() {
+    /**
+     * Incijalizira listenere
+     */
+    @Override
+    public void inicijalizirajListenere() {
         nazivSimptoma.textProperty().addListener((obs, oldText, newText) -> validateField(nazivSimptoma, newText));
     }
 }

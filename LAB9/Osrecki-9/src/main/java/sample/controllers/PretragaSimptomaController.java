@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
-import main.java.sample.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * Kontroler pretrage simptoma
  */
-public class PretragaSimptomaController implements Initializable {
+public class PretragaSimptomaController extends PretragaController implements Initializable {
 
     private static ObservableList<Simptom> observableListSimptoma;
     private static List<Simptom> listaSimptoma;
@@ -70,6 +69,7 @@ public class PretragaSimptomaController implements Initializable {
     /**
      * Pretražuje simptome prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
+    @Override
     public void pretrazi() {
         String naziv = nazivSimptoma.getText();
 
@@ -89,13 +89,6 @@ public class PretragaSimptomaController implements Initializable {
     public void popuniObservableListuSimptoma(List<Simptom> simptomi) {
         observableListSimptoma.clear();
         observableListSimptoma.addAll(simptomi);
-    }
-
-    /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
     }
 
 }

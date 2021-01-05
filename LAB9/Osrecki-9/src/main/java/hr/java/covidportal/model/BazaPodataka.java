@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-public class BazaPodataka {
+public final class BazaPodataka {
 
     private static final String DATABASE_FILE = "./dat/database.properties";
 
@@ -136,8 +136,7 @@ public class BazaPodataka {
     public static void spremiNoviSimptom(Simptom noviSimptom) throws IOException, SQLException {
         Connection veza = connectToDatabase();
 
-        PreparedStatement upit = veza.prepareStatement(
-                "INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)");
+        PreparedStatement upit = veza.prepareStatement("INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)");
 
         upit.setString(1, noviSimptom.getNaziv());
         upit.setString(2, noviSimptom.getVrijednost().getVrijednost());
@@ -262,7 +261,6 @@ public class BazaPodataka {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA");
 
-
         while (rs.next()) {
             Long id = rs.getLong("ID");
             String ime = rs.getString("IME");
@@ -297,7 +295,6 @@ public class BazaPodataka {
                 kontakti.forEach(virus::prelazakZarazeNaOsobu);
             }
 
-
             osoba.setKontaktiraneOsobe(kontakti);
         }
 
@@ -306,7 +303,6 @@ public class BazaPodataka {
         return osobe;
     }
 
-    // todo
     public static Osoba dohvatiOsobu(Connection veza, Long trazeniId) throws SQLException, IOException {
         Statement stmt = veza.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);

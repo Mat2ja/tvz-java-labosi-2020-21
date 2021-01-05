@@ -58,6 +58,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
     /**
      * Dodaje novu županiju
      */
+    @Override
     public void dodaj() {
         String naziv = toTitleCase(nazivZupanije.getText(), "-");
         String brStanovnikaUnos = brStanovnikaZupanije.getText();
@@ -91,15 +92,9 @@ public class UnosZupanijeController extends UnosController implements Initializa
     }
 
     /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
-    /**
      * Prikazuje status
      */
+    @Override
     public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + listaZupanija.size() + " županija");
     }
@@ -107,16 +102,24 @@ public class UnosZupanijeController extends UnosController implements Initializa
     /**
      * Resetira unose za upisivanje podataka
      */
+    @Override
     public void ocistiUnos() {
         Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(TextInputControl::clear);
         resetIndicators();
     }
 
+    /**
+     * Resetira error indikatore
+     */
+    @Override
     public void resetIndicators() {
-        Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(UnosController::makniErrorIndicator);
+        Arrays.asList(nazivZupanije, brStanovnikaZupanije, brZarazenihZupanije).forEach(this::makniErrorIndicator);
     }
-
-    private void inicijalizirajListenere() {
+    /**
+     * Incijalizira listenere
+     */
+    @Override
+    public void inicijalizirajListenere() {
         nazivZupanije.textProperty()
                 .addListener((obs, oldText, newText) -> validateField(nazivZupanije, newText));
         brStanovnikaZupanije.textProperty()
@@ -125,4 +128,9 @@ public class UnosZupanijeController extends UnosController implements Initializa
                 .addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
     }
 
+    public void izmijeniZupaniju(Zupanija zupanija) {
+        nazivZupanije.setText(zupanija.getNaziv());
+        brStanovnikaZupanije.setText(zupanija.getBrojStanovnika().toString());
+        brZarazenihZupanije.setText(zupanija.getBrojZarazenih().toString());
+    }
 }

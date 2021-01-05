@@ -90,6 +90,7 @@ public class UnosOsobeController extends UnosController implements Initializable
     /**
      * Dodaje novu osobu
      */
+    @Override
     public void dodaj() {
         String ime = toTitleCase(imeOsobe.getText(), " ");
         String prezime = toTitleCase(prezimeOsobe.getText(), " ");
@@ -140,7 +141,6 @@ public class UnosOsobeController extends UnosController implements Initializable
 
         try {
             listaOsoba = BazaPodataka.dohvatiSveOsobe();
-
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
@@ -148,15 +148,9 @@ public class UnosOsobeController extends UnosController implements Initializable
     }
 
     /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
-    /**
      * Prikazuje status
      */
+    @Override
     public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + listaOsoba.size() + " osoba");
     }
@@ -164,6 +158,7 @@ public class UnosOsobeController extends UnosController implements Initializable
     /**
      * Resetira unose za upisivanje podataka
      */
+    @Override
     public void ocistiUnos() {
         imeOsobe.clear();
         prezimeOsobe.clear();
@@ -175,7 +170,10 @@ public class UnosOsobeController extends UnosController implements Initializable
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
         resetIndicators();
     }
-
+    /**
+     * Resetira error indikatore
+     */
+    @Override
     public void resetIndicators() {
         makniErrorIndicator(imeOsobe);
         makniErrorIndicator(prezimeOsobe);
@@ -185,8 +183,11 @@ public class UnosOsobeController extends UnosController implements Initializable
         makniErrorIndicator(kontaktiOsobeMenuBtn);
     }
 
-
-    private void inicijalizirajListenere() {
+    /**
+     * Incijalizira listenere
+     */
+    @Override
+    public void inicijalizirajListenere() {
         imeOsobe.textProperty().addListener((obs, oldText, newText) -> validateField(imeOsobe, newText));
         prezimeOsobe.textProperty().addListener((obs, oldText, newText) -> validateField(prezimeOsobe, newText));
         datumRodjenjaOsobe.getEditor().textProperty().addListener((obs, oldText, newText) -> validateDatePicker(datumRodjenjaOsobe, newText));

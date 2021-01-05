@@ -2,6 +2,7 @@ package main.java.hr.java.covidportal.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -191,6 +192,11 @@ public class Osoba implements Serializable {
 
     public void setKontaktiraneOsobe(List<Osoba> kontaktiraneOsobe) {
         this.kontaktiraneOsobe = kontaktiraneOsobe;
+    }
+
+    public Integer getStarost() {
+        LocalDate now = LocalDate.now();
+        return Period.between(datumRodjenja, now).getYears();
     }
 
     @Override

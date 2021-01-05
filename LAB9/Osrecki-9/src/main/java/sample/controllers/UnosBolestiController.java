@@ -69,15 +69,14 @@ public class UnosBolestiController extends UnosController implements Initializab
                 });
 
         prikaziStatus();
-
         inicijalizirajListenere();
-
     }
 
 
     /**
      * Dodaje novu bolest
      */
+    @Override
     public void dodaj() {
         String naziv = toTitleCase(nazivBolesti.getText().toUpperCase()," ");
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
@@ -112,16 +111,9 @@ public class UnosBolestiController extends UnosController implements Initializab
     }
 
     /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
-
-    /**
      * Prikazuje status
      */
+    @Override
     public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + listaBolesti.size() + " bolesti");
     }
@@ -129,19 +121,28 @@ public class UnosBolestiController extends UnosController implements Initializab
     /**
      * Resetira unose za upisivanje podataka
      */
+    @Override
     public void ocistiUnos() {
         nazivBolesti.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
         resetIndicators();
     }
 
+    /**
+     * Resetira error indikatore
+     */
+    @Override
     public void resetIndicators() {
         makniErrorIndicator(nazivBolesti);
         makniErrorIndicator(simptomiMenuBtn);
     }
 
 
-    private void inicijalizirajListenere() {
+    /**
+     * Incijalizira listenere
+     */
+    @Override
+    public void inicijalizirajListenere() {
         nazivBolesti.textProperty().addListener((obs, oldText, newText) -> validateField(nazivBolesti, newText));
     }
 

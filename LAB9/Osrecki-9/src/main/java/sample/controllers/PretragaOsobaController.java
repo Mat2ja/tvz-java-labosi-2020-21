@@ -14,12 +14,10 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.sample.Main;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -28,7 +26,7 @@ import java.util.stream.Collectors;
 /**
  * Kontroler pretrage simptoma
  */
-public class PretragaOsobaController implements Initializable {
+public class PretragaOsobaController extends PretragaController implements Initializable {
 
     private static ObservableList<Osoba> observableListOsoba;
     private static List<Osoba> listaOsoba;
@@ -45,7 +43,7 @@ public class PretragaOsobaController implements Initializable {
     @FXML
     private TableColumn<Osoba, String> stupacPrezimeOsobe;
     @FXML
-    private TableColumn<Osoba, LocalDate> stupacDatumRodjenja;
+    private TableColumn<Osoba, Integer> stupacStarost;
     @FXML
     private TableColumn<Osoba, Zupanija> stupacZupanijaOsobe;
     @FXML
@@ -63,7 +61,7 @@ public class PretragaOsobaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stupacImeOsobe.setCellValueFactory(new PropertyValueFactory<>("ime"));
         stupacPrezimeOsobe.setCellValueFactory(new PropertyValueFactory<>("prezime"));
-        stupacDatumRodjenja.setCellValueFactory(new PropertyValueFactory<>("datumRodjenja"));
+        stupacStarost.setCellValueFactory(new PropertyValueFactory<>("starost"));
         stupacZupanijaOsobe.setCellValueFactory(new PropertyValueFactory<>("zupanija"));
         stupacBolestOsobe.setCellValueFactory(new PropertyValueFactory<>("zarazenBolescu"));
         stupacKontaktiOsobe.setCellValueFactory(data -> new SimpleStringProperty(
@@ -88,6 +86,7 @@ public class PretragaOsobaController implements Initializable {
     /**
      * Pretražuje osobe prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
+    @Override
     public void pretrazi() {
         String ime = imeOsobe.getText();
         String prezime = prezimeOsobe.getText();
@@ -114,11 +113,5 @@ public class PretragaOsobaController implements Initializable {
         observableListOsoba.addAll(osobe);
     }
 
-    /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
 
 }

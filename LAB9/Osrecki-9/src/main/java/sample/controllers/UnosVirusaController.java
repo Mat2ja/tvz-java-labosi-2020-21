@@ -69,15 +69,14 @@ public class UnosVirusaController extends UnosController implements Initializabl
                 });
 
         prikaziStatus();
-
-        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateField(nazivVirusa, newText));
     }
 
     /**
      * Dodaje novi virus
      */
+    @Override
     public void dodaj() {
-        String naziv = toTitleCase(nazivVirusa.getText()," ");
+        String naziv = toTitleCase(nazivVirusa.getText(), " ");
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()
@@ -112,15 +111,9 @@ public class UnosVirusaController extends UnosController implements Initializabl
     }
 
     /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
-    }
-
-    /**
      * Prikazuje status
      */
+    @Override
     public void prikaziStatus() {
         status.setText("U sustavu je trenutno " + listaVirusa.size() + " virusa");
     }
@@ -128,15 +121,28 @@ public class UnosVirusaController extends UnosController implements Initializabl
     /**
      * Resetira unose za upisivanje podataka
      */
+    @Override
     public void ocistiUnos() {
         nazivVirusa.clear();
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
         resetIndicators();
     }
 
+    /**
+     * Resetira error indikatore
+     */
+    @Override
     public void resetIndicators() {
         makniErrorIndicator(nazivVirusa);
         makniErrorIndicator(simptomiMenuBtn);
+    }
+
+    /**
+     * Incijalizira listenere
+     */
+    @Override
+    public void inicijalizirajListenere() {
+        nazivVirusa.textProperty().addListener((obs, oldText, newText) -> validateField(nazivVirusa, newText));
     }
 
 }

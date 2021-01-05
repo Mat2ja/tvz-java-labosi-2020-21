@@ -11,12 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
-import main.java.sample.Main;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -25,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Kontoler pretrage bolesti
  */
-public class PretragaBolestiController implements Initializable {
+public class PretragaBolestiController extends PretragaController implements Initializable {
 
     private static ObservableList<Bolest> observableListBolesti;
     private static List<Bolest> listaBolesti;
@@ -77,6 +75,7 @@ public class PretragaBolestiController implements Initializable {
     /**
      * Pretražuje bolesti prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
+    @Override
     public void pretrazi() {
         String naziv = nazivBolesti.getText();
 
@@ -97,13 +96,6 @@ public class PretragaBolestiController implements Initializable {
     public void popuniObservableListuBolesti(List<Bolest> bolesti) {
         observableListBolesti.clear();
         observableListBolesti.addAll(bolesti);
-    }
-
-    /**
-     * Postavlja početnu scenu
-     */
-    public void natragNaPocetni() {
-        Main.prikaziPocetniEkran();
     }
 
 }

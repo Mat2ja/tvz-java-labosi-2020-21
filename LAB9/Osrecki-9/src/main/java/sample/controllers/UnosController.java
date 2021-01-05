@@ -9,15 +9,21 @@ import java.util.List;
 
 public abstract class UnosController {
 
+    public abstract void dodaj();
+    public abstract void prikaziStatus();
+    public abstract void ocistiUnos();
+    public abstract void resetIndicators();
+    public abstract void inicijalizirajListenere();
+
     /**
      * Prikazuje alert
      *
-     * @param title naslov alerta
-     * @param header header alerta
+     * @param title   naslov alerta
+     * @param header  header alerta
      * @param content content alerta
-     * @param type type alerta
+     * @param type    type alerta
      */
-    private static void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
+    private void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -60,7 +66,8 @@ public abstract class UnosController {
             return true;
         }
     }
-    public  boolean validateDatePicker(DatePicker dp, String value) {
+
+    public boolean validateDatePicker(DatePicker dp, String value) {
         if (value.isBlank()) {
             prikaziErrorIndicator(dp.getEditor());
             return false;
@@ -101,7 +108,7 @@ public abstract class UnosController {
     }
 
 
-    public  boolean validateSlider(Slider slider) {
+    public boolean validateSlider(Slider slider) {
         if (slider.valueProperty().lessThanOrEqualTo(0).get()) {
             prikaziErrorIndicator(slider);
             return false;
@@ -111,7 +118,7 @@ public abstract class UnosController {
         }
     }
 
-    public Boolean isValidInteger(String value){
+    public Boolean isValidInteger(String value) {
         return value.matches("\\d+");
     }
 
@@ -121,7 +128,7 @@ public abstract class UnosController {
      * @param givenString string koji želimo obraditi
      * @return string u Title Case obliku
      */
-    public static String toTitleCase(String givenString, String sep) {
+    public String toTitleCase(String givenString, String sep) {
         if (givenString.isBlank()) {
             return givenString;
         }
@@ -132,10 +139,10 @@ public abstract class UnosController {
             sb.append(Character.toUpperCase(s.charAt(0)))
                     .append(s.substring(1).toLowerCase()).append("-");
         }
-        return sb.substring(0,sb.length()-1).trim();
+        return sb.substring(0, sb.length() - 1).trim();
     }
 
-    public static <T> void prikaziErrorIndicator(T input) {
+    public <T> void prikaziErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, true);
         } else if (input instanceof MenuButton mb) {
@@ -147,7 +154,7 @@ public abstract class UnosController {
         }
     }
 
-    public static <T> void makniErrorIndicator(T input) {
+    public <T> void makniErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, false);
         } else if (input instanceof MenuButton mb) {
@@ -158,4 +165,12 @@ public abstract class UnosController {
             sl.pseudoClassStateChanged(Main.errorClass, false);
         }
     }
+
+    /**
+     * Postavlja početnu scenu
+     */
+    public void natragNaPocetni() {
+        Main.prikaziPocetniEkran();
+    }
+
 }
