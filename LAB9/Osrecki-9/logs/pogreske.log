@@ -471,3 +471,87 @@
 2021-01-05 11:48:14,939 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:154] Greška kod dohvata svih simptoma
 2021-01-05 11:49:05,044 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2021-01-05 11:49:56,802 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 12:50:04,598 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:03:42,453 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:05:08,664 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:06:02,232 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:09:00,761 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:10:05,504 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:13:10,174 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:560] Greška kod izmjene županije
+2021-01-08 13:13:17,533 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:14:04,562 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:560] Greška kod izmjene županije
+2021-01-08 13:14:07,905 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:21:50,499 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:560] Greška kod izmjene županije
+2021-01-08 13:21:56,851 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:22:28,517 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:561] Greška kod izmjene županije
+2021-01-08 13:22:53,468 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:23:03,278 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:561] Greška kod izmjene županije
+2021-01-08 13:23:32,080 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:23:43,280 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:561] Greška kod izmjene županije
+2021-01-08 13:28:37,146 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:33:32,595 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:34:39,641 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,643 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,646 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,648 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,649 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,651 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,653 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,656 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,657 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,659 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,661 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,663 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,664 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,666 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,668 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,669 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,671 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,672 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,673 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,674 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,676 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,678 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,680 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,681 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,683 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,684 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,686 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,688 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,689 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:34:39,691 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:00,024 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:35:03,835 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,838 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,841 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,843 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,845 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,847 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,849 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,852 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,853 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,855 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,857 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,859 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,860 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,862 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,863 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,865 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,867 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,868 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,869 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,870 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,872 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,874 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,875 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,876 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,878 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,880 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,881 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,883 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,884 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:03,886 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:188] Greška kod dohvata simptoma
+2021-01-08 13:35:32,992 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-08 13:35:40,026 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:279] Greška kod dohvata bolesti
+2021-01-08 13:35:40,029 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga osoba
+2021-01-08 13:36:15,903 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program

@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public final class BazaPodataka {
@@ -90,8 +91,9 @@ public final class BazaPodataka {
     public static Zupanija dohvatiZupaniju(Connection veza, Long trazeniId) {
         Zupanija zupanija = null;
         try {
+            String sql = "SELECT * FROM ZUPANIJA WHERE ID = " + trazeniId;
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA WHERE ID = " + trazeniId);
+            ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -115,8 +117,8 @@ public final class BazaPodataka {
      */
     public static void spremiNovuZupaniju(Zupanija novaZupanija) {
         try (Connection veza = connectToDatabase()) {
-            PreparedStatement upit = veza.prepareStatement(
-                    "INSERT INTO ZUPANIJA(NAZIV, BROJ_STANOVNIKA, BROJ_ZARAZENIH_STANOVNIKA) VALUES(?, ?, ?)");
+            String sql = "INSERT INTO ZUPANIJA(NAZIV, BROJ_STANOVNIKA, BROJ_ZARAZENIH_STANOVNIKA) VALUES(?, ?, ?)";
+            PreparedStatement upit = veza.prepareStatement(sql);
 
             upit.setString(1, novaZupanija.getNaziv());
             upit.setInt(2, novaZupanija.getBrojStanovnika());
@@ -171,7 +173,8 @@ public final class BazaPodataka {
 
         try {
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM WHERE ID = " + trazeniId);
+            String sql = "SELECT * FROM SIMPTOM WHERE ID = " + trazeniId;
+            ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -197,7 +200,8 @@ public final class BazaPodataka {
      */
     public static void spremiNoviSimptom(Simptom noviSimptom) {
         try (Connection veza = connectToDatabase()) {
-            PreparedStatement upit = veza.prepareStatement("INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)");
+            String sql = "INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)";
+            PreparedStatement upit = veza.prepareStatement(sql);
 
             upit.setString(1, noviSimptom.getNaziv());
             upit.setString(2, noviSimptom.getVrijednost().getVrijednost());
@@ -256,8 +260,9 @@ public final class BazaPodataka {
         Bolest bolest = null;
 
         try {
+            String sql = "SELECT * FROM BOLEST WHERE ID = " + trazeniId;
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST WHERE ID = " + trazeniId);
+            ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -294,8 +299,8 @@ public final class BazaPodataka {
 
             veza.setAutoCommit(false);
 
-            PreparedStatement upit = veza.prepareStatement(
-                    "INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);
+            String sql = "INSERT INTO BOLEST(NAZIV, VIRUS) VALUES(?, ?)";
+            PreparedStatement upit = veza.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             upit.setString(1, novaBolest.getNaziv());
             upit.setBoolean(2, novaBolest.getJeVirus());
@@ -331,8 +336,9 @@ public final class BazaPodataka {
         List<Simptom> listaSimptoma = new ArrayList<>();
 
         try {
+            String sql = "SELECT * FROM BOLEST_SIMPTOM WHERE BOLEST_ID = " + id;
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST_SIMPTOM WHERE BOLEST_ID = " + id);
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 Long simptomId = rs.getLong("SIMPTOM_ID");
@@ -413,8 +419,9 @@ public final class BazaPodataka {
         Osoba osoba = null;
 
         try {
+            String sql = "SELECT * FROM OSOBA WHERE ID = " + trazeniId;
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA WHERE ID = " + trazeniId);
+            ResultSet rs = stmt.executeQuery(sql);
 
 
             if (rs.next()) {
@@ -465,16 +472,17 @@ public final class BazaPodataka {
         List<Osoba> kontaktiraneOsobe = new ArrayList<>();
 
         try {
+            String sql = "SELECT * FROM KONTAKTIRANE_OSOBE WHERE OSOBA_ID = " + id;
             Statement stmt = veza.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM KONTAKTIRANE_OSOBE WHERE OSOBA_ID = " + id);
+            ResultSet rs = stmt.executeQuery(sql);
 
 
             while (rs.next()) {
                 Long kontaktiranaOsobaId = rs.getLong("KONTAKTIRANA_OSOBA_ID");
                 Osoba osoba = osobe.stream()
                         .filter(o -> o.getId().equals(kontaktiranaOsobaId))
-                        .collect(Collectors.toList())
-                        .get(0);
+                        .findFirst()
+                        .get();
                 kontaktiraneOsobe.add(osoba);
             }
 
@@ -496,9 +504,9 @@ public final class BazaPodataka {
 
             veza.setAutoCommit(false);
 
-            PreparedStatement upit = veza.prepareStatement(
-                    "INSERT INTO OSOBA(IME, PREZIME, DATUM_RODJENJA, ZUPANIJA_ID, BOLEST_ID) VALUES (?, ?, ?, ?, ?)",
-                    Statement.RETURN_GENERATED_KEYS);
+            String sql = "INSERT INTO OSOBA(IME, PREZIME, DATUM_RODJENJA, ZUPANIJA_ID, BOLEST_ID) VALUES (?, ?, ?, ?, ?)";
+
+            PreparedStatement upit = veza.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             upit.setString(1, novaOsoba.getIme());
             upit.setString(2, novaOsoba.getPrezime());
@@ -511,7 +519,8 @@ public final class BazaPodataka {
             Long osobaId = dohvatiId(upit);
 
             for (Osoba kontakt : novaOsoba.getKontaktiraneOsobe()) {
-                PreparedStatement upitKontakti = veza.prepareStatement("INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)");
+                String sql2 = "INSERT INTO KONTAKTIRANE_OSOBE VALUES(?, ?)";
+                PreparedStatement upitKontakti = veza.prepareStatement(sql2);
 
                 upitKontakti.setLong(1, osobaId);
                 upitKontakti.setLong(2, kontakt.getId());
@@ -542,6 +551,27 @@ public final class BazaPodataka {
             entitetId = rs.getLong(1);
         }
         return entitetId;
+    }
+
+    // dodatno
+    public static void izmijeniZupaniju(Long id, Zupanija novaZupanija) {
+        try (Connection veza = connectToDatabase()) {
+            String sql = "UPDATE ZUPANIJA " +
+                    "SET NAZIV = ?, BROJ_STANOVNIKA = ?, BROJ_ZARAZENIH_STANOVNIKA = ? " +
+                    "WHERE ID = " + id;
+
+            PreparedStatement upit = veza.prepareStatement(sql);
+
+            upit.setString(1, novaZupanija.getNaziv());
+            upit.setInt(2, novaZupanija.getBrojStanovnika());
+            upit.setInt(3, novaZupanija.getBrojZarazenih());
+
+            upit.executeUpdate();
+
+        } catch (IOException | SQLException e) {
+            Main.logger.error("Greška kod izmjene županije");
+            e.printStackTrace();
+        }
     }
 
 
