@@ -10,9 +10,13 @@ import java.util.List;
 public abstract class UnosController {
 
     public abstract void dodaj();
+
     public abstract void prikaziStatus();
+
     public abstract void ocistiUnos();
+
     public abstract void resetIndicators();
+
     public abstract void inicijalizirajListenere();
 
     /**
@@ -57,6 +61,14 @@ public abstract class UnosController {
         prikaziAlert(title, header, content, Alert.AlertType.INFORMATION);
     }
 
+    /**
+     * Validira generički field
+     *
+     * @param tf    field za validaciju
+     * @param value podatak o unesenoj vrijednosti
+     * @param <T>   input field
+     * @return
+     */
     public <T> boolean validateField(T tf, String value) {
         if (value.isBlank()) {
             prikaziErrorIndicator(tf);
@@ -67,6 +79,13 @@ public abstract class UnosController {
         }
     }
 
+    /**
+     * Validira DatePicker
+     *
+     * @param dp    DatePicker za validaciju
+     * @param value podatak o unesenoj vrijednosti
+     * @return boolean
+     */
     public boolean validateDatePicker(DatePicker dp, String value) {
         if (value.isBlank()) {
             prikaziErrorIndicator(dp.getEditor());
@@ -77,6 +96,13 @@ public abstract class UnosController {
         }
     }
 
+    /**
+     * Validira TextField
+     *
+     * @param tf    TextField za validaciju
+     * @param value podatak o unesenoj vrijednosti
+     * @return boolean
+     */
     public boolean validateTextFieldNumber(TextField tf, String value) {
         if (!isValidInteger(value)) {
             prikaziErrorIndicator(tf);
@@ -87,6 +113,14 @@ public abstract class UnosController {
         }
     }
 
+    /**
+     * Validira ChoiceBox
+     *
+     * @param cb    ChoiceBox za validaciju
+     * @param value podatak o izabranoj vrijednosti
+     * @param <T>   tip objekta ponuđenih izbora ChoiceBox-a
+     * @return boolean
+     */
     public <T> boolean validateChoiceBox(ChoiceBox<T> cb, T value) {
         if (value == null) {
             prikaziErrorIndicator(cb);
@@ -97,6 +131,13 @@ public abstract class UnosController {
         }
     }
 
+    /**
+     * Validira MenuButton
+     *
+     * @param mb    MenuButton za validaciju
+     * @param lista podatak o listi izabranih vrijednosti
+     * @return boolean
+     */
     public <T> boolean validateMenuButton(MenuButton mb, List<T> lista) {
         if (lista.isEmpty()) {
             prikaziErrorIndicator(mb);
@@ -108,6 +149,12 @@ public abstract class UnosController {
     }
 
 
+    /**
+     * Validira Slider
+     *
+     * @param slider Slider za validaciju
+     * @return boolean
+     */
     public boolean validateSlider(Slider slider) {
         if (slider.valueProperty().lessThanOrEqualTo(0).get()) {
             prikaziErrorIndicator(slider);
@@ -142,6 +189,25 @@ public abstract class UnosController {
         return sb.substring(0, sb.length() - 1).trim();
     }
 
+    /**
+     * Pretvara prvu riječ u Title Case
+     *
+     * @param givenString string koji želimo obraditi
+     */
+    public String toTitleCaseFirstWord(String givenString) {
+        if (givenString.isBlank()) {
+            return givenString;
+        }
+
+        return givenString.substring(0,1).toUpperCase() + givenString.substring(1).toLowerCase();
+    }
+
+    /**
+     * Prikazuje error indication na zadanom inputu
+     *
+     * @param input input za validaciju
+     * @param <T>
+     */
     public <T> void prikaziErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, true);
@@ -154,6 +220,12 @@ public abstract class UnosController {
         }
     }
 
+    /**
+     * Miče error indication na zadanom inputu
+     *
+     * @param input input za validaciju
+     * @param <T>
+     */
     public <T> void makniErrorIndicator(T input) {
         if (input instanceof TextField tf) {
             tf.pseudoClassStateChanged(Main.errorClass, false);

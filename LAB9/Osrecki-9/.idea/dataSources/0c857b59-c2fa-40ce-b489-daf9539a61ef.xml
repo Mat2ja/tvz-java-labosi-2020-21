@@ -174,26 +174,26 @@
     <collation id="159" parent="2" name="UKRAINIAN_UKRAINE"/>
     <collation id="160" parent="2" name="VIETNAMESE"/>
     <collation id="161" parent="2" name="VIETNAMESE_VIETNAM"/>
-    <sequence id="162" parent="4" name="SYSTEM_SEQUENCE_04694D3A_78BF_4B9E_9F86_F049E1FF1444">
+    <sequence id="162" parent="4" name="SYSTEM_SEQUENCE_033EF71D_FB70_4472_92DA_2F80ADA51776">
+      <ObjectId>19</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CacheSize>32</CacheSize>
+      <AutoCreated>1</AutoCreated>
+    </sequence>
+    <sequence id="163" parent="4" name="SYSTEM_SEQUENCE_5BABB2E2_549A_4FB3_810F_0F5CA34D8001">
       <ObjectId>23</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CacheSize>32</CacheSize>
       <AutoCreated>1</AutoCreated>
     </sequence>
-    <sequence id="163" parent="4" name="SYSTEM_SEQUENCE_40C8DD43_7C2A_4DE2_893D_BA1B2ED63D5F">
+    <sequence id="164" parent="4" name="SYSTEM_SEQUENCE_974C46F5_4370_4DED_B9B9_D52BB146DAE5">
       <ObjectId>4</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CacheSize>32</CacheSize>
       <AutoCreated>1</AutoCreated>
     </sequence>
-    <sequence id="164" parent="4" name="SYSTEM_SEQUENCE_A14A79DE_4353_423E_BF0E_137ECD601296">
+    <sequence id="165" parent="4" name="SYSTEM_SEQUENCE_E0BEE448_763F_45EA_81FC_B8A9E676E71E">
       <ObjectId>8</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CacheSize>32</CacheSize>
-      <AutoCreated>1</AutoCreated>
-    </sequence>
-    <sequence id="165" parent="4" name="SYSTEM_SEQUENCE_F253586D_B6BE_481F_917F_9F9BFC8A74B9">
-      <ObjectId>19</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CacheSize>32</CacheSize>
       <AutoCreated>1</AutoCreated>
@@ -264,36 +264,20 @@ SIMPTOM_ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="180" parent="167" name="CONSTRAINT_INDEX_4">
-      <ObjectId>14</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <SourceTextLength>84</SourceTextLength>
-      <ColNames>BOLEST_ID</ColNames>
-      <AutoCreated>1</AutoCreated>
-    </index>
-    <index id="181" parent="167" name="CONSTRAINT_INDEX_4E">
+    <index id="180" parent="167" name="CONSTRAINT_INDEX_4E">
       <ObjectId>16</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>86</SourceTextLength>
       <ColNames>SIMPTOM_ID</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="182" parent="167" name="CONSTRAINT_4">
+    <key id="181" parent="167" name="CONSTRAINT_4">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BOLEST_ID
 SIMPTOM_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="183" parent="167" name="CONSTRAINT_4E">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>BOLEST_ID</ColNames>
-      <RefTableName>BOLEST</RefTableName>
-      <RefKeyName>PRIMARY_KEY_7</RefKeyName>
-      <RefColNames>ID</RefColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-    </foreign-key>
-    <foreign-key id="184" parent="167" name="CONSTRAINT_4E6">
+    <foreign-key id="182" parent="167" name="CONSTRAINT_4E6">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SIMPTOM_ID</ColNames>
       <RefTableName>SIMPTOM</RefTableName>
@@ -302,17 +286,17 @@ SIMPTOM_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <column id="185" parent="168" name="OSOBA_ID">
+    <column id="183" parent="168" name="OSOBA_ID">
       <Position>1</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="186" parent="168" name="KONTAKTIRANA_OSOBA_ID">
+    <column id="184" parent="168" name="KONTAKTIRANA_OSOBA_ID">
       <Position>2</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="187" parent="168" name="PRIMARY_KEY_5">
+    <index id="185" parent="168" name="PRIMARY_KEY_5">
       <ObjectId>31</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>113</SourceTextLength>
@@ -321,27 +305,27 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="188" parent="168" name="CONSTRAINT_INDEX_5">
+    <index id="186" parent="168" name="CONSTRAINT_INDEX_5">
       <ObjectId>33</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>87</SourceTextLength>
       <ColNames>OSOBA_ID</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="189" parent="168" name="CONSTRAINT_INDEX_5A">
+    <index id="187" parent="168" name="CONSTRAINT_INDEX_5A">
       <ObjectId>35</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>101</SourceTextLength>
       <ColNames>KONTAKTIRANA_OSOBA_ID</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="190" parent="168" name="CONSTRAINT_5">
+    <key id="188" parent="168" name="CONSTRAINT_5">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>OSOBA_ID
 KONTAKTIRANA_OSOBA_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="191" parent="168" name="CONSTRAINT_5A">
+    <foreign-key id="189" parent="168" name="CONSTRAINT_5A">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>OSOBA_ID</ColNames>
       <RefTableName>OSOBA</RefTableName>
@@ -350,7 +334,7 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="192" parent="168" name="CONSTRAINT_5AF">
+    <foreign-key id="190" parent="168" name="CONSTRAINT_5AF">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>KONTAKTIRANA_OSOBA_ID</ColNames>
       <RefTableName>OSOBA</RefTableName>
@@ -359,38 +343,38 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <column id="193" parent="169" name="ID">
+    <column id="191" parent="169" name="ID">
       <Position>1</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="194" parent="169" name="IME">
+    <column id="192" parent="169" name="IME">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="195" parent="169" name="PREZIME">
+    <column id="193" parent="169" name="PREZIME">
       <Position>3</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="196" parent="169" name="DATUM_RODJENJA">
+    <column id="194" parent="169" name="DATUM_RODJENJA">
       <Position>4</Position>
       <DataType>DATE|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="197" parent="169" name="ZUPANIJA_ID">
+    <column id="195" parent="169" name="ZUPANIJA_ID">
       <Position>5</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="198" parent="169" name="BOLEST_ID">
+    <column id="196" parent="169" name="BOLEST_ID">
       <Position>6</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="199" parent="169" name="PRIMARY_KEY_48">
+    <index id="197" parent="169" name="PRIMARY_KEY_48">
       <ObjectId>24</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>70</SourceTextLength>
@@ -398,26 +382,19 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="200" parent="169" name="CONSTRAINT_INDEX_48">
+    <index id="198" parent="169" name="CONSTRAINT_INDEX_48">
       <ObjectId>26</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>78</SourceTextLength>
       <ColNames>ZUPANIJA_ID</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="201" parent="169" name="CONSTRAINT_INDEX_480">
-      <ObjectId>28</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <SourceTextLength>77</SourceTextLength>
-      <ColNames>BOLEST_ID</ColNames>
-      <AutoCreated>1</AutoCreated>
-    </index>
-    <key id="202" parent="169" name="CONSTRAINT_48">
+    <key id="199" parent="169" name="CONSTRAINT_48">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="203" parent="169" name="CONSTRAINT_480">
+    <foreign-key id="200" parent="169" name="CONSTRAINT_480">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ZUPANIJA_ID</ColNames>
       <RefTableName>ZUPANIJA</RefTableName>
@@ -426,32 +403,23 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="204" parent="169" name="CONSTRAINT_4802">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>BOLEST_ID</ColNames>
-      <RefTableName>BOLEST</RefTableName>
-      <RefKeyName>PRIMARY_KEY_7</RefKeyName>
-      <RefColNames>ID</RefColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-    </foreign-key>
-    <column id="205" parent="170" name="ID">
+    <column id="201" parent="170" name="ID">
       <Position>1</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="206" parent="170" name="NAZIV">
+    <column id="202" parent="170" name="NAZIV">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="207" parent="170" name="VRIJEDNOST">
+    <column id="203" parent="170" name="VRIJEDNOST">
       <Position>3</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="208" parent="170" name="PRIMARY_KEY_A">
+    <index id="204" parent="170" name="PRIMARY_KEY_A">
       <ObjectId>5</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>71</SourceTextLength>
@@ -459,33 +427,33 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="209" parent="170" name="CONSTRAINT_A">
+    <key id="205" parent="170" name="CONSTRAINT_A">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="210" parent="171" name="ID">
+    <column id="206" parent="171" name="ID">
       <Position>1</Position>
       <DataType>LONG|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="211" parent="171" name="NAZIV">
+    <column id="207" parent="171" name="NAZIV">
       <Position>2</Position>
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="212" parent="171" name="BROJ_STANOVNIKA">
+    <column id="208" parent="171" name="BROJ_STANOVNIKA">
       <Position>3</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="213" parent="171" name="BROJ_ZARAZENIH_STANOVNIKA">
+    <column id="209" parent="171" name="BROJ_ZARAZENIH_STANOVNIKA">
       <Position>4</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="214" parent="171" name="PRIMARY_KEY_A1">
+    <index id="210" parent="171" name="PRIMARY_KEY_A1">
       <ObjectId>20</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>73</SourceTextLength>
@@ -493,7 +461,7 @@ KONTAKTIRANA_OSOBA_ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="215" parent="171" name="CONSTRAINT_A1">
+    <key id="211" parent="171" name="CONSTRAINT_A1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

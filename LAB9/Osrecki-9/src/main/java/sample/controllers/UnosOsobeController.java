@@ -101,7 +101,7 @@ public class UnosOsobeController extends UnosController implements Initializable
 
         Boolean valIme = validateField(imeOsobe, ime);
         Boolean valPrezime = validateField(prezimeOsobe, prezime);
-        Boolean valStarost = validateDatePicker(datumRodjenjaOsobe,datumRodjenjaString);
+        Boolean valStarost = validateDatePicker(datumRodjenjaOsobe, datumRodjenjaString);
         Boolean valZupanija = validateChoiceBox(zupanijaOsobe, zupanija);
         Boolean valBolest = validateChoiceBox(bolestOsobe, bolest);
         Boolean valKontakti = validateMenuButton(kontaktiOsobeMenuBtn, kontakti);
@@ -156,6 +156,7 @@ public class UnosOsobeController extends UnosController implements Initializable
         listaCheckBoxa.forEach(cb -> cb.setSelected(false));
         resetIndicators();
     }
+
     /**
      * Resetira error indikatore
      */

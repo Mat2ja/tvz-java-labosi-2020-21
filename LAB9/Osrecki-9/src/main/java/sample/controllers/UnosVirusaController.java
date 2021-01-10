@@ -70,7 +70,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
      */
     @Override
     public void dodaj() {
-        String naziv = toTitleCase(nazivVirusa.getText(), " ");
+        String naziv = toTitleCaseFirstWord(nazivVirusa.getText());
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()

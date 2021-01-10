@@ -71,7 +71,7 @@ public class UnosBolestiController extends UnosController implements Initializab
      */
     @Override
     public void dodaj() {
-        String naziv = toTitleCase(nazivBolesti.getText().toUpperCase(), " ");
+        String naziv = toTitleCaseFirstWord(nazivBolesti.getText().toUpperCase());
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()

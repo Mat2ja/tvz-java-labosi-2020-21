@@ -555,3 +555,12 @@
 2021-01-08 13:35:40,026 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:279] Greška kod dohvata bolesti
 2021-01-08 13:35:40,029 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga osoba
 2021-01-08 13:36:15,903 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:39:54,333 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:51:23,128 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:54:05,537 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:54:17,190 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:323] Greška kod spremanja bolesti
+2021-01-10 17:55:04,576 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:323] Greška kod spremanja bolesti
+2021-01-10 17:55:13,661 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga osoba
+2021-01-10 17:57:03,863 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:57:42,719 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-10 17:58:01,250 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:323] Greška kod spremanja bolesti

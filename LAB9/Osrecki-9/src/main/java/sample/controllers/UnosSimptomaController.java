@@ -80,7 +80,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
      */
     @Override
     public void dodaj() {
-        String naziv = toTitleCase(nazivSimptoma.getText(), " ");
+        String naziv = toTitleCaseFirstWord(nazivSimptoma.getText());
         RadioButton vrijednosatRadioBtn = (RadioButton) vrijSimptomaGroup.getSelectedToggle();
 
         resetIndicators();
