@@ -78,6 +78,8 @@ public class UnosZupanijeController extends UnosController implements Initializa
             BazaPodataka.izmijeniZupaniju(idIzmjene, novaZupanija);
         }
 
+        listaZupanija = BazaPodataka.dohvatiSveZupanije();
+
         resetirajIdIzmjene();
 
         prikaziSuccessUnosAlert(

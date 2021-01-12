@@ -123,14 +123,13 @@ public class UnosOsobeController extends UnosController implements Initializable
                 .build();
         BazaPodataka.spremiNovuOsobu(novaOsoba);
 
+        listaOsoba = BazaPodataka.dohvatiSveOsobe();
+
         prikaziSuccessUnosAlert(
                 "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
 
         prikaziStatus();
         ocistiUnos();
-
-        listaOsoba = BazaPodataka.dohvatiSveOsobe();
-
     }
 
     /**

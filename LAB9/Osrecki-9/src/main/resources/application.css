@@ -130,18 +130,6 @@
     -fx-border-color: #f89f9f;
 }
 
-.text-field:success {
-    -fx-border-color: #a0d4a6;
-}
-
-.dropdown:error {
-    -fx-border-color: #f89f9f;
-}
-
-.dropdown:success {
-    -fx-border-color: #a0d4a6;
-}
-
 .back-icon {
     -fx-cursor: hand;
     -fx-opacity: .2;
@@ -182,10 +170,13 @@
 .dropdown {
     -fx-background-color: #f0f3f5;
     -fx-mark-color: #428DFF;
-    -fx-padding: 0px 6px;
     -fx-border-style: solid;
     -fx-border-color: #bad1e5;
     -fx-border-width: 0 0 0 5px;
+}
+
+.dropdown:error {
+    -fx-border-color: #f89f9f;
 }
 
 

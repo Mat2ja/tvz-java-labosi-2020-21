@@ -92,6 +92,12 @@ public class UnosVirusaController extends UnosController implements Initializabl
 
         BazaPodataka.spremiNovuBolest(noviVirus);
 
+        listaVirusa = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(Bolest::getJeVirus)
+                .map(Virus.class::cast)
+                .collect(Collectors.toList());
+
         prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 

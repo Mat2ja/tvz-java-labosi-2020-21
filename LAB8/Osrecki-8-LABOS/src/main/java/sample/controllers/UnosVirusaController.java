@@ -83,7 +83,6 @@ public class UnosVirusaController implements Initializable {
         listaCheckBoxa.stream()
                 .filter(cb -> simptomiIds.contains(Long.parseLong(cb.getId())))
                 .forEach(cb -> cb.setSelected(true));
-
     }
 
     /**

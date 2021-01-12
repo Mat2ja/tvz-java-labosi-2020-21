@@ -98,6 +98,8 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
         BazaPodataka.spremiNoviSimptom(noviSimptom);
 
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+
         prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);
 

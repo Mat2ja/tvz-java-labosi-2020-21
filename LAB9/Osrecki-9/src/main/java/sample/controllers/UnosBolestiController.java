@@ -92,6 +92,11 @@ public class UnosBolestiController extends UnosController implements Initializab
 
         BazaPodataka.spremiNovuBolest(novaBolest);
 
+        listaBolesti = BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(bolest -> !bolest.getJeVirus())
+                .collect(Collectors.toList());
+
         prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
 
