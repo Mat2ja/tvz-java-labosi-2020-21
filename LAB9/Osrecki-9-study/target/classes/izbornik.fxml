@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<MenuBar fx:id="izbornik" styleClass="izbornik" minWidth="-Infinity" GridPane.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.sample.controllers.PocetniEkranController">
+    <menus>
+        <Menu mnemonicParsing="false" styleClass="menu" text="Županije">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaPretraguZupanija" text="Pretraga"/>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaUnosZupanije" text="Unos"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" styleClass="menu" text="Simptomi">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaPretraguSimptoma" text="Pretraga"/>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaUnosSimptoma" text="Unos"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" styleClass="menu" text="Bolesti">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaPretraguBolesti" text="Pretraga"/>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaUnosBolesti" text="Unos"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" styleClass="menu" text="Virusi">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaPretraguVirusa" text="Pretraga"/>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaUnosVirusa" text="Unos"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Osobe">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaPretraguOsoba" text="Pretraga"/>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziEkranZaUnosOsobe" text="Unos"/>
+            </items>
+        </Menu>
+    </menus>
+    <cursor>
+        <Cursor fx:constant="DEFAULT"/>
+    </cursor>
+</MenuBar>
