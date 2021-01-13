@@ -169,8 +169,9 @@ public class UnosOsobeController extends UnosController implements Initializable
         makniErrorIndicator(kontaktiOsobeMenuBtn);
     }
 
+
     /**
-     * Incijalizira listenere
+     * Inicijalizira listenere
      */
     @Override
     public void inicijalizirajListenere() {

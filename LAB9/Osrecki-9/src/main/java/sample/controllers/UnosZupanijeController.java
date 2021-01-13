@@ -21,8 +21,6 @@ public class UnosZupanijeController extends UnosController implements Initializa
 
     private static List<Zupanija> listaZupanija;
 
-    private static Long idIzmjene;
-
     @FXML
     private TextField nazivZupanije;
     @FXML
@@ -43,8 +41,6 @@ public class UnosZupanijeController extends UnosController implements Initializa
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listaZupanija = BazaPodataka.dohvatiSveZupanije();
 
-        resetirajIdIzmjene();
-        
         prikaziStatus();
         inicijalizirajListenere();
     }
@@ -72,15 +68,10 @@ public class UnosZupanijeController extends UnosController implements Initializa
         Integer brZarazenih = Integer.valueOf(brZarazenihUnos);
         Zupanija novaZupanija = new Zupanija(naziv, brStanovnika, brZarazenih);
 
-        if (idIzmjene == -1) {
-            BazaPodataka.spremiNovuZupaniju(novaZupanija);
-        } else {
-            BazaPodataka.izmijeniZupaniju(idIzmjene, novaZupanija);
-        }
+        BazaPodataka.spremiNovuZupaniju(novaZupanija);
 
         listaZupanija = BazaPodataka.dohvatiSveZupanije();
 
-        resetirajIdIzmjene();
 
         prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);
@@ -115,7 +106,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
     }
 
     /**
-     * Incijalizira listenere
+     * Inicijalizira listenere
      */
     @Override
     public void inicijalizirajListenere() {
@@ -125,17 +116,5 @@ public class UnosZupanijeController extends UnosController implements Initializa
                 .addListener((obs, oldText, newText) -> validateTextFieldNumber(brStanovnikaZupanije, newText));
         brZarazenihZupanije.textProperty()
                 .addListener((obs, oldText, newText) -> validateTextFieldNumber(brZarazenihZupanije, newText));
-    }
-
-    public void izmijeniZupaniju(Zupanija zupanija) {
-        idIzmjene  = zupanija.getId();
-        System.out.println("Id izmjene " + idIzmjene);
-        nazivZupanije.setText(zupanija.getNaziv());
-        brStanovnikaZupanije.setText(zupanija.getBrojStanovnika().toString());
-        brZarazenihZupanije.setText(zupanija.getBrojZarazenih().toString());
-    }
-
-    public void resetirajIdIzmjene() {
-        idIzmjene  = -1L;
     }
 }

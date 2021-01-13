@@ -4,21 +4,15 @@ import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
-import main.java.sample.Main;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -68,38 +62,6 @@ public class PretragaZupanijaController extends PretragaController implements In
 
         tablicaZupanija.setItems(observableListZupanija);
         tablicaZupanija.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        tablicaZupanija.setRowFactory(t -> {
-            TableRow<Zupanija> row = new TableRow();
-            row.setOnMouseClicked(e -> {
-                if (e.getClickCount() == 2 && !(row.isEmpty())) {
-                    Zupanija zupanija = row.getItem();
-                    prikaziEkranIzmjene(zupanija);
-                }
-            });
-            return row;
-        });
-    }
-
-    /**
-     * Prikazuje ekran za izmjenu izabrane županije
-     *
-     * @param zupanija podatak o županiji za izmjenu
-     */
-    private void prikaziEkranIzmjene(Zupanija zupanija) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("unosZupanije.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            Main.getMainStage().setTitle("Unos županije");
-            Main.getMainStage().setScene(scene);
-
-            UnosZupanijeController controller = loader.getController();
-            controller.izmijeniZupaniju(zupanija);
-        } catch (IOException e) {
-            Main.logger.error("Greška kod prikaza ekrana");
-            e.printStackTrace();
-        }
     }
 
 

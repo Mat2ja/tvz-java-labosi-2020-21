@@ -553,26 +553,4 @@ public final class BazaPodataka {
         return entitetId;
     }
 
-    // dodatno
-    public static void izmijeniZupaniju(Long id, Zupanija novaZupanija) {
-        try (Connection veza = connectToDatabase()) {
-            String sql = "UPDATE ZUPANIJA " +
-                    "SET NAZIV = ?, BROJ_STANOVNIKA = ?, BROJ_ZARAZENIH_STANOVNIKA = ? " +
-                    "WHERE ID = " + id;
-
-            PreparedStatement upit = veza.prepareStatement(sql);
-
-            upit.setString(1, novaZupanija.getNaziv());
-            upit.setInt(2, novaZupanija.getBrojStanovnika());
-            upit.setInt(3, novaZupanija.getBrojZarazenih());
-
-            upit.executeUpdate();
-
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod izmjene županije");
-            e.printStackTrace();
-        }
-    }
-
-
 }

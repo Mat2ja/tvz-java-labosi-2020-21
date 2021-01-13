@@ -132,8 +132,9 @@ public class UnosVirusaController extends UnosController implements Initializabl
         makniErrorIndicator(simptomiMenuBtn);
     }
 
+
     /**
-     * Incijalizira listenere
+     * Inicijalizira listenere
      */
     @Override
     public void inicijalizirajListenere() {

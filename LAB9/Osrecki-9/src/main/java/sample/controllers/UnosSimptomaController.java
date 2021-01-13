@@ -134,8 +134,9 @@ public class UnosSimptomaController extends UnosController implements Initializa
         makniErrorIndicator(nazivSimptoma);
     }
 
+
     /**
-     * Incijalizira listenere
+     * Inicijalizira listenere
      */
     @Override
     public void inicijalizirajListenere() {

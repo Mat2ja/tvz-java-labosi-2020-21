@@ -27,7 +27,7 @@ public abstract class UnosController {
      * @param content content alerta
      * @param type    type alerta
      */
-    private void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
+    public void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -199,7 +199,7 @@ public abstract class UnosController {
             return givenString;
         }
 
-        return givenString.substring(0,1).toUpperCase() + givenString.substring(1).toLowerCase();
+        return givenString.substring(0, 1).toUpperCase() + givenString.substring(1).toLowerCase();
     }
 
     /**

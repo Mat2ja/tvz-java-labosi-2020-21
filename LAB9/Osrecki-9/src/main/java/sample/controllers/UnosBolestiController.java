@@ -133,7 +133,7 @@ public class UnosBolestiController extends UnosController implements Initializab
 
 
     /**
-     * Incijalizira listenere
+     * Inicijalizira listenere
      */
     @Override
     public void inicijalizirajListenere() {
