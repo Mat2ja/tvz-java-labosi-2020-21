@@ -70,6 +70,7 @@ public class PretragaVirusaController extends PretragaController implements Init
      * Pretražuje viruse prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     @Override
+    @FXML
     public void pretrazi() {
         String naziv = nazivVirusa.getText();
 

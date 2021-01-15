@@ -476,7 +476,6 @@ public final class BazaPodataka {
             Statement stmt = veza.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
-
             while (rs.next()) {
                 Long kontaktiranaOsobaId = rs.getLong("KONTAKTIRANA_OSOBA_ID");
                 Osoba osoba = osobe.stream()
@@ -551,6 +550,59 @@ public final class BazaPodataka {
             entitetId = rs.getLong(1);
         }
         return entitetId;
+    }
+
+    // zadatak 1
+    public static void izbrisiSimptom(Long id) {
+        try (Connection veza = connectToDatabase()) {
+            String sql = """
+                    DELETE FROM BOLEST_SIMPTOM WHERE SIMPTOM_ID = ?;
+                    DELETE FROM SIMPTOM WHERE ID = ?;
+                    """;
+            PreparedStatement upit = veza.prepareStatement(sql);
+
+            upit.setLong(1, id);
+            upit.setLong(2, id);
+
+            upit.executeUpdate();
+
+        } catch (IOException |
+                SQLException e) {
+            Main.logger.error("Greška kod brisanja simptoma");
+            e.printStackTrace();
+        }
+    }
+
+    // zadatak 2
+    public static List<Bolest> dohvatiBolestiSaSimptomom(Long id) {
+        List<Bolest> bolesti = new ArrayList<>();
+
+        try (Connection veza = connectToDatabase()) {
+            String sql = """
+                    SELECT DISTINCT BOLEST.*
+                    FROM BOLEST INNER JOIN
+                         BOLEST_SIMPTOM ON BOLEST.ID = BOLEST_SIMPTOM.BOLEST_ID
+                    WHERE BOLEST_SIMPTOM.SIMPTOM_ID = ?;
+                    """;
+
+            PreparedStatement upit = veza.prepareStatement(sql);
+
+            upit.setLong(1, id);
+
+            ResultSet rs = upit.executeQuery();
+
+            while (rs.next()) {
+                Long idBolesti = rs.getLong("ID");
+                Bolest bolest = dohvatiBolest(veza, idBolesti);
+                bolesti.add(bolest);
+            }
+        } catch (IOException |
+                SQLException e) {
+            Main.logger.error("Greška kod ispisa bolesti sa odabranim simptomom");
+            e.printStackTrace();
+        }
+
+        return bolesti;
     }
 
 }

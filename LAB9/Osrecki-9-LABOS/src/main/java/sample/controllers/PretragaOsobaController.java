@@ -80,6 +80,7 @@ public class PretragaOsobaController extends PretragaController implements Initi
      * Pretražuje osobe prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     @Override
+    @FXML
     public void pretrazi() {
         String ime = imeOsobe.getText();
         String prezime = prezimeOsobe.getText();

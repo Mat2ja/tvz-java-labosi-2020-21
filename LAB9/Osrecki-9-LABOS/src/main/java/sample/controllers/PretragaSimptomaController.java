@@ -4,12 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
+import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Simptom;
 
 import java.net.URL;
@@ -37,6 +37,9 @@ public class PretragaSimptomaController extends PretragaController implements In
     @FXML
     private TableColumn<Simptom, VrijednostSimptoma> stupacVrijednostSimptoma;
 
+    private ContextMenu contextMenu;
+
+
     /**
      * Inicijalizira kontroler
      *
@@ -59,12 +62,64 @@ public class PretragaSimptomaController extends PretragaController implements In
 
         tablicaSimptoma.setItems(observableListSimptoma);
         tablicaSimptoma.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // zadatak 1
+        contextMenu = kreirajContextMenu();
+
+        tablicaSimptoma.setRowFactory(t -> {
+            TableRow<Simptom> row = new TableRow();
+            row.setOnMouseClicked(e -> {
+                if (row.isEmpty()) return;
+
+                Simptom simptom = row.getItem();
+
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    prikaziContextMenu(e, tablicaSimptoma, contextMenu);
+                    postaviContextMenuListenere(contextMenu, simptom);
+                } else if (e.getClickCount() == 2) {
+                    prikaziBolestiSaSimptomom(simptom);
+                } else if (contextMenu.isShowing()) {
+                    contextMenu.hide();
+                }
+            });
+
+            return row;
+        });
+    }
+
+    private void prikaziBolestiSaSimptomom(Simptom simptom) {
+        List<Bolest> bolesti = BazaPodataka.dohvatiBolestiSaSimptomom(simptom.getId());
+
+        String content = "";
+
+        if (bolesti.isEmpty()) {
+            content = "Nema bolesti sa tim simptomom";
+        } else {
+            content = bolesti.toString().replaceAll("[\\[\\]]", "");
+        }
+
+        UnosController.prikaziAlert("Bolesti",
+                "Bolesti sa simptomom: " + simptom.getNaziv(),
+                content,
+                Alert.AlertType.INFORMATION);
+    }
+
+    private void postaviContextMenuListenere(ContextMenu contextMenu, Simptom simptom) {
+        List<MenuItem> items = contextMenu.getItems();
+        items.get(0).setOnAction(event -> makniSimptom(simptom));
+    }
+
+    private void makniSimptom(Simptom simptom) {
+        BazaPodataka.izbrisiSimptom(simptom.getId());
+        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        popuniObservableListuSimptoma(listaSimptoma);
     }
 
     /**
      * Pretražuje simptome prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     @Override
+    @FXML
     public void pretrazi() {
         String naziv = nazivSimptoma.getText();
 

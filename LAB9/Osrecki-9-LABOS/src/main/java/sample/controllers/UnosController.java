@@ -27,7 +27,7 @@ public abstract class UnosController {
      * @param content content alerta
      * @param type    type alerta
      */
-    public void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
+    public static void prikaziAlert(String title, String header, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(header);

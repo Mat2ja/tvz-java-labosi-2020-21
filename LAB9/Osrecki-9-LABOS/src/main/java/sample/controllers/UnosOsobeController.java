@@ -14,6 +14,7 @@ import main.java.hr.java.covidportal.model.Zupanija;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -95,8 +96,9 @@ public class UnosOsobeController extends UnosController implements Initializable
         List<Osoba> kontakti = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaOsoba.stream()
-                        .filter(osoba -> osoba.getId().equals(Long.parseLong(cb.getId()))).collect(Collectors.toList())
-                        .get(0))
+                        .filter(osoba -> osoba.getId().equals(Long.parseLong(cb.getId())))
+                        .findFirst()
+                        .get())
                 .collect(Collectors.toList());
 
         Boolean valIme = validateField(imeOsobe, ime);
@@ -111,7 +113,13 @@ public class UnosOsobeController extends UnosController implements Initializable
             return;
         }
 
-        LocalDate datumRodjenja = LocalDate.parse(datumRodjenjaString, DateTimeFormatter.ofPattern("d/MM/yyyy"));
+        LocalDate datumRodjenja;
+        try {
+            datumRodjenja = LocalDate.parse(datumRodjenjaString, DateTimeFormatter.ofPattern("d/MM/yyyy"));
+        } catch (DateTimeParseException e) {
+            prikaziErrorUnosAlert("Unos osobe", "Unijeli ste osobu s nedozvoljenim vrijednostima.");
+            return;
+        }
 
         Osoba novaOsoba = new Osoba.Builder()
                 .hasIme(ime)
@@ -121,6 +129,7 @@ public class UnosOsobeController extends UnosController implements Initializable
                 .withBolest(bolest)
                 .withKontaktiraneOsobe(kontakti)
                 .build();
+        
         BazaPodataka.spremiNovuOsobu(novaOsoba);
 
         listaOsoba = BazaPodataka.dohvatiSveOsobe();

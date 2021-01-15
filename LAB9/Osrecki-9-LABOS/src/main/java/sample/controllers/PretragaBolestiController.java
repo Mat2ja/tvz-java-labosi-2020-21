@@ -43,6 +43,7 @@ public class PretragaBolestiController extends PretragaController implements Ini
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stupacNazivBolesti.setCellValueFactory(new PropertyValueFactory<>("naziv"));
         stupacSimptomiBolesti.setCellValueFactory(data -> new SimpleStringProperty(

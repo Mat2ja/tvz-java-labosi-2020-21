@@ -53,7 +53,6 @@ public class PretragaZupanijaController extends PretragaController implements In
 
         listaZupanija = BazaPodataka.dohvatiSveZupanije();
 
-
         if (observableListZupanija == null) {
             observableListZupanija = FXCollections.observableArrayList();
         }
@@ -69,6 +68,7 @@ public class PretragaZupanijaController extends PretragaController implements In
      * Pretražuje županije prema zadanoj riječi i popunjuje listu filitriranim rezulatima
      */
     @Override
+    @FXML
     public void pretrazi() {
         String naziv = nazivZupanije.getText();
 

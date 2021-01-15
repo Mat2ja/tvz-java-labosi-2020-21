@@ -71,12 +71,13 @@ public class UnosBolestiController extends UnosController implements Initializab
      */
     @Override
     public void dodaj() {
-        String naziv = toTitleCaseFirstWord(nazivBolesti.getText().toUpperCase());
+        String naziv = toTitleCaseFirstWord(nazivBolesti.getText());
         List<Simptom> odabraniSimptomi = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)
                 .map(cb -> listaSimptoma.stream()
-                        .filter(simptom -> simptom.getId().equals(Long.parseLong(cb.getId()))).collect(Collectors.toList())
-                        .get(0))
+                        .filter(simptom -> simptom.getId().equals(Long.parseLong(cb.getId())))
+                        .findFirst()
+                        .get())
                 .collect(Collectors.toList());
 
         Boolean valNaziv = validateField(nazivBolesti, naziv);

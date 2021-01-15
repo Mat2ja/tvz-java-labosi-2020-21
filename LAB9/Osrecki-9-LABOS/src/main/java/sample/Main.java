@@ -31,9 +31,11 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        logger.error("Pokrenuli smo program");
+        logger.info("Pokrenuli smo program");
+
         mainStage = primaryStage;
         Parent pocetniEkran = FXMLLoader.load(getClass().getClassLoader().getResource("pocetniEkran.fxml"));
+
         homeScene = new Scene(pocetniEkran, 800, 500);
         homeScene.getStylesheets().add(Main.class.getClassLoader().getResource("application.css").toExternalForm());
         prikaziPocetniEkran();
