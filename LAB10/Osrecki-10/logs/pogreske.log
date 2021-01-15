@@ -1,0 +1,41 @@
+2021-01-14 13:07:48,977 ERROR [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 13:45:10,495 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 14:30:59,882 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 14:33:02,789 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 16:38:19,063 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 16:38:47,609 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 16:42:38,072 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 16:48:40,854 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 16:51:19,589 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:03:28,171 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:03:37,501 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:593] Greška
+2021-01-14 17:04:50,956 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:07:14,863 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:12:06,384 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:12:09,896 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:599] Greška kod ispisa bolesti sa odabranim simptomom
+2021-01-14 17:13:39,827 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:16:46,091 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:18:03,954 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:19:23,153 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:22:26,430 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:23:32,193 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:26:16,886 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:31:49,252 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:33:47,702 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:34:12,347 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:43:56,513 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:49:32,839 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:51:34,642 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:54:07,904 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:55:20,622 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-14 17:57:00,849 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:17:55,215 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:17:59,384 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:09,030 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:18:14,742 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:18,804 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:23,862 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:77] Greška kod dohvata svih županija
+2021-01-15 11:19:21,774 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:25:53,791 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:25:56,114 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:157] Greška kod dohvata svih simptoma
+2021-01-15 11:26:07,614 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
