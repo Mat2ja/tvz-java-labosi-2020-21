@@ -24,7 +24,7 @@ public class PocetniEkranController {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlFile));
             Scene pretragaZupanijaScene = new Scene(root);
 
-            Main.getMainStage().setTitle(title);
+//            Main.getMainStage().setTitle(title);
             Main.getMainStage().setScene(pretragaZupanijaScene);
         } catch (IOException e) {
             Main.logger.error("Greška kod prikaza ekrana " + title);

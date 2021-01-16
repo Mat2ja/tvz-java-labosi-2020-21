@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class PretragaOsobaController extends PretragaController implements Initializable {
 
     private static ObservableList<Osoba> observableListOsoba;
-    private static List<Osoba> listaOsoba;
+    private List<Osoba> listaOsoba;
 
     @FXML
     private TextField imeOsobe;

@@ -20,6 +20,8 @@ public final class BazaPodataka {
 
     private static final String DATABASE_FILE = "src/main/resources/database.properties";
 
+    private static Boolean aktivnaVezaSBazomPodataka = false;
+
     /**
      * Otvara vezu s bazom podataka
      *
@@ -27,7 +29,7 @@ public final class BazaPodataka {
      * @throws IOException
      * @throws SQLException
      */
-    private static Connection connectToDatabase() throws IOException, SQLException {
+    private synchronized static Connection connectToDatabase() throws IOException, SQLException {
         Properties svojstva = new Properties();
         svojstva.load(new FileReader(DATABASE_FILE));
 

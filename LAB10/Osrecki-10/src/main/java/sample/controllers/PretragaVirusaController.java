@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class PretragaVirusaController extends PretragaController implements Initializable {
 
     private static ObservableList<Virus> observableListVirusa;
-    private static List<Virus> listaVirusa;
+    private List<Virus> listaVirusa;
 
     @FXML
     private TextField nazivVirusa;

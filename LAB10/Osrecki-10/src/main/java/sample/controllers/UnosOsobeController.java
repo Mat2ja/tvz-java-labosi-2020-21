@@ -25,11 +25,11 @@ import java.util.stream.Collectors;
  */
 public class UnosOsobeController extends UnosController implements Initializable {
 
-    private static List<Zupanija> listaZupanija;
-    private static List<Bolest> listaSvihBolesti;
-    private static List<Osoba> listaOsoba;
-
     private static ObservableList<CheckBox> listaCheckBoxa;
+    private List<Zupanija> listaZupanija;
+    private List<Bolest> listaSvihBolesti;
+    private List<Osoba> listaOsoba;
+
 
     @FXML
     public TextField imeOsobe;
@@ -129,7 +129,7 @@ public class UnosOsobeController extends UnosController implements Initializable
                 .withBolest(bolest)
                 .withKontaktiraneOsobe(kontakti)
                 .build();
-        
+
         BazaPodataka.spremiNovuOsobu(novaOsoba);
 
         listaOsoba = BazaPodataka.dohvatiSveOsobe();

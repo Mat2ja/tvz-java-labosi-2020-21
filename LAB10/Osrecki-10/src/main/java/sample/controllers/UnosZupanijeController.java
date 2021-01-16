@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class UnosZupanijeController extends UnosController implements Initializable {
 
-    private static List<Zupanija> listaZupanija;
+    private List<Zupanija> listaZupanija;
 
     @FXML
     private TextField nazivZupanije;

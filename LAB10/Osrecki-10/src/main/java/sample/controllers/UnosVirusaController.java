@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 
 public class UnosVirusaController extends UnosController implements Initializable {
 
-    private static List<Simptom> listaSimptoma;
-    private static List<Virus> listaVirusa;
     private static ObservableList<CheckBox> listaCheckBoxa;
+    private List<Simptom> listaSimptoma;
+    private List<Virus> listaVirusa;
 
     @FXML
     private TextField nazivVirusa;
@@ -40,14 +40,11 @@ public class UnosVirusaController extends UnosController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-        listaVirusa = BazaPodataka.dohvatiSveBolesti()
-                .stream()
-                .filter(Bolest::getJeVirus)
-                .map(Virus.class::cast)
-                .collect(Collectors.toList());
+        listaVirusa = ucitajSamoViruse();
 
-
-        listaCheckBoxa = FXCollections.observableArrayList();
+        if (listaCheckBoxa == null) {
+            listaCheckBoxa = FXCollections.observableArrayList();
+        }
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -92,17 +89,26 @@ public class UnosVirusaController extends UnosController implements Initializabl
 
         BazaPodataka.spremiNovuBolest(noviVirus);
 
-        listaVirusa = BazaPodataka.dohvatiSveBolesti()
-                .stream()
-                .filter(Bolest::getJeVirus)
-                .map(Virus.class::cast)
-                .collect(Collectors.toList());
+        listaVirusa = ucitajSamoViruse();
 
         prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 
         ocistiUnos();
         prikaziStatus();
+    }
+
+    /**
+     * Ucitava samo viruse iz baze podataka (bez bolesti)
+     *
+     * @return lista virusa
+     */
+    private List<Virus> ucitajSamoViruse() {
+        return BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(Bolest::getJeVirus)
+                .map(Virus.class::cast)
+                .collect(Collectors.toList());
     }
 
     /**

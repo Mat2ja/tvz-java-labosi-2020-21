@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class PretragaSimptomaController extends PretragaController implements Initializable {
 
     private static ObservableList<Simptom> observableListSimptoma;
-    private static List<Simptom> listaSimptoma;
+    private List<Simptom> listaSimptoma;
 
     @FXML
     private TextField nazivSimptoma;

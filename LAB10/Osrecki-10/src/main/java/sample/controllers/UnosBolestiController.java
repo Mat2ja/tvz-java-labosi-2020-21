@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
  */
 public class UnosBolestiController extends UnosController implements Initializable {
 
-    private static List<Simptom> listaSimptoma;
-    private static List<Bolest> listaBolesti;
+    private List<Simptom> listaSimptoma;
+    private List<Bolest> listaBolesti;
     private static ObservableList<CheckBox> listaCheckBoxa;
 
     @FXML
@@ -41,12 +41,11 @@ public class UnosBolestiController extends UnosController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-        listaBolesti = BazaPodataka.dohvatiSveBolesti()
-                .stream()
-                .filter(bolest -> !bolest.getJeVirus())
-                .collect(Collectors.toList());
+        listaBolesti = ucitajSamoBolesti();
 
-        listaCheckBoxa = FXCollections.observableArrayList();
+        if (listaCheckBoxa == null) {
+            listaCheckBoxa = FXCollections.observableArrayList();
+        }
 
         listaSimptoma.stream()
                 .map(simptom -> {
@@ -93,16 +92,27 @@ public class UnosBolestiController extends UnosController implements Initializab
 
         BazaPodataka.spremiNovuBolest(novaBolest);
 
-        listaBolesti = BazaPodataka.dohvatiSveBolesti()
-                .stream()
-                .filter(bolest -> !bolest.getJeVirus())
-                .collect(Collectors.toList());
+        listaBolesti = ucitajSamoBolesti();
+
 
         prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
 
         ocistiUnos();
         prikaziStatus();
+    }
+
+
+    /**
+     * Ucitava samo bolesti iz baze podataka (bez virusa)
+     *
+     * @return lista bolesti
+     */
+    private List<Bolest> ucitajSamoBolesti() {
+        return BazaPodataka.dohvatiSveBolesti()
+                .stream()
+                .filter(bolest -> !bolest.getJeVirus())
+                .collect(Collectors.toList());
     }
 
     /**

@@ -24,7 +24,7 @@ import java.util.stream.IntStream;
  */
 public class UnosSimptomaController extends UnosController implements Initializable {
 
-    private static List<Simptom> listaSimptoma;
+    private List<Simptom> listaSimptoma;
 
     @FXML
     private TextField nazivSimptoma;
