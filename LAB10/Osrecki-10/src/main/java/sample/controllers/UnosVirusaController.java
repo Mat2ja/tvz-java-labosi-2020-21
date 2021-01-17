@@ -10,10 +10,16 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
 import main.java.hr.java.covidportal.model.Simptom;
+import main.java.hr.java.covidportal.niti.DohvatiSveBolestiNit;
+import main.java.hr.java.covidportal.niti.SpremiBolestNit;
+import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class UnosVirusaController extends UnosController implements Initializable {
@@ -39,7 +45,17 @@ public class UnosVirusaController extends UnosController implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new DohvatiSveBolestiNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaSimptoma = BazaPodataka.getSimptomi();
         listaVirusa = ucitajSamoViruse();
 
         if (listaCheckBoxa == null) {
@@ -87,9 +103,10 @@ public class UnosVirusaController extends UnosController implements Initializabl
 
         Virus noviVirus = new Virus(naziv, odabraniSimptomi);
 
-        BazaPodataka.spremiNovuBolest(noviVirus);
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new SpremiBolestNit(noviVirus));
 
-        listaVirusa = ucitajSamoViruse();
+//        listaVirusa = ucitajSamoViruse();
 
         prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
@@ -104,7 +121,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
      * @return lista virusa
      */
     private List<Virus> ucitajSamoViruse() {
-        return BazaPodataka.dohvatiSveBolesti()
+        return BazaPodataka.getBolesti()
                 .stream()
                 .filter(Bolest::getJeVirus)
                 .map(Virus.class::cast)

@@ -11,12 +11,20 @@ import javafx.scene.layout.GridPane;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Simptom;
+import main.java.hr.java.covidportal.niti.DohvatiSveSimptomeNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
+import main.java.hr.java.covidportal.niti.SpremiSimptomNit;
+import main.java.hr.java.covidportal.niti.SpremiZupanijuNit;
+import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 /**
@@ -45,7 +53,17 @@ public class UnosSimptomaController extends UnosController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new DohvatiSveSimptomeNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaSimptoma = BazaPodataka.getSimptomi();
 
         vrijSimptomaGroup = new ToggleGroup();
 
@@ -69,7 +87,7 @@ public class UnosSimptomaController extends UnosController implements Initializa
             vrijednostiGrid.add(listaRb.get(col), col, 0);
         });
 
-        prikaziStatus();
+//        prikaziStatus();
 
         inicijalizirajListenere();
     }
@@ -96,9 +114,8 @@ public class UnosSimptomaController extends UnosController implements Initializa
 
         Simptom noviSimptom = new Simptom(naziv, vrijednost);
 
-        BazaPodataka.spremiNoviSimptom(noviSimptom);
-
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new SpremiSimptomNit(noviSimptom));
 
         prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);

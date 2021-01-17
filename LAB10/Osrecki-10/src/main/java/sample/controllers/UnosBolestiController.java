@@ -9,10 +9,18 @@ import javafx.scene.control.*;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Simptom;
+import main.java.hr.java.covidportal.niti.DohvatiSveBolestiNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveSimptomeNit;
+import main.java.hr.java.covidportal.niti.SpremiBolestNit;
+import main.java.hr.java.covidportal.niti.SpremiSimptomNit;
+import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -40,7 +48,17 @@ public class UnosBolestiController extends UnosController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new DohvatiSveBolestiNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaSimptoma = BazaPodataka.getSimptomi();
         listaBolesti = ucitajSamoBolesti();
 
         if (listaCheckBoxa == null) {
@@ -90,16 +108,17 @@ public class UnosBolestiController extends UnosController implements Initializab
 
         Bolest novaBolest = new Bolest(naziv, odabraniSimptomi);
 
-        BazaPodataka.spremiNovuBolest(novaBolest);
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new SpremiBolestNit(novaBolest));
 
-        listaBolesti = ucitajSamoBolesti();
+//        listaBolesti = ucitajSamoBolesti();
 
 
         prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
 
         ocistiUnos();
-        prikaziStatus();
+//        prikaziStatus();
     }
 
 
@@ -109,7 +128,7 @@ public class UnosBolestiController extends UnosController implements Initializab
      * @return lista bolesti
      */
     private List<Bolest> ucitajSamoBolesti() {
-        return BazaPodataka.dohvatiSveBolesti()
+        return BazaPodataka.getBolesti()
                 .stream()
                 .filter(bolest -> !bolest.getJeVirus())
                 .collect(Collectors.toList());

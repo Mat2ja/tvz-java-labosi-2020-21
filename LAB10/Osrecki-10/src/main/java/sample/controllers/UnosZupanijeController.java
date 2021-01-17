@@ -8,11 +8,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
+import main.java.hr.java.covidportal.niti.SpremiZupanijuNit;
+import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Kontroler unosa županija
@@ -39,9 +45,19 @@ public class UnosZupanijeController extends UnosController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listaZupanija = BazaPodataka.dohvatiSveZupanije();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new DohvatiSveZupanijeNit());
 
-        prikaziStatus();
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaZupanija = BazaPodataka.getZupanije();
+
+//        prikaziStatus();
         inicijalizirajListenere();
     }
 
@@ -68,10 +84,8 @@ public class UnosZupanijeController extends UnosController implements Initializa
         Integer brZarazenih = Integer.valueOf(brZarazenihUnos);
         Zupanija novaZupanija = new Zupanija(naziv, brStanovnika, brZarazenih);
 
-        BazaPodataka.spremiNovuZupaniju(novaZupanija);
-
-        listaZupanija = BazaPodataka.dohvatiSveZupanije();
-
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new SpremiZupanijuNit(novaZupanija));
 
         prikaziSuccessUnosAlert(
                 "Unos županije", "Županija dodana", "Unijeli ste županiju: " + novaZupanija);

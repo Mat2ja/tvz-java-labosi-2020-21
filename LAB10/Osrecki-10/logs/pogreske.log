@@ -72,3 +72,168 @@
 2021-01-16 13:15:16,550 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2021-01-16 13:31:47,582 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2021-01-16 13:55:53,305 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:06:11,244 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:06:13,574 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-16 16:07:02,432 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:07:30,439 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-16 16:07:33,810 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:16:57,883 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:17:42,639 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:21:05,281 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:21:07,353 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-16 16:22:59,247 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:23:25,375 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:23:56,420 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:24:28,283 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:25:03,920 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:28:45,544 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:29:03,891 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:29:06,291 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:29:16,753 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:30:20,380 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:32:45,121 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:35:26,128 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:42:26,692 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:42:48,704 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 16:43:08,761 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 17:10:06,207 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 18:13:08,489 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 18:14:10,899 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 18:17:08,250 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 18:17:30,508 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 19:48:25,967 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:20:50,204 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:22:18,028 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:25:37,471 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:27:30,982 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:32:31,771 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:34:12,292 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:36:31,075 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:36:46,795 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:37:33,201 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:38:13,106 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:42:39,746 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:42:42,052 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-16 20:47:48,497 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-16 20:48:10,046 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:37:53,116 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:40:16,763 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:42:57,513 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:44:59,364 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:45:54,595 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:51:01,614 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:52:08,069 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:52:20,907 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:52:52,691 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:55:48,678 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:55:51,268 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:56:24,402 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:56:26,803 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:56:55,974 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:56:58,339 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:58:39,849 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:58:42,100 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:59:16,741 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:59:19,303 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:59:26,504 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:59:28,982 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 12:59:34,369 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 12:59:55,878 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 13:04:40,072 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:04:46,842 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:30] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 13:05:28,670 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:06:42,449 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:06:58,201 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:07:46,641 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:12:13,179 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:12:57,787 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:14:07,663 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:14:28,369 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:15:58,253 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:16:15,594 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:19:42,961 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:19:57,696 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:20:35,409 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:20:53,314 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:22:58,406 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:26:15,068 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:26:27,541 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:26:49,510 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:31:37,877 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:40:16,776 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:40:21,118 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga simptoma
+2021-01-17 13:40:41,543 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:40:45,134 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga simptoma
+2021-01-17 13:41:21,000 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:41:23,792 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga simptoma
+2021-01-17 13:41:37,582 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:41:49,075 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga simptoma
+2021-01-17 13:41:52,569 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:41:55,516 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga simptoma
+2021-01-17 13:42:40,193 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 13:44:30,219 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:05:10,720 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:18:50,900 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:33:48,224 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:36:14,131 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:45:06,554 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:45:43,778 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:55:20,991 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:57:24,108 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:57:42,685 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 17:58:01,983 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:02:04,044 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:02:48,371 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:03:12,662 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:03:38,388 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:03:48,748 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:08:04,902 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:08:07,325 ERROR [JavaFX Application Thread] m.j.s.Main [PocetniEkranController.java:33] Greška kod prikaza ekrana Pretraga županije
+2021-01-17 18:09:49,659 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:12:56,476 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:18:01,163 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:20:22,400 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:23:12,419 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:23:27,732 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:24:09,374 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:24:44,237 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:25:14,740 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:26:23,908 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:27:10,763 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:27:37,856 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:28:03,405 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:29:55,019 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:30:25,627 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:30:44,937 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:30:48,928 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:31:11,622 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:32:40,884 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:34:45,689 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:35:22,854 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:36:18,162 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:39:59,531 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:40:16,164 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:40:26,465 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:42:11,153 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:42:52,315 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:43:09,295 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:43:22,538 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:43:54,217 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:44:09,401 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:46:04,092 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:47:39,435 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:48:44,025 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:49:04,864 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:51:14,122 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:51:49,631 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:54:38,770 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:55:47,637 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:56:24,004 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:56:40,783 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 18:56:47,290 ERROR [pool-5-thread-1] m.j.s.Main [DohvatiSveBolestiNit.java:40] null
+2021-01-17 19:06:28,771 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 19:19:18,185 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 19:39:01,776 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 19:39:54,265 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 19:40:59,245 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-17 19:51:10,804 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program

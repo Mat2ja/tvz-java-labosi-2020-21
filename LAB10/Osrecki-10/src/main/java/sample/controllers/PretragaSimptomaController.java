@@ -11,10 +11,17 @@ import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Simptom;
+import main.java.hr.java.covidportal.niti.DohvatiSveSimptomeNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
+import main.java.sample.Main;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -37,8 +44,6 @@ public class PretragaSimptomaController extends PretragaController implements In
     @FXML
     private TableColumn<Simptom, VrijednostSimptoma> stupacVrijednostSimptoma;
 
-    private ContextMenu contextMenu;
-
 
     /**
      * Inicijalizira kontroler
@@ -51,7 +56,22 @@ public class PretragaSimptomaController extends PretragaController implements In
         stupacNazivSimptoma.setCellValueFactory(new PropertyValueFactory<>("naziv"));
         stupacVrijednostSimptoma.setCellValueFactory(new PropertyValueFactory<>("vrijednost"));
 
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
+        if (listaSimptoma == null) {
+            listaSimptoma = new ArrayList<>();
+        }
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        executor.execute(new DohvatiSveSimptomeNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaSimptoma = BazaPodataka.getSimptomi();
 
 
         if (observableListSimptoma == null) {
@@ -63,72 +83,8 @@ public class PretragaSimptomaController extends PretragaController implements In
         tablicaSimptoma.setItems(observableListSimptoma);
         tablicaSimptoma.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        contextMenu = kreirajContextMenu();
-
-        tablicaSimptoma.setRowFactory(t -> {
-            TableRow<Simptom> row = new TableRow();
-            row.setOnMouseClicked(e -> {
-                if (row.isEmpty()) return;
-
-                Simptom simptom = row.getItem();
-
-                if (e.getButton() == MouseButton.SECONDARY) {
-                    prikaziContextMenu(e, tablicaSimptoma, contextMenu);
-                    postaviContextMenuListenere(contextMenu, simptom);
-                } else if (e.getClickCount() == 2) {
-                    prikaziBolestiSaSimptomom(simptom);
-                } else if (contextMenu.isShowing()) {
-                    contextMenu.hide();
-                }
-            });
-
-            return row;
-        });
     }
 
-    /**
-     * Prikazuje bolesti koje sadrže odabrani simptom
-     *
-     * @param simptom podatak o odabranom simptomu
-     */
-    private void prikaziBolestiSaSimptomom(Simptom simptom) {
-        List<Bolest> bolesti = BazaPodataka.dohvatiBolestiSaSimptomom(simptom.getId());
-
-        String content = "";
-
-        if (bolesti.isEmpty()) {
-            content = "Nema bolesti sa tim simptomom";
-        } else {
-            content = bolesti.toString().replaceAll("[\\[\\]]", "");
-        }
-
-        UnosController.prikaziAlert("Bolesti",
-                "Bolesti sa simptomom: " + simptom.getNaziv(),
-                content,
-                Alert.AlertType.INFORMATION);
-    }
-
-    /**
-     * Postavlja ponašanje na klik određene opcije kontekst menija
-     *
-     * @param contextMenu ContextMenu
-     * @param simptom     odabarani simptom
-     */
-    private void postaviContextMenuListenere(ContextMenu contextMenu, Simptom simptom) {
-        List<MenuItem> items = contextMenu.getItems();
-        items.get(0).setOnAction(event -> makniSimptom(simptom));
-    }
-
-    /**
-     * Miče simptom iz baze podataka i osvježava prikaz
-     *
-     * @param simptom odabrani simptom
-     */
-    private void makniSimptom(Simptom simptom) {
-        BazaPodataka.izbrisiSimptom(simptom.getId());
-        listaSimptoma = BazaPodataka.dohvatiSveSimptome();
-        popuniObservableListuSimptoma(listaSimptoma);
-    }
 
     /**
      * Pretražuje simptome prema zadanoj riječi i popunjuje listu filitriranim rezulatima

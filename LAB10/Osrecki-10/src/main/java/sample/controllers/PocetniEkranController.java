@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
 import main.java.sample.Main;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Kontoler glavnog izbornika

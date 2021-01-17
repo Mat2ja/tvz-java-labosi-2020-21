@@ -10,6 +10,9 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
+import main.java.hr.java.covidportal.niti.DohvatiSveOsobeNit;
+import main.java.hr.java.covidportal.niti.SpremiOsobaNit;
+import main.java.sample.Main;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,6 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -57,9 +63,19 @@ public class UnosOsobeController extends UnosController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        listaZupanija = BazaPodataka.dohvatiSveZupanije();
-        listaSvihBolesti = BazaPodataka.dohvatiSveBolesti();
-        listaOsoba = BazaPodataka.dohvatiSveOsobe();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new DohvatiSveOsobeNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaZupanija = BazaPodataka.getZupanije();
+        listaSvihBolesti = BazaPodataka.getBolesti();
+        listaOsoba = BazaPodataka.getOsobe();
 
         zupanijaOsobe.getItems().addAll(listaZupanija);
         bolestOsobe.getItems().addAll(listaSvihBolesti);
@@ -78,7 +94,7 @@ public class UnosOsobeController extends UnosController implements Initializable
                     kontaktiOsobeMenuBtn.getItems().add(menuItem);
                 });
 
-        prikaziStatus();
+//        prikaziStatus();
         inicijalizirajListenere();
     }
 
@@ -130,9 +146,8 @@ public class UnosOsobeController extends UnosController implements Initializable
                 .withKontaktiraneOsobe(kontakti)
                 .build();
 
-        BazaPodataka.spremiNovuOsobu(novaOsoba);
-
-        listaOsoba = BazaPodataka.dohvatiSveOsobe();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new SpremiOsobaNit(novaOsoba));
 
         prikaziSuccessUnosAlert(
                 "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);

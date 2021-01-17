@@ -12,10 +12,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Virus;
+import main.java.hr.java.covidportal.niti.DohvatiSveBolestiNit;
+import main.java.sample.Main;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -49,11 +55,28 @@ public class PretragaVirusaController extends PretragaController implements Init
         stupacSimptomiVirusa.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
-        listaVirusa = BazaPodataka.dohvatiSveBolesti()
+
+        if (listaVirusa == null) {
+            listaVirusa = new ArrayList<>();
+        }
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        executor.execute(new DohvatiSveBolestiNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaVirusa = BazaPodataka.getBolesti()
                 .stream()
                 .filter(Bolest::getJeVirus)
                 .map(Virus.class::cast)
                 .collect(Collectors.toList());
+
 
         if (observableListVirusa == null) {
             observableListVirusa = FXCollections.observableArrayList();

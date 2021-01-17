@@ -3,9 +3,11 @@ package main.java.sample.controllers;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -15,16 +17,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
 import main.java.hr.java.covidportal.niti.NajviseZarazenaNit;
 import main.java.sample.Main;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,11 @@ import java.util.stream.Collectors;
 public class PretragaZupanijaController extends PretragaController implements Initializable {
 
     private static ObservableList<Zupanija> observableListZupanija;
-    private List<Zupanija> listaZupanija;
+    public static List<Zupanija> listaZupanija;
+
+    static {
+        listaZupanija = new ArrayList<>();
+    }
 
     @FXML
     private TextField nazivZupanije;
@@ -63,7 +69,22 @@ public class PretragaZupanijaController extends PretragaController implements In
         stupacBrojStanovnikaZupanije.setCellValueFactory(new PropertyValueFactory<>("brojStanovnika"));
         stupacBrojZarazenihZupanije.setCellValueFactory(new PropertyValueFactory<>("brojZarazenih"));
 
-        listaZupanija = BazaPodataka.dohvatiSveZupanije();
+        if (listaZupanija == null) {
+            listaZupanija = new ArrayList<>();
+        }
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        executor.execute(new DohvatiSveZupanijeNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaZupanija = BazaPodataka.getZupanije();
 
         if (observableListZupanija == null) {
             observableListZupanija = FXCollections.observableArrayList();
@@ -74,16 +95,14 @@ public class PretragaZupanijaController extends PretragaController implements In
         tablicaZupanija.setItems(observableListZupanija);
         tablicaZupanija.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        ExecutorService executor2 = Executors.newCachedThreadPool();
 
-        NajviseZarazenaNit nit = new NajviseZarazenaNit(listaZupanija);
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
 
         if (!nitPokrenuta) {
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 public void run() {
-                    executor.execute(nit);
+                    executor2.execute(new NajviseZarazenaNit(listaZupanija));
                     nitPokrenuta = true;
                 }
             }, 0, 10000);

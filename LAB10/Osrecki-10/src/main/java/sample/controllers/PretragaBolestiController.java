@@ -11,10 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
+import main.java.hr.java.covidportal.niti.DohvatiSveBolestiNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
+import main.java.sample.Main;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -50,7 +57,24 @@ public class PretragaBolestiController extends PretragaController implements Ini
                 data.getValue().getSimptomi().toString().replaceAll("[\\[\\]]", "")));
 
 
-        listaBolesti = BazaPodataka.dohvatiSveBolesti()
+        if (listaBolesti == null) {
+            listaBolesti = new ArrayList<>();
+        }
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        executor.execute(new DohvatiSveBolestiNit());
+
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+
+        listaBolesti = BazaPodataka.getBolesti()
                 .stream()
                 .filter(bolest -> !bolest.getJeVirus())
                 .collect(Collectors.toList());

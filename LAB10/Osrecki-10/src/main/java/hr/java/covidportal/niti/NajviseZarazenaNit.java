@@ -4,14 +4,13 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NajviseZarazenaNit implements Runnable {
 
     private static List<Zupanija> zupanije;
 
-    public NajviseZarazenaNit(List<Zupanija> zupanije) {
-        this.zupanije = BazaPodataka.dohvatiSveZupanije();
+    public NajviseZarazenaNit(List<Zupanija> listaZupanija) {
+        this.zupanije = listaZupanija;
     }
 
     @Override

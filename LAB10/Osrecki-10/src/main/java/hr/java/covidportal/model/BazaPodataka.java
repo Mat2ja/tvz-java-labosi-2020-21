@@ -3,24 +3,51 @@ package main.java.hr.java.covidportal.model;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.sample.Main;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class BazaPodataka {
 
     private static final String DATABASE_FILE = "src/main/resources/database.properties";
 
-    private static Boolean aktivnaVezaSBazomPodataka = false;
+    public static Boolean aktivnaVezaSBazomPodataka = false;
+
+    public static List<Zupanija> zupanije;
+    public static List<Simptom> simptomi;
+    public static List<Bolest> bolesti;
+    public static List<Osoba> osobe;
+
+    static {
+        zupanije = new ArrayList<>();
+        simptomi = new ArrayList<>();
+        bolesti = new ArrayList<>();
+        osobe = new ArrayList<>();
+    }
+
+    public static List<Zupanija> getZupanije() {
+        return zupanije;
+    }
+
+    public static List<Simptom> getSimptomi() {
+        return simptomi;
+    }
+
+    public static List<Bolest> getBolesti() {
+        return bolesti;
+    }
+
+    public static List<Osoba> getOsobe() {
+        return osobe;
+    }
 
     /**
      * Otvara vezu s bazom podataka
@@ -29,7 +56,7 @@ public final class BazaPodataka {
      * @throws IOException
      * @throws SQLException
      */
-    private synchronized static Connection connectToDatabase() throws IOException, SQLException {
+    public static synchronized Connection connectToDatabase() throws SQLException, IOException {
         Properties svojstva = new Properties();
         svojstva.load(new FileReader(DATABASE_FILE));
 
@@ -38,6 +65,7 @@ public final class BazaPodataka {
         String lozinka = svojstva.getProperty("lozinka");
 
         Connection veza = DriverManager.getConnection(urlBazePodataka, korisnickoIme, lozinka);
+        BazaPodataka.aktivnaVezaSBazomPodataka = true;
 
         return veza;
     }
@@ -48,21 +76,23 @@ public final class BazaPodataka {
      * @param veza veza s bazom podataka
      * @throws SQLException
      */
-    private static void disconnectFromDatabase(Connection veza) throws SQLException {
+    public synchronized static void disconnectFromDatabase(Connection veza) throws SQLException {
         veza.close();
+        BazaPodataka.aktivnaVezaSBazomPodataka = false;
     }
 
     /**
      * Dohvaća sve županije iz baze podataka
      *
-     * @return lista županija
+     * @param veza veza s bazom podataka
      */
-    public static List<Zupanija> dohvatiSveZupanije() {
-        List<Zupanija> zupanije = new ArrayList<>();
+    public static void dohvatiSveZupanije(Connection veza) {
 
-        try (Connection veza = connectToDatabase()) {
+        try {
             Statement stmt = veza.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ZUPANIJA");
+
+            zupanije.clear();
 
             while (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -75,12 +105,13 @@ public final class BazaPodataka {
 
                 zupanije.add(zupanija);
             }
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod dohvata svih županija");
             e.printStackTrace();
         }
 
-        return zupanije;
+        System.out.println(zupanije);
+
     }
 
     /**
@@ -117,8 +148,8 @@ public final class BazaPodataka {
      *
      * @param novaZupanija podatak o novoj županiji
      */
-    public static void spremiNovuZupaniju(Zupanija novaZupanija) {
-        try (Connection veza = connectToDatabase()) {
+    public static void spremiNovuZupaniju(Connection veza, Zupanija novaZupanija) {
+        try {
             String sql = "INSERT INTO ZUPANIJA(NAZIV, BROJ_STANOVNIKA, BROJ_ZARAZENIH_STANOVNIKA) VALUES(?, ?, ?)";
             PreparedStatement upit = veza.prepareStatement(sql);
 
@@ -127,7 +158,7 @@ public final class BazaPodataka {
             upit.setInt(3, novaZupanija.getBrojZarazenih());
 
             upit.executeUpdate();
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod spremanja županije");
             e.printStackTrace();
         }
@@ -136,14 +167,16 @@ public final class BazaPodataka {
     /**
      * Dohvaća sve simptome iz baze podataka
      *
-     * @return lista simptoma
+     * @param veza veza s bazom podataka
      */
-    public static List<Simptom> dohvatiSveSimptome() {
-        List<Simptom> simptomi = new ArrayList<>();
+    public static void dohvatiSveSimptome(Connection veza) {
+        List<Simptom> listaSimptoma = new ArrayList<>();
 
-        try (Connection veza = connectToDatabase()) {
+        try {
             Statement stmt = veza.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM SIMPTOM");
+
+            simptomi.clear();
 
             while (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -154,12 +187,10 @@ public final class BazaPodataka {
                 simptom.setId(id);
                 simptomi.add(simptom);
             }
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod dohvata svih simptoma");
             e.printStackTrace();
         }
-
-        return simptomi;
     }
 
     /**
@@ -198,10 +229,11 @@ public final class BazaPodataka {
     /**
      * Sprema novi simptom u bazu podataka
      *
+     * @param veza        veza s bazom podataka
      * @param noviSimptom podatak o novom simptomu
      */
-    public static void spremiNoviSimptom(Simptom noviSimptom) {
-        try (Connection veza = connectToDatabase()) {
+    public static void spremiNoviSimptom(Connection veza, Simptom noviSimptom) {
+        try {
             String sql = "INSERT INTO SIMPTOM(NAZIV, VRIJEDNOST) VALUES(?, ?)";
             PreparedStatement upit = veza.prepareStatement(sql);
 
@@ -209,7 +241,7 @@ public final class BazaPodataka {
             upit.setString(2, noviSimptom.getVrijednost().getVrijednost());
 
             upit.executeUpdate();
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod spremanja simptoma");
             e.printStackTrace();
         }
@@ -218,14 +250,15 @@ public final class BazaPodataka {
     /**
      * Dohvaća sve bolesti iz baze podataka
      *
-     * @return lista bolesti
+     * @param veza veza s bazom podataka
      */
-    public static List<Bolest> dohvatiSveBolesti() {
-        List<Bolest> bolesti = new ArrayList<>();
+    public static void dohvatiSveBolesti2(Connection veza) {
 
-        try (Connection veza = connectToDatabase()) {
+        try {
             Statement stmt = veza.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM BOLEST");
+
+            bolesti.clear();
 
             while (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -243,12 +276,11 @@ public final class BazaPodataka {
                     bolesti.add(bolest);
                 }
             }
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod dohvata svih bolesti");
             e.printStackTrace();
         }
 
-        return bolesti;
     }
 
     /**
@@ -294,10 +326,11 @@ public final class BazaPodataka {
     /**
      * Sprema novu bolest u bazu podataka
      *
+     * @param veza       veza s bazom podataka
      * @param novaBolest podatak o novoj bolesti
      */
-    public static void spremiNovuBolest(Bolest novaBolest) {
-        try (Connection veza = connectToDatabase()) {
+    public static void spremiNovuBolest(Connection veza, Bolest novaBolest) {
+        try {
 
             veza.setAutoCommit(false);
 
@@ -321,7 +354,7 @@ public final class BazaPodataka {
 
             veza.commit();
             veza.setAutoCommit(true);
-        } catch (SQLException | IOException throwables) {
+        } catch (SQLException throwables) {
             Main.logger.error("Greška kod spremanja bolesti");
             throwables.printStackTrace();
         }
@@ -355,17 +388,19 @@ public final class BazaPodataka {
         return listaSimptoma;
     }
 
+
     /**
      * Dohvaća sve osobe iz baze podataka
      *
-     * @return lista osoba
+     * @param veza veza s bazom podataka
      */
-    public static List<Osoba> dohvatiSveOsobe() {
-        List<Osoba> osobe = new ArrayList<>();
+    public static void dohvatiSveOsobe2(Connection veza) {
 
-        try (Connection veza = connectToDatabase()) {
+        try {
             Statement stmt = veza.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM OSOBA");
+
+            osobe.clear();
 
             while (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -391,7 +426,6 @@ public final class BazaPodataka {
                         .build();
 
                 osoba.setId(id);
-
                 osobe.add(osoba);
             }
 
@@ -402,12 +436,10 @@ public final class BazaPodataka {
                 }
                 osoba.setKontaktiraneOsobe(kontakti);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod dohvata svih osoba");
             e.printStackTrace();
         }
-
-        return osobe;
     }
 
     /**
@@ -441,7 +473,7 @@ public final class BazaPodataka {
                 Long bolestId = rs.getLong("BOLEST_ID");
                 Bolest bolest = dohvatiBolest(veza, bolestId);
 
-                List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id, dohvatiSveOsobe());
+                List<Osoba> kontakti = dohvatiKontaktiraneOsobe(veza, id, getOsobe());
 
                 osoba = new Osoba.Builder()
                         .hasIme(ime)
@@ -498,10 +530,11 @@ public final class BazaPodataka {
     /**
      * Sprema novu osobu u bazu podataka
      *
+     * @param veza      veza s bazom podataka
      * @param novaOsoba podatak o novoj osobi
      */
-    public static void spremiNovuOsobu(Osoba novaOsoba) {
-        try (Connection veza = connectToDatabase()) {
+    public static void spremiNovuOsobu(Connection veza, Osoba novaOsoba) {
+        try {
 
             veza.setAutoCommit(false);
 
@@ -531,7 +564,7 @@ public final class BazaPodataka {
             veza.commit();
             veza.setAutoCommit(true);
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             Main.logger.error("Greška kod spremanja osobe");
             e.printStackTrace();
         }
@@ -553,65 +586,4 @@ public final class BazaPodataka {
         }
         return entitetId;
     }
-
-    /**
-     * Briše odabrani simptom iz baze podataka
-     *
-     * @param id podatak o id-u simptoma
-     */
-    public static void izbrisiSimptom(Long id) {
-        try (Connection veza = connectToDatabase()) {
-            String sql = """
-                    DELETE FROM BOLEST_SIMPTOM WHERE SIMPTOM_ID = ?;
-                    DELETE FROM SIMPTOM WHERE ID = ?;
-                    """;
-            PreparedStatement upit = veza.prepareStatement(sql);
-
-            upit.setLong(1, id);
-            upit.setLong(2, id);
-
-            upit.executeUpdate();
-
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod brisanja simptoma");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Dohvaća bolesti sa odabranim simptomom
-     *
-     * @param id podatak o id-u simptoma
-     * @return lista bolesti
-     */
-    public static List<Bolest> dohvatiBolestiSaSimptomom(Long id) {
-        List<Bolest> bolesti = new ArrayList<>();
-
-        try (Connection veza = connectToDatabase()) {
-            String sql = """
-                    SELECT DISTINCT BOLEST.*
-                    FROM BOLEST INNER JOIN
-                         BOLEST_SIMPTOM ON BOLEST.ID = BOLEST_SIMPTOM.BOLEST_ID
-                    WHERE BOLEST_SIMPTOM.SIMPTOM_ID = ?;
-                    """;
-
-            PreparedStatement upit = veza.prepareStatement(sql);
-
-            upit.setLong(1, id);
-
-            ResultSet rs = upit.executeQuery();
-
-            while (rs.next()) {
-                Long idBolesti = rs.getLong("ID");
-                Bolest bolest = dohvatiBolest(veza, idBolesti);
-                bolesti.add(bolest);
-            }
-        } catch (IOException | SQLException e) {
-            Main.logger.error("Greška kod ispisa bolesti sa odabranim simptomom");
-            e.printStackTrace();
-        }
-
-        return bolesti;
-    }
-
 }

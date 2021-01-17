@@ -13,10 +13,18 @@ import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Bolest;
 import main.java.hr.java.covidportal.model.Osoba;
 import main.java.hr.java.covidportal.model.Zupanija;
+import main.java.hr.java.covidportal.niti.DohvatiSveBolestiNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveOsobeNit;
+import main.java.hr.java.covidportal.niti.DohvatiSveZupanijeNit;
+import main.java.sample.Main;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,7 +34,7 @@ import java.util.stream.Collectors;
 public class PretragaOsobaController extends PretragaController implements Initializable {
 
     private static ObservableList<Osoba> observableListOsoba;
-    private List<Osoba> listaOsoba;
+    private static List<Osoba> listaOsoba;
 
     @FXML
     private TextField imeOsobe;
@@ -64,7 +72,22 @@ public class PretragaOsobaController extends PretragaController implements Initi
         stupacKontaktiOsobe.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getKontaktiraneOsobe().toString().replaceAll("[\\[\\]]", "")));
 
-        listaOsoba = BazaPodataka.dohvatiSveOsobe();
+        if (listaOsoba == null) {
+            listaOsoba = new ArrayList<>();
+        }
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        executor.execute(new DohvatiSveOsobeNit());
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Main.logger.error(e.getMessage());
+        }
+
+        listaOsoba = BazaPodataka.getOsobe();
 
         if (observableListOsoba == null) {
             observableListOsoba = FXCollections.observableArrayList();
