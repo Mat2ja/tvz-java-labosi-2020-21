@@ -19,21 +19,20 @@ public class DohvatiSveOsobeNit implements Runnable {
         osobe = new ArrayList<>();
     }
 
-
     @Override
     public void run() {
         try {
             otvoriVezuSBazom();
 
             BazaPodataka.dohvatiSveZupanije(veza);
-            BazaPodataka.dohvatiSveBolesti2(veza);
-            BazaPodataka.dohvatiSveOsobe2(veza);
+            BazaPodataka.dohvatiSveSimptome(veza);
+            BazaPodataka.dohvatiSveBolesti(veza);
+            BazaPodataka.dohvatiSveOsobe(veza);
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
             zatvoriVezuSBazom();
-            System.out.println("Nit osoba gotova");
         }
     }
 

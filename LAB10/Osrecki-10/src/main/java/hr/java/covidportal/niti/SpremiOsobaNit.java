@@ -21,13 +21,15 @@ public class SpremiOsobaNit implements Runnable {
         try {
             otvoriVezuSBazom();
 
+            BazaPodataka.dohvatiSveSimptome(veza);
+            BazaPodataka.dohvatiSveZupanije(veza);
+            BazaPodataka.dohvatiSveBolesti(veza);
             BazaPodataka.spremiNovuOsobu(veza, osoba);
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
             zatvoriVezuSBazom();
-            System.out.println("Nit osoba gotova");
         }
     }
 

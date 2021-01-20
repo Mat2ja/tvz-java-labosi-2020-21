@@ -1,6 +1,5 @@
 package main.java.hr.java.covidportal.niti;
 
-import main.java.hr.java.covidportal.model.BazaPodataka;
 import main.java.hr.java.covidportal.model.Zupanija;
 
 import java.util.List;

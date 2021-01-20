@@ -11,20 +11,18 @@ public class DohvatiSveBolestiNit implements Runnable {
 
     private static Connection veza;
 
-
     @Override
     public void run() {
         try {
             otvoriVezuSBazom();
 
             BazaPodataka.dohvatiSveSimptome(veza);
-            BazaPodataka.dohvatiSveBolesti2(veza);
+            BazaPodataka.dohvatiSveBolesti(veza);
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
             zatvoriVezuSBazom();
-            System.out.println("Nit bolesti gotova");
         }
     }
 

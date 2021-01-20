@@ -87,8 +87,6 @@ public class UnosSimptomaController extends UnosController implements Initializa
             vrijednostiGrid.add(listaRb.get(col), col, 0);
         });
 
-//        prikaziStatus();
-
         inicijalizirajListenere();
     }
 
@@ -120,7 +118,6 @@ public class UnosSimptomaController extends UnosController implements Initializa
         prikaziSuccessUnosAlert(
                 "Unos simptoma", "Simptom dodan!", "Unijeli ste simptom: " + noviSimptom);
 
-        prikaziStatus();
         ocistiUnos();
     }
 

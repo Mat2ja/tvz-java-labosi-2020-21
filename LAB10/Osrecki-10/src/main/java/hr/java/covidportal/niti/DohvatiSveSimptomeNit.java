@@ -22,7 +22,6 @@ public class DohvatiSveSimptomeNit implements Runnable {
             e.printStackTrace();
         } finally {
             zatvoriVezuSBazom();
-            System.out.println("Nit simptomi gotova");
         }
     }
 

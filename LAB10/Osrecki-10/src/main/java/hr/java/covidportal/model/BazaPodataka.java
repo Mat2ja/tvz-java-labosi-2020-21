@@ -3,17 +3,16 @@ package main.java.hr.java.covidportal.model;
 import main.java.hr.java.covidportal.enumeracije.VrijednostSimptoma;
 import main.java.sample.Main;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public final class BazaPodataka {
 
@@ -109,8 +108,6 @@ public final class BazaPodataka {
             Main.logger.error("Greška kod dohvata svih županija");
             e.printStackTrace();
         }
-
-        System.out.println(zupanije);
 
     }
 
@@ -252,7 +249,7 @@ public final class BazaPodataka {
      *
      * @param veza veza s bazom podataka
      */
-    public static void dohvatiSveBolesti2(Connection veza) {
+    public static void dohvatiSveBolesti(Connection veza) {
 
         try {
             Statement stmt = veza.createStatement();
@@ -394,7 +391,7 @@ public final class BazaPodataka {
      *
      * @param veza veza s bazom podataka
      */
-    public static void dohvatiSveOsobe2(Connection veza) {
+    public static void dohvatiSveOsobe(Connection veza) {
 
         try {
             Statement stmt = veza.createStatement();

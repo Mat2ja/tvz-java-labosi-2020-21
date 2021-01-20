@@ -75,7 +75,8 @@ public class UnosVirusaController extends UnosController implements Initializabl
                     simptomiMenuBtn.getItems().add(menuItem);
                 });
 
-        prikaziStatus();
+        inicijalizirajListenere();
+
     }
 
     /**
@@ -106,13 +107,12 @@ public class UnosVirusaController extends UnosController implements Initializabl
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.execute(new SpremiBolestNit(noviVirus));
 
-//        listaVirusa = ucitajSamoViruse();
+        listaVirusa = ucitajSamoViruse();
 
         prikaziSuccessUnosAlert(
                 "Unos virusa", "Virus dodan", "Unijeli ste virus: " + noviVirus);
 
         ocistiUnos();
-        prikaziStatus();
     }
 
     /**

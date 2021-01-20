@@ -94,7 +94,6 @@ public class UnosOsobeController extends UnosController implements Initializable
                     kontaktiOsobeMenuBtn.getItems().add(menuItem);
                 });
 
-//        prikaziStatus();
         inicijalizirajListenere();
     }
 
@@ -152,7 +151,6 @@ public class UnosOsobeController extends UnosController implements Initializable
         prikaziSuccessUnosAlert(
                 "Unos osobe", "Osoba dodana!", "Unijeli ste osobu: " + novaOsoba);
 
-        prikaziStatus();
         ocistiUnos();
     }
 

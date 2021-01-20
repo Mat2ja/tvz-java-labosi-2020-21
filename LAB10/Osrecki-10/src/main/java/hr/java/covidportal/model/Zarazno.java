@@ -12,5 +12,6 @@ public interface Zarazno {
      *
      * @param osoba osoba koju treba zaraziti
      */
-    void prelazakZarazeNaOsobu(Osoba osoba);
+     void prelazakZarazeNaOsobu(Osoba osoba);
+
 }

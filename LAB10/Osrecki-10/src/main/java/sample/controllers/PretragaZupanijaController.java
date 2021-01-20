@@ -5,9 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -23,7 +21,6 @@ import main.java.sample.Main;
 
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -90,26 +87,25 @@ public class PretragaZupanijaController extends PretragaController implements In
             observableListZupanija = FXCollections.observableArrayList();
         }
 
+
         popuniObservableListuZupanija(listaZupanija);
 
         tablicaZupanija.setItems(observableListZupanija);
         tablicaZupanija.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        ExecutorService executor2 = Executors.newCachedThreadPool();
 
 
         if (!nitPokrenuta) {
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 public void run() {
-                    executor2.execute(new NajviseZarazenaNit(listaZupanija));
+                    Platform.runLater(new NajviseZarazenaNit(listaZupanija));
                     nitPokrenuta = true;
                 }
             }, 0, 10000);
         }
 
 
-        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(10), e -> {
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
             Zupanija zupanija = getNajzarazenijaZupanija();
             Main.getMainStage().setTitle(zupanija.getNaziv());
         }), new KeyFrame(Duration.seconds(10)));
@@ -139,12 +135,11 @@ public class PretragaZupanijaController extends PretragaController implements In
         String naziv = nazivZupanije.getText();
 
         Predicate<Zupanija> predNaziv = zupanija -> zupanija.getNaziv().toLowerCase().contains(naziv.toLowerCase());
-
-        List<Zupanija> filitriraneZupanije = listaZupanija.stream()
+        List<Zupanija> filtriraneZupanije = listaZupanija.stream()
                 .filter(predNaziv)
                 .collect(Collectors.toList());
 
-        popuniObservableListuZupanija(filitriraneZupanije);
+        popuniObservableListuZupanija(filtriraneZupanije);
     }
 
     /**

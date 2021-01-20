@@ -22,7 +22,6 @@ public class DohvatiSveZupanijeNit implements Runnable {
             e.printStackTrace();
         } finally {
             zatvoriVezuSBazom();
-            System.out.println("Nit zupanija gotova");
         }
 
     }

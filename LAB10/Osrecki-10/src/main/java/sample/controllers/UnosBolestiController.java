@@ -78,7 +78,6 @@ public class UnosBolestiController extends UnosController implements Initializab
                     simptomiMenuBtn.getItems().add(menuItem);
                 });
 
-        prikaziStatus();
         inicijalizirajListenere();
     }
 
@@ -111,14 +110,13 @@ public class UnosBolestiController extends UnosController implements Initializab
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.execute(new SpremiBolestNit(novaBolest));
 
-//        listaBolesti = ucitajSamoBolesti();
+        listaBolesti = ucitajSamoBolesti();
 
 
         prikaziSuccessUnosAlert(
                 "Unos bolesti", "Bolest dodana", "Unijeli ste bolest: " + novaBolest);
 
         ocistiUnos();
-//        prikaziStatus();
     }
 
 
