@@ -44,6 +44,7 @@ public class PretragaSimptomaController extends PretragaController implements In
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stupacNazivSimptoma.setCellValueFactory(new PropertyValueFactory<>("naziv"));
         stupacVrijednostSimptoma.setCellValueFactory(new PropertyValueFactory<>("vrijednost"));

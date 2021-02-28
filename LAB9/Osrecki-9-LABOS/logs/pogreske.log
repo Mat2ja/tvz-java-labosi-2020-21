@@ -29,3 +29,10 @@
 2021-01-14 17:54:07,904 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2021-01-14 17:55:20,622 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
 2021-01-14 17:57:00,849 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:17:55,215 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:17:59,384 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:09,030 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program
+2021-01-15 11:18:14,742 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:18,804 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:156] Greška kod dohvata svih simptoma
+2021-01-15 11:18:23,862 ERROR [JavaFX Application Thread] m.j.s.Main [BazaPodataka.java:77] Greška kod dohvata svih županija
+2021-01-15 11:19:21,774 INFO [JavaFX Application Thread] m.j.s.Main [Main.java:34] Pokrenuli smo program

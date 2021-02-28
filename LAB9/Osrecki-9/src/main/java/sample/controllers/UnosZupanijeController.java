@@ -38,6 +38,7 @@ public class UnosZupanijeController extends UnosController implements Initializa
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listaZupanija = BazaPodataka.dohvatiSveZupanije();
 

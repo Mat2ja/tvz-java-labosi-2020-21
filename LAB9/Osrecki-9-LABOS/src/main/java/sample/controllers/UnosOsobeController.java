@@ -92,6 +92,7 @@ public class UnosOsobeController extends UnosController implements Initializable
         String prezime = toTitleCase(prezimeOsobe.getText(), " ");
         String datumRodjenjaString = datumRodjenjaOsobe.getEditor().getText();
         Zupanija zupanija = zupanijaOsobe.getValue();
+
         Bolest bolest = bolestOsobe.getValue();
         List<Osoba> kontakti = listaCheckBoxa.stream()
                 .filter(CheckBox::isSelected)

@@ -125,6 +125,7 @@ public final class BazaPodataka {
             upit.setInt(3, novaZupanija.getBrojZarazenih());
 
             upit.executeUpdate();
+
         } catch (IOException | SQLException e) {
             Main.logger.error("Greška kod spremanja županije");
             e.printStackTrace();

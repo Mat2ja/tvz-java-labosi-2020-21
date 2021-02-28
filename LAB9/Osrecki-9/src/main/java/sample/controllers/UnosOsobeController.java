@@ -54,6 +54,7 @@ public class UnosOsobeController extends UnosController implements Initializable
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaZupanija = BazaPodataka.dohvatiSveZupanije();

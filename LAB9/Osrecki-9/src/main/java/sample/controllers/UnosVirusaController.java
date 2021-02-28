@@ -37,6 +37,7 @@ public class UnosVirusaController extends UnosController implements Initializabl
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = BazaPodataka.dohvatiSveSimptome();

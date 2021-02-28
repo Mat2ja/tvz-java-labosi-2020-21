@@ -38,6 +38,7 @@ public class UnosBolestiController extends UnosController implements Initializab
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         listaSimptoma = BazaPodataka.dohvatiSveSimptome();

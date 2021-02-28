@@ -13,4 +13,8 @@ public interface Zarazno {
      * @param osoba osoba koju treba zaraziti
      */
     void prelazakZarazeNaOsobu(Osoba osoba);
+
+    static void hello() {
+        System.out.println("hello");
+    }
 }

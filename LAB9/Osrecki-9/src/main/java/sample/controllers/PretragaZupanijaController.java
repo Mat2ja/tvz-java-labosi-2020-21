@@ -45,6 +45,7 @@ public class PretragaZupanijaController extends PretragaController implements In
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         stupacNazivZupanije.setCellValueFactory(new PropertyValueFactory<>("naziv"));

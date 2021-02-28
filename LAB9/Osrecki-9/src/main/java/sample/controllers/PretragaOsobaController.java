@@ -55,6 +55,7 @@ public class PretragaOsobaController extends PretragaController implements Initi
      * @param resourceBundle
      */
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stupacImeOsobe.setCellValueFactory(new PropertyValueFactory<>("ime"));
         stupacPrezimeOsobe.setCellValueFactory(new PropertyValueFactory<>("prezime"));
@@ -101,7 +102,7 @@ public class PretragaOsobaController extends PretragaController implements Initi
      *
      * @param osobe podatak o listi osoba
      */
-    public void popuniObservableListuOsoba(List<Osoba> osobe) {
+    private void popuniObservableListuOsoba(List<Osoba> osobe) {
         observableListOsoba.clear();
         observableListOsoba.addAll(osobe);
     }

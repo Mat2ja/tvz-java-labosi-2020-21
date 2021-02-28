@@ -74,7 +74,7 @@ public class PretragaZupanijaController extends PretragaController implements In
 
         executor.execute(new DohvatiSveZupanijeNit());
 
-        executor.shutdown();
+//        executor.shutdown();
         try {
             executor.awaitTermination(2000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
